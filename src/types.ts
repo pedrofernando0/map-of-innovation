@@ -32,6 +32,11 @@ export interface AppState {
   diagnostico: string;
 }
 
+export interface StoredRecord extends AppState {
+  id: string;
+  timestamp: string;
+}
+
 export interface IndexRecord {
   id: string;
   nome: string;
