@@ -1,0 +1,37 @@
+name: Sync Skill Docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/docs/*.mdx'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy and clean docs
+        run: ./scripts/sync-skill-docs.sh
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git add skills/
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "Sync skill docs from content/docs"
+          git push

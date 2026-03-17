@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Mulish:wght@400;500;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Baloo 2", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Mulish", ui-sans-serif, system-ui, sans-serif;
+
+  --color-geekie-cereja: #ff1547;
+  --color-geekie-preto: #1c1c1c;
+  --color-geekie-branco: #ffffff;
+  --color-geekie-laranja: #ff8219;
+  --color-geekie-amarelo: #ffc300;
+  --color-geekie-verde: #32cd91;
+  --color-geekie-azul: #0fc3e6;
+  --color-geekie-roxo: #6146f1;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-geekie-preto);
+  background-color: var(--color-geekie-branco);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+@media print {
+  header, .btn-primario, .btn-secundario, .no-print { display: none !important; }
+  .screen-resultado { padding: 0 !important; }
+  .diagnostico-container { break-inside: avoid; }
+  body::after {
+    content: 'Diagnóstico gerado em ' attr(data-date) ' | geekie.com.br/mapa-inovacao';
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    margin-top: 32px;
+  }
+}
+
+/* Typography for Markdown */
+.prose h1, .prose h2, .prose h3 {
+  font-family: var(--font-heading);
+  color: var(--color-geekie-preto);
+  font-weight: 800;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose h1 { font-size: 1.875rem; }
+.prose h2 { font-size: 1.5rem; }
+.prose h3 { font-size: 1.25rem; }
+
+.prose p {
+  margin-bottom: 1em;
+  line-height: 1.6;
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+}
+
+.prose strong {
+  font-weight: 700;
+  color: var(--color-geekie-preto);
+}
