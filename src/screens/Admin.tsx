@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { getIndex, getRecord } from '../services/storageService';
-import { IndexRecord, StoredRecord } from '../types';
+import { IndexRecord } from '../types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 export function Admin() {
   const [escolas, setEscolas] = useState<IndexRecord[]>([]);
-  const [fullData, setFullData] = useState<StoredRecord[]>([]);
+  const [fullData, setFullData] = useState<any[]>([]);
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
   const [auth, setAuth] = useState(false);
@@ -21,7 +21,7 @@ export function Admin() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (usuario === (process.env.ADMIN_USER || 'admin') && senha === (process.env.ADMIN_PASS || 'admin')) {
+    if (usuario === 'pedro' && senha === 'pedro') {
       setAuth(true);
     } else {
       alert('Usuário ou senha incorretos');
@@ -263,7 +263,7 @@ export function Admin() {
                     </td>
                     <td className="p-4 border-b border-gray-100 text-center">
                       <button 
-                        onClick={() => alert(JSON.stringify(d, null, 2))}
+                        onClick={() => console.log(d)}
                         className="text-[var(--color-geekie-azul)] hover:underline text-sm font-medium"
                       >
                         Ver JSON

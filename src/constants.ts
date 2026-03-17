@@ -116,11 +116,6 @@ export function calculateScores(respostas: Record<string, number>) {
     }
   });
 
-  // Normaliza a soma de respostas (escala 1-4) para percentual 0-100%.
-  // Formula: ((soma - count) / (count * 3)) * 100
-  //   - (soma - count) remove o piso de 1 ponto por questao, resultando em 0 quando todas = 1
-  //   - (count * 3) e o maximo possivel apos remocao do piso (4-1=3 por questao)
-  //   - Resultado: 0% = todas "Discordo completamente", 100% = todas "Concordo completamente"
   const calcPercentage = (sum: number, count: number) => {
     if (count === 0) return 0;
     return Math.round(((sum - count) / (count * 3)) * 100);
