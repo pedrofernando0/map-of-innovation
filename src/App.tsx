@@ -58,11 +58,6 @@ export default function App() {
   }, [screen]);
 
   useEffect(() => {
-    // Limpar hash residual ao iniciar (evita entrar direto no admin via refresh)
-    if (window.location.hash === '#admin') {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search);
-    }
-
     const handleHashChange = () => {
       const hash = window.location.hash;
       if (hash === '#admin') {
@@ -74,6 +69,14 @@ export default function App() {
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  useEffect(() => {
+    // Sempre iniciar na tela splash, limpando qualquer hash residual
+    if (window.location.hash === '#admin') {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      setScreen('splash');
+    }
   }, []);
 
   const handleFinishQuestoes = async () => {

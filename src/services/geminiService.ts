@@ -1,14 +1,12 @@
 import { GoogleGenAI, ThinkingLevel } from '@google/genai';
-import { Escola, Scores } from '../types';
+import { AppState, Escola, Scores } from '../types';
 import { FALLBACK_DIAGNOSTICO } from '../constants';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export async function gerarDiagnostico(escola: Escola, scores: Scores, ancora: number | null): Promise<string> {
-  const entries = Object.entries(scores.pilares);
-  if (entries.length === 0) return FALLBACK_DIAGNOSTICO[scores.nivel as keyof typeof FALLBACK_DIAGNOSTICO];
-  const pilarMax = entries.reduce((a, b) => a[1] > b[1] ? a : b)[0];
-  const pilarMin = entries.reduce((a, b) => a[1] < b[1] ? a : b)[0];
+  const pilarMax = Object.entries(scores.pilares).reduce((a, b) => a[1] > b[1] ? a : b)[0];
+  const pilarMin = Object.entries(scores.pilares).reduce((a, b) => a[1] < b[1] ? a : b)[0];
 
   const prompt = `ESCOLA: ${escola.nome}, ${escola.cidade}/${escola.estado} | Rede: ${escola.rede} | Segmentos: ${escola.segmentos.join(', ')}
 NÍVEL: ${scores.nivel} (${scores.total}/100) | Auto-percepção: ${ancora}/4
