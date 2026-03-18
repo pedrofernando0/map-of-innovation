@@ -1,4 +1,4 @@
-import { AppState, IndexRecord } from '../types';
+import { AppState, IndexRecord, StoredRecord } from '../types';
 
 export function saveResponse(appState: AppState): string {
   const id = crypto.randomUUID();
@@ -39,7 +39,7 @@ export function getIndex(): IndexRecord[] {
   return [];
 }
 
-export function getRecord(id: string): any {
+export function getRecord(id: string): StoredRecord | null {
   try {
     const record = localStorage.getItem(`escola:${id}`);
     if (record) {
