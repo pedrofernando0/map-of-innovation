@@ -11,7 +11,8 @@ export function CSP({ appState }: CSPProps) {
   const copy = CSP_COPY[appState.scores.nivel as keyof typeof CSP_COPY] || CSP_COPY.ESSENCIAL;
   
   const text = `Olá! Acabei de fazer o Mapa de Inovação na Bett. Minha escola é ${appState.escola.nome} e ficou no nível ${appState.scores.nivel}. Gostaria de conversar com um consultor.`;
-  const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(text)}`;
+  const whatsappNumber = process.env.WHATSAPP_NUMBER || '5511999999999';
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
 
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center p-6 text-center animate-in fade-in duration-500">
