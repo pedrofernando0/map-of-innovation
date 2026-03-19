@@ -2,7 +2,7 @@ import { GoogleGenAI, ThinkingLevel } from '@google/genai';
 import { Escola, Scores } from '../types';
 import { FALLBACK_DIAGNOSTICO } from '../constants';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 export async function gerarDiagnostico(escola: Escola, scores: Scores, ancora: number | null): Promise<string> {
   const entries = Object.entries(scores.pilares);

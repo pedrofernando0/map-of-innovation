@@ -21,7 +21,7 @@ export function Admin() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (usuario === (process.env.ADMIN_USER || 'admin') && senha === (process.env.ADMIN_PASS || 'admin')) {
+    if (usuario === (import.meta.env.VITE_ADMIN_USER || 'admin') && senha === (import.meta.env.VITE_ADMIN_PASS || 'admin')) {
       setAuth(true);
     } else {
       alert('Usuário ou senha incorretos');
