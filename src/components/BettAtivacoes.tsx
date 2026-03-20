@@ -6,26 +6,32 @@ interface BettAtivacoesProps {
   scores: Scores;
 }
 
-// Lançamento = produto/feature inteiramente novo, nunca existiu antes
-// Novidade 2026 = evolução/melhoria de algo já existente
-// Expansão = ampliação de alcance de algo já validado
-// Destaque = seleção editorial (sem implicação de novidade)
-const TAG_STYLES: Record<string, string> = {
-  'Lançamento':    'bg-[#ff1547] text-white border border-[#ff1547]',           // cereja sólido — máximo destaque
-  'Expansão':      'bg-[#ffc300] text-[#7a5000] border border-[#ffc300]',       // amarelo — novo território
-  'Novidade 2026': 'bg-white text-[#6146f1] border border-[#6146f1]',           // contorno roxo — atualização
-  'Destaque':      'bg-gray-100 text-gray-600 border border-gray-200',          // neutro — curadoria editorial
-};
+const CATEGORY_META = {
+  novidade_2026: {
+    label: 'Novidade 2026',
+    helper: 'novo ou reformulado',
+    className: 'border border-[#ff1547] bg-[#fff1f4] text-[#b00f34]',
+    order: 0,
+  },
+  expansao: {
+    label: 'Expansao',
+    helper: 'alcance ampliado',
+    className: 'border border-[#ffd46a] bg-[#fff8df] text-[#8a5a00]',
+    order: 1,
+  },
+  aplicacao: {
+    label: 'Aplicacao pedagogica',
+    helper: 'uso imediato no contexto escolar',
+    className: 'border border-[#bfeef8] bg-[#f2fcff] text-[#086f83]',
+    order: 2,
+  },
+} as const;
 
-const TAG_DESC: Record<string, string> = {
-  'Lançamento':    'Novo em 2026',
-  'Expansão':      'Expansão de produto',
-  'Novidade 2026': 'Evolução 2026',
-  'Destaque':      'Destaque editorial',
-};
-
-// Ordenação: Lançamento > Expansão > Novidade 2026 > Destaque
-const TAG_ORDEM: Record<string, number> = { 'Lançamento': 0, 'Expansão': 1, 'Novidade 2026': 2, 'Destaque': 3 };
+function normalizeTag(tag: string) {
+  if (tag === 'Expansão') return CATEGORY_META.expansao;
+  if (tag === 'Destaque') return CATEGORY_META.aplicacao;
+  return CATEGORY_META.novidade_2026;
+}
 
 function PilarCard({ data }: { data: AtivacoesPilar }) {
   const [aberto, setAberto] = useState(false);
@@ -70,45 +76,44 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
           </p>
 
           <div className="space-y-3">
-            {[...data.ativacoes].sort((a, b) => (TAG_ORDEM[a.tag] ?? 9) - (TAG_ORDEM[b.tag] ?? 9)).map((atv, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-xl p-4 shadow-sm border"
-                style={{ borderColor: data.corPilar + '25' }}
-              >
-                <div className="flex items-start gap-3 mb-2">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1 flex-wrap">
-                      <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border whitespace-nowrap ${TAG_STYLES[atv.tag]}`}>
-                        {atv.tag}
-                      </span>
-                      <span className="text-[10px] text-gray-400">{TAG_DESC[atv.tag]}</span>
+            {[...data.ativacoes]
+              .sort((a, b) => normalizeTag(a.tag).order - normalizeTag(b.tag).order)
+              .map((atv, i) => {
+                const category = normalizeTag(atv.tag);
+                return (
+                  <div
+                    key={`${atv.titulo}-${i}`}
+                    className="bg-white rounded-xl p-4 shadow-sm border"
+                    style={{ borderColor: data.corPilar + '25' }}
+                  >
+                    <div className="flex items-start gap-3 mb-2">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap ${category.className}`}>
+                            {category.label}
+                          </span>
+                          <span className="text-[10px] text-gray-400">{category.helper}</span>
+                        </div>
+                        <h4 className="font-bold text-sm text-[var(--color-geekie-preto)] leading-snug">
+                          {atv.titulo}
+                        </h4>
+                      </div>
                     </div>
-                    <h4 className="font-bold text-sm text-[var(--color-geekie-preto)] leading-snug">
-                      {atv.titulo}
-                    </h4>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                      {atv.descricao}
+                    </p>
+                    <div
+                      className="flex items-start gap-2 text-sm rounded-lg p-3"
+                      style={{ backgroundColor: data.corPilar + '12' }}
+                    >
+                      <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: data.corPilar }}>→</span>
+                      <span className="text-gray-700 leading-relaxed">
+                        <strong style={{ color: data.corPilar }}>Como sua escola pode evoluir:</strong> {atv.impacto}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                  {atv.descricao}
-                </p>
-                <div
-                  className="flex items-start gap-2 text-sm rounded-lg p-3"
-                  style={{ backgroundColor: data.corPilar + '12' }}
-                >
-                  <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: data.corPilar }}>→</span>
-                  <span className="text-gray-700 leading-relaxed">
-                    <strong style={{ color: data.corPilar }}>Como sua escola pode evoluir:</strong> {atv.impacto}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 rounded-xl p-4 text-center" style={{ backgroundColor: data.corPilar + '15', border: `1.5px solid ${data.corPilar}40` }}>
-            <p className="text-sm font-bold" style={{ color: data.corPilar }}>
-              Converse com nosso consultor na Bett para conhecer essas soluções em detalhe e como aplicá-las na sua escola.
-            </p>
+                );
+              })}
           </div>
         </div>
       )}
@@ -120,24 +125,42 @@ export function BettAtivacoes({ scores }: BettAtivacoesProps) {
   const pilaresComOportunidade = Object.entries(scores.pilares)
     .filter(([, valor]) => valor < ATIVACAO_THRESHOLD)
     .sort(([, a], [, b]) => a - b) // do mais baixo para o mais alto
-    .map(([chave]) => chave);
+    .map(([chave]) => chave)
+    .slice(0, 3);
 
   if (pilaresComOportunidade.length === 0) return null;
 
   return (
     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 no-print">
-      <div className="flex items-center gap-3 mb-2">
-        <span className="text-[var(--color-geekie-cereja)] text-xl">✦</span>
-        <h2 className="text-xl font-bold text-[var(--color-geekie-preto)]">
-          Conheça na Bett 2026
-        </h2>
-        <span className="ml-auto bg-[#fff5f7] text-[#ff1547] border border-[#ffd0d9] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-          Ao vivo no estande
-        </span>
+      <div className="flex items-start gap-3 mb-2">
+        <span className="text-[var(--color-geekie-cereja)] text-xl mt-0.5">✦</span>
+        <div className="flex-1">
+          <div className="flex flex-wrap items-center gap-3">
+            <h2 className="text-xl font-bold text-[var(--color-geekie-preto)]">
+              Conheca na Bett 2026
+            </h2>
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#fff5f7] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#ff1547] border border-[#ffd0d9]">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ff1547] opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#ff1547]" />
+              </span>
+              Ao vivo no estande
+            </span>
+          </div>
+          <p className="text-sm text-gray-500 mt-2">
+            Selecionamos ate 3 frentes da Bett com maior aderencia ao momento atual da sua escola, priorizando o que pode apoiar sua evolucao pedagogica de forma mais concreta.
+          </p>
+        </div>
       </div>
-      <p className="text-sm text-gray-500 mb-6 ml-8">
-        Com base no diagnóstico da sua escola, selecionamos experiências que podem acelerar sua evolução nos pilares com maior oportunidade de crescimento.
-      </p>
+
+      <div className="grid gap-3 md:grid-cols-3 mb-6">
+        {Object.values(CATEGORY_META).map((category) => (
+          <div key={category.label} className={`rounded-2xl p-4 ${category.className}`}>
+            <div className="text-[11px] font-bold uppercase tracking-[0.16em]">{category.label}</div>
+            <div className="mt-2 text-xs leading-relaxed opacity-80">{category.helper}</div>
+          </div>
+        ))}
+      </div>
 
       <div className="space-y-3">
         {pilaresComOportunidade.map(chave => {

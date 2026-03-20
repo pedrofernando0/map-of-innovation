@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { AppState, Escola } from './types';
 import { calculateScores } from './constants';
 import { gerarDiagnostico } from './services/geminiService';
@@ -89,6 +90,89 @@ export default function App() {
     setScreen('resultado');
   };
 
+  const resetToSplash = () => {
+    setAppState(INITIAL_STATE);
+    setScreen('splash');
+    setProgress(0);
+  };
+
+  const renderScreen = () => {
+    if (screen === 'cadastro') {
+      return (
+        <Cadastro
+          escola={appState.escola}
+          onChange={(escola) => setAppState({ ...appState, escola })}
+          onNext={() => { setScreen('instrucao'); setProgress(20); }}
+          onBack={() => { setScreen('splash'); setProgress(0); }}
+        />
+      );
+    }
+
+    if (screen === 'instrucao') {
+      return (
+        <Instrucao
+          onNext={() => { setScreen('ancora'); setProgress(30); }}
+          onBack={() => { setScreen('cadastro'); setProgress(10); }}
+        />
+      );
+    }
+
+    if (screen === 'ancora') {
+      return (
+        <Ancora
+          ancora={appState.ancora}
+          onChange={(ancora) => setAppState({ ...appState, ancora })}
+          onNext={() => { setScreen('questoes'); setProgress(40); }}
+          onBack={() => { setScreen('instrucao'); setProgress(20); }}
+        />
+      );
+    }
+
+    if (screen === 'questoes') {
+      return (
+        <Questoes
+          respostas={appState.respostas}
+          onChange={(id, val) => {
+            const novas = { ...appState.respostas, [id]: val };
+            setAppState({ ...appState, respostas: novas });
+            const respondidas = Object.keys(novas).length;
+            setProgress(40 + (respondidas / 20) * 40);
+          }}
+          onFinish={handleFinishQuestoes}
+          onBack={() => { setScreen('ancora'); setProgress(30); }}
+        />
+      );
+    }
+
+    if (screen === 'loading') return <Loading />;
+
+    if (screen === 'resultado') {
+      return (
+        <Resultado
+          appState={appState}
+          onNext={() => { setScreen('csp'); setProgress(100); }}
+        />
+      );
+    }
+
+    if (screen === 'csp') {
+      return (
+        <CSP
+          appState={appState}
+          onBack={() => { setScreen('resultado'); setProgress(90); }}
+          onReset={resetToSplash}
+        />
+      );
+    }
+
+    return null;
+  };
+
+  const screenTransition = {
+    duration: 0.28,
+    ease: [0.22, 1, 0.36, 1] as const,
+  };
+
   if (screen === 'admin') return <Admin />;
   if (screen === 'splash') return <Splash onNext={() => { setScreen('cadastro'); setProgress(10); }} />;
 
@@ -96,56 +180,18 @@ export default function App() {
     <div className="min-h-screen bg-[var(--color-geekie-branco)]">
       <Header progress={progress} />
       
-      <main>
-        {screen === 'cadastro' && (
-          <Cadastro 
-            escola={appState.escola} 
-            onChange={(escola) => setAppState({ ...appState, escola })}
-            onNext={() => { setScreen('instrucao'); setProgress(20); }} 
-            onBack={() => { setScreen('splash'); setProgress(0); }}
-          />
-        )}
-        
-        {screen === 'instrucao' && (
-          <Instrucao 
-            onNext={() => { setScreen('ancora'); setProgress(30); }} 
-            onBack={() => { setScreen('cadastro'); setProgress(10); }}
-          />
-        )}
-        
-        {screen === 'ancora' && (
-          <Ancora 
-            ancora={appState.ancora}
-            onChange={(ancora) => setAppState({ ...appState, ancora })}
-            onNext={() => { setScreen('questoes'); setProgress(40); }} 
-            onBack={() => { setScreen('instrucao'); setProgress(20); }}
-          />
-        )}
-        
-        {screen === 'questoes' && (
-          <Questoes 
-            respostas={appState.respostas}
-            onChange={(id, val) => {
-              const novas = { ...appState.respostas, [id]: val };
-              setAppState({ ...appState, respostas: novas });
-              const respondidas = Object.keys(novas).length;
-              setProgress(40 + (respondidas / 20) * 40); // 40% to 80%
-            }}
-            onFinish={handleFinishQuestoes} 
-            onBack={() => { setScreen('ancora'); setProgress(30); }}
-          />
-        )}
-        
-        {screen === 'loading' && <Loading />}
-        
-        {screen === 'resultado' && (
-          <Resultado 
-            appState={appState} 
-            onNext={() => { setScreen('csp'); setProgress(100); }} 
-          />
-        )}
-        
-        {screen === 'csp' && <CSP appState={appState} onBack={() => { setScreen('resultado'); setProgress(90); }} />}
+      <main className="overflow-x-hidden">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={screen}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={screenTransition}
+          >
+            {renderScreen()}
+          </motion.div>
+        </AnimatePresence>
       </main>
     </div>
   );

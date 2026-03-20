@@ -1,84 +1,90 @@
 import React from 'react';
 import { Button } from '../components/ui';
-import { CSP_COPY } from '../constants';
+import { GeekieLogo } from '../components/GeekieLogo';
 import { AppState } from '../types';
 
 interface CSPProps {
   appState: AppState;
   onBack?: () => void;
+  onReset?: () => void;
 }
 
-export function CSP({ appState, onBack }: CSPProps) {
-  const copy = CSP_COPY[appState.scores.nivel as keyof typeof CSP_COPY] || CSP_COPY.ESSENCIAL;
-  
-  const text = `Olá! Acabei de fazer o Mapa de Inovação na Bett. Minha escola é ${appState.escola.nome} e ficou no nível ${appState.scores.nivel}. Gostaria de conversar com um consultor.`;
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5511999999999';
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+export function CSP({ appState, onBack, onReset }: CSPProps) {
+  const nextSteps = [
+    {
+      title: 'Leitura do contexto escolar',
+      description: 'A equipe Geekie parte deste diagnostico para compreender a etapa de ensino, a organizacao curricular e os desafios mais presentes na rotina da sua escola.'
+    },
+    {
+      title: 'Devolutiva pedagogica',
+      description: 'O contato tem como foco aprofundar o significado dos resultados, destacando forcas, pontos de atencao e prioridades possiveis para o proximo ciclo.'
+    },
+    {
+      title: 'Aplicacao a realidade da escola',
+      description: 'A conversa busca traduzir o diagnostico em encaminhamentos aderentes ao contexto institucional, sem receitas prontas ou propostas desconectadas da pratica.'
+    }
+  ];
 
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center p-6 animate-in fade-in duration-500">
-      <div className="max-w-2xl w-full mx-auto space-y-4">
+      <div className="max-w-3xl w-full mx-auto space-y-4">
 
-        {/* Botão voltar */}
         {onBack && (
           <button
             onClick={onBack}
             className="flex items-center gap-2 text-sm text-gray-500 hover:text-[var(--color-geekie-cereja)] transition-colors font-medium"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            Voltar ao relatório
+            Voltar ao relatorio
           </button>
         )}
 
-        {/* Card principal com destaque */}
-        <div className="bg-[var(--color-geekie-cereja)] rounded-3xl p-8 md:p-12 text-white text-center shadow-2xl">
-          {/* Logo Geekie no lugar da bola */}
+        <div className="rounded-[2rem] border border-[#f2d8de] bg-[linear-gradient(180deg,#fff9f7_0%,#ffffff_100%)] p-8 md:p-12 shadow-[0_28px_80px_-48px_rgba(28,28,28,0.35)]">
           <div className="flex justify-center mb-6">
-            <img src="/geekie-logo.png" alt="Geekie Educação" className="h-10 object-contain" />
+            <GeekieLogo className="h-10 object-contain" />
           </div>
 
-          <p className="text-sm font-bold uppercase tracking-wider mb-3 opacity-75">Próximo passo</p>
-          <h1 className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
-            {copy.titulo}
-          </h1>
-          <p className="text-lg opacity-90 mb-6 leading-relaxed max-w-lg mx-auto">
-            {copy.subtitulo}
-          </p>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-geekie-cereja)]">
+            Devolutiva pedagogica Geekie
+          </div>
 
-          {/* Mensagem de contato em 24h */}
-          <div className="bg-white bg-opacity-15 rounded-2xl p-4 mb-8 text-left max-w-lg mx-auto">
-            <p className="text-sm leading-relaxed opacity-95">
-              <strong>Nossa equipe entrará em contato em até 24 horas</strong> para entender melhor a sua escola, suas demandas e como integrar as práticas cotidianas sugeridas pelo nosso relatório à realidade da sua instituição.
+          <div className="max-w-2xl">
+            <h1 className="text-3xl md:text-4xl font-bold text-[var(--color-geekie-preto)] mb-5">
+              O proximo passo e compreender a realidade da sua escola com mais profundidade
+            </h1>
+
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Ao solicitar o relatorio, a Geekie entrara em contato para compreender o contexto da sua escola, aprofundar a leitura deste diagnostico e discutir como aplicar os achados a rotina pedagogica especifica da instituicao.
             </p>
           </div>
 
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-3 px-8 py-4 text-lg rounded-xl font-bold transition-all bg-white text-[var(--color-geekie-cereja)] hover:bg-gray-50 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Quero ser uma escola mais inovadora
-          </a>
-        </div>
-
-        {/* Info versão reduzida */}
-        <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-          <div className="flex items-start gap-3">
-            <span className="text-[var(--color-geekie-cereja)] mt-0.5">ⓘ</span>
-            <div>
-              <h4 className="font-bold text-[var(--color-geekie-preto)] mb-1 text-sm">Versão Reduzida — Bett Brasil 2026</h4>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Esta é uma versão reduzida do Mapa de Inovação Educacional, desenvolvida especialmente para a Bett Brasil. Avalia 1 de 5 categorias do instrumento completo. Fale com um consultor para acessar o diagnóstico integral da sua escola.
-              </p>
-            </div>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {nextSteps.map((step, index) => (
+              <div key={step.title} className="rounded-2xl border border-white bg-white/80 p-5 shadow-sm">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-geekie-cereja)]/10 text-sm font-bold text-[var(--color-geekie-cereja)]">
+                  {index + 1}
+                </div>
+                <h2 className="text-base font-bold text-[var(--color-geekie-preto)] mb-2">{step.title}</h2>
+                <p className="text-sm leading-relaxed text-gray-600">{step.description}</p>
+              </div>
+            ))}
           </div>
-        </div>
 
-        <p className="text-center text-xs text-gray-400 pt-2">
-          Obrigado por participar do Mapa de Inovação Educacional Geekie!
-        </p>
+          <div className="mt-8 rounded-2xl border border-[#f3e7ea] bg-white/75 p-6 text-left">
+            <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-gray-400 mb-3">Como a continuidade acontece</h3>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              O retorno considera os dados preenchidos por <strong>{appState.escola.contato_nome || 'sua escola'}</strong> e o e-mail <strong>{appState.escola.contato_email || 'informado no cadastro'}</strong>, para que a conversa parta do diagnostico ja realizado e avance com foco pedagogico.
+            </p>
+          </div>
+
+          {onReset && (
+            <div className="mt-10 flex justify-end pt-6 border-t border-[#f0e1e5]">
+              <Button onClick={onReset} size="lg">
+                Encerrar diagnostico
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

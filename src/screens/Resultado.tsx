@@ -44,7 +44,6 @@ const PILAR_DESC: Record<string, string> = {
 
 export function Resultado({ appState, onNext }: ResultadoProps) {
   const { escola, scores, diagnostico, ancora } = appState;
-  const [showPrintMessage, setShowPrintMessage] = useState(false);
 
   const cards = [
     { id: 'aa',   nome: 'Aprendizagem Ativa', score: scores.pilares.aprendizagem_ativa, cor: '#ff1547' },
@@ -57,8 +56,7 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
   const scoreGeral = scores.total;
 
   const handlePrint = () => {
-    setShowPrintMessage(true);
-    setTimeout(() => setShowPrintMessage(false), 5000);
+    window.print();
   };
 
   return (
@@ -72,7 +70,7 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
             <h1 className="text-4xl font-extrabold mb-2 leading-tight">{escola.nome}</h1>
             <p className="text-base opacity-80">{escola.cidade}{escola.estado ? ` / ${escola.estado}` : ''} · {escola.rede}</p>
             {ancora && (
-              <p className="text-sm opacity-70 mt-2">Auto-percepção declarada: <strong className="opacity-100">{ancora}/3</strong></p>
+              <p className="text-sm opacity-70 mt-2">Auto-percepcao declarada: <strong className="opacity-100">{ancora}/4</strong></p>
             )}
           </div>
           <div className="flex flex-col items-center md:items-end gap-3 flex-shrink-0">
@@ -138,7 +136,7 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
                 extremoEsquerdo="Transmissivo"
                 extremoDireito="Protagonista"
                 cor="#6146f1"
-                tooltip="Mede a transformação intencional das práticas de ensino, aprendizagem, avaliação e formação docente em direção ao protagonismo do estudante."
+                tooltip="Na versao Bett, este eixo observa como curriculo, planejamento e experiencias de aprendizagem se organizam para sustentar a inovacao de forma institucional e ampliar o protagonismo estudantil."
               />
               <EixoEspectro
                 label="Eixo Tecnológico"
@@ -146,7 +144,7 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
                 extremoEsquerdo="Analógica"
                 extremoDireito="Conectada"
                 cor="#FF8219"
-                tooltip="Mede a incorporação intencional de recursos digitais ao fluxo pedagógico. O indicador não é 'a escola tem plataforma', mas 'a plataforma faz parte da rotina'."
+                tooltip="Na versao Bett, este eixo observa como plataformas e recursos digitais apoiam a organizacao curricular, o acompanhamento das turmas e a adaptacao de percursos de aprendizagem."
               />
             </div>
           </div>
@@ -154,7 +152,7 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
 
         <div className="border-t border-gray-100 pt-8">
           <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Perfil de Inovação</h3>
-          <CategoryIndicator score={scores.total} />
+          <CategoryIndicator nivel={scores.nivel} score={scores.total} />
         </div>
       </div>
 
@@ -181,16 +179,11 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
         </div>
 
         <div className="mt-8 pt-6 border-t border-gray-100 no-print space-y-3">
-          {showPrintMessage && (
-            <div className="bg-green-50 text-green-800 p-4 rounded-xl text-center font-medium animate-in fade-in slide-in-from-bottom-2">
-              O relatório completo será enviado em até 24h para {escola.contato_email}.
-            </div>
-          )}
           <Button variant="secondary" onClick={handlePrint} className="w-full">
-            Receber meu relatório
+            Salvar versao para impressao
           </Button>
           <Button onClick={onNext} className="w-full" size="lg">
-            Quero ser uma escola mais inovadora →
+            Quero receber meu relatorio →
           </Button>
         </div>
       </div>

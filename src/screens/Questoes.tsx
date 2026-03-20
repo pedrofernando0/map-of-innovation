@@ -24,7 +24,7 @@ export function Questoes({ respostas, onChange, onFinish, onBack }: QuestoesProp
   const handleNext = () => {
     if (blocoAtual < blocos.length - 1) {
       setBlocoAtual(blocoAtual + 1);
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       onFinish();
     }
@@ -79,7 +79,7 @@ export function Questoes({ respostas, onChange, onFinish, onBack }: QuestoesProp
         <Button variant="outline" onClick={() => {
           if (blocoAtual > 0) {
             setBlocoAtual(blocoAtual - 1);
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           } else {
             onBack();
           }
