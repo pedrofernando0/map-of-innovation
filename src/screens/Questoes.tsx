@@ -1,40 +1,59 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from '../components/ui';
-import { QUESTOES } from '../constants';
+import { useAppStore } from '../stores/appStore';
+import { useQuestionnaire } from '../hooks/useQuestionnaire';
+import { useDiagnostico } from '../hooks/useDiagnostico';
+import { useServices } from '../contexts/AppServicesContext';
+import { calculateScores } from '../domain/scoring/calculateScores';
 
-interface QuestoesProps {
-  respostas: Record<string, number>;
-  onChange: (id: string, val: number) => void;
-  onFinish: () => void;
-  onBack: () => void;
-}
+export function Questoes() {
+  const navigate = useNavigate();
+  const { respostas, escola, ancora, setRespostas, setScores, setDiagnostico, setProgress } =
+    useAppStore();
+  const { storage, diagnostic } = useServices();
+  const { generate } = useDiagnostico(diagnostic);
 
-export function Questoes({ respostas, onChange, onFinish, onBack }: QuestoesProps) {
-  const [blocoAtual, setBlocoAtual] = useState(0);
-  const blocos = [
-    { titulo: 'Aprendizagem Ativa', qs: QUESTOES.slice(0, 5) },
-    { titulo: 'Visibilidade', qs: QUESTOES.slice(5, 10) },
-    { titulo: 'Flexibilidade', qs: QUESTOES.slice(10, 15) },
-    { titulo: 'Personalização', qs: QUESTOES.slice(15, 20) }
-  ];
+  const handleFinish = async () => {
+    navigate('/loading');
+    const scores = calculateScores(respostas);
+    const diagnostico = await generate(escola, scores, ancora);
+    const finalState = { ...useAppStore.getState(), scores, diagnostico };
+    setScores(scores);
+    setDiagnostico(diagnostico);
+    storage.save({ ...finalState, scores, diagnostico });
+    setProgress(90);
+    navigate('/resultado');
+  };
 
-  const bloco = blocos[blocoAtual];
-  const todasRespondidas = bloco.qs.every(q => respostas[q.id]);
+  const handleBack = () => {
+    setProgress(30);
+    navigate('/ancora');
+  };
 
-  const handleNext = () => {
-    if (blocoAtual < blocos.length - 1) {
-      setBlocoAtual(blocoAtual + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      onFinish();
-    }
+  const {
+    blocoAtual,
+    bloco,
+    totalBlocos,
+    todasRespondidas,
+    pendentes,
+    isLastBloco,
+    handleNext,
+    handleBack: questBack,
+  } = useQuestionnaire(respostas, handleFinish, handleBack);
+
+  const handleChange = (id: string, val: number) => {
+    const novas = { ...respostas, [id]: val };
+    setRespostas(novas);
+    setProgress(40 + (Object.keys(novas).length / 20) * 40);
   };
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 animate-in fade-in duration-500">
       <div className="mb-10">
         <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2">
-          Bloco {blocoAtual + 1} de {blocos.length}
+          Bloco {blocoAtual + 1} de {totalBlocos}
         </h2>
         <h1 className="text-3xl md:text-4xl font-bold text-[var(--color-geekie-cereja)]">
           {bloco.titulo}
@@ -43,7 +62,10 @@ export function Questoes({ respostas, onChange, onFinish, onBack }: QuestoesProp
 
       <div className="space-y-12">
         {bloco.qs.map((q, i) => (
-          <div key={q.id} className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+          <div
+            key={q.id}
+            className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100"
+          >
             <div className="flex gap-4 mb-6">
               <div className="flex-shrink-0 w-10 h-10 bg-red-50 text-[var(--color-geekie-cereja)] rounded-full flex items-center justify-center font-bold text-lg">
                 {blocoAtual * 5 + i + 1}
@@ -52,14 +74,13 @@ export function Questoes({ respostas, onChange, onFinish, onBack }: QuestoesProp
                 {q.texto}
               </p>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-8">
-              {(q.escala).map((texto, idx) => {
+              {q.escala.map((texto, idx) => {
                 const valor = idx + 1;
                 return (
                   <button
                     key={valor}
-                    onClick={() => onChange(q.id, valor)}
+                    onClick={() => handleChange(q.id, valor)}
                     className={`text-left p-4 rounded-xl border-2 transition-all duration-200 ${
                       respostas[q.id] === valor
                         ? 'border-[var(--color-geekie-cereja)] bg-red-50 text-[var(--color-geekie-cereja)] font-bold shadow-sm'
@@ -76,27 +97,16 @@ export function Questoes({ respostas, onChange, onFinish, onBack }: QuestoesProp
       </div>
 
       <div className="mt-12 flex justify-between items-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100 sticky bottom-4 z-10">
-        <Button variant="outline" onClick={() => {
-          if (blocoAtual > 0) {
-            setBlocoAtual(blocoAtual - 1);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          } else {
-            onBack();
-          }
-        }}>
+        <Button variant="outline" onClick={questBack}>
           ← Voltar
         </Button>
         <div className="text-gray-500 font-medium hidden sm:block">
           {todasRespondidas
             ? `${bloco.qs.length} de ${bloco.qs.length} respondidas`
-            : `Faltam ${bloco.qs.length - bloco.qs.filter(q => respostas[q.id]).length} respostas para avançar`}
+            : `Faltam ${pendentes} respostas para avançar`}
         </div>
-        <Button 
-          onClick={handleNext} 
-          size="lg"
-          disabled={!todasRespondidas}
-        >
-          {blocoAtual < blocos.length - 1 ? 'Próximo Bloco →' : 'Ver Resultado Final'}
+        <Button onClick={handleNext} size="lg" disabled={!todasRespondidas}>
+          {isLastBloco ? 'Ver Resultado Final' : 'Próximo Bloco →'}
         </Button>
       </div>
     </div>

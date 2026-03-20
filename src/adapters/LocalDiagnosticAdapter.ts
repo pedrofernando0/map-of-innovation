@@ -1,7 +1,7 @@
 import type { Escola, Scores } from '../types';
 import type { IDiagnosticService } from '../ports/IDiagnosticService';
 
-const FALLBACK_DIAGNOSTICO = {
+export const FALLBACK_DIAGNOSTICO: Record<string, string> = {
   ESSENCIAL: `Sua escola está no início de uma jornada importante de inovação.
 
 **Pontos fortes identificados:**
