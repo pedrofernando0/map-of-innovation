@@ -8,10 +8,9 @@ export default defineConfig(({mode}) => {
   return {
     plugins: [react(), tailwindcss()],
     define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      'process.env.ADMIN_USER': JSON.stringify(env.ADMIN_USER),
-      'process.env.ADMIN_PASS': JSON.stringify(env.ADMIN_PASS),
-      'process.env.WHATSAPP_NUMBER': JSON.stringify(env.WHATSAPP_NUMBER),
+      'import.meta.env.VITE_ADMIN_USER': JSON.stringify(env.ADMIN_USER || env.VITE_ADMIN_USER),
+      'import.meta.env.VITE_ADMIN_PASS': JSON.stringify(env.ADMIN_PASS || env.VITE_ADMIN_PASS),
+      'import.meta.env.VITE_WHATSAPP_NUMBER': JSON.stringify(env.WHATSAPP_NUMBER || env.VITE_WHATSAPP_NUMBER),
     },
     resolve: {
       alias: {
