@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { Button, Badge, ProgressBar } from '../components/ui';
 import { CategoryIndicator } from '../components/CategoryIndicator';
+import { BettAtivacoes } from '../components/BettAtivacoes';
 import { AppState } from '../types';
 
 interface ResultadoProps {
@@ -137,6 +138,8 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
               </div>
             </div>
           </div>
+
+          <BettAtivacoes scores={scores} />
 
           <div className="diagnostico-container bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
             <div className="flex flex-col gap-2 mb-6 pb-6 border-b border-gray-100">

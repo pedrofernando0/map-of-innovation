@@ -75,6 +75,139 @@ export const FALLBACK_DIAGNOSTICO = {
 **Próximos passos:** Converse com seu consultor Geekie para explorar como ampliar o impacto das práticas já consolidadas e atingir novos patamares de personalização.`
 };
 
+// Threshold (0–100): pilar abaixo desse valor exibe ativações da Bett correspondentes
+export const ATIVACAO_THRESHOLD = 50;
+
+export interface Ativacao {
+  titulo: string;
+  descricao: string;
+  tag: 'Lançamento' | 'Novidade 2026' | 'Expansão' | 'Destaque';
+  conexao: string;
+}
+
+export interface AtivacoesPilar {
+  pilar: string;
+  corPilar: string;
+  corFundo: string;
+  icone: string;
+  intro: string;
+  ativacoes: Ativacao[];
+}
+
+export const ATIVACOES_BETT: Record<string, AtivacoesPilar> = {
+  aprendizagem_ativa: {
+    pilar: 'Aprendizagem Ativa',
+    corPilar: '#ff1547',
+    corFundo: '#fff5f7',
+    icone: '⚡',
+    intro: 'Para escolas que querem colocar o estudante no centro do processo, a Geekie apresenta na Bett 2026:',
+    ativacoes: [
+      {
+        titulo: 'Estação Geekie — STEAM no Ensino Fundamental II',
+        descricao: 'Projetos interdisciplinares que mobilizam diferentes áreas do conhecimento e desenvolvem habilidades do século XXI. Expansão do EFAI para o EFAF, agora com entrega física.',
+        tag: 'Expansão',
+        conexao: 'Projetos STEAM estruturam a aprendizagem por investigação e resolução de problemas reais — o núcleo da Aprendizagem Ativa.'
+      },
+      {
+        titulo: 'Educação Digital reformulada — EFAF',
+        descricao: 'Componente curricular que explora desafios e oportunidades do mundo digital por meio de metodologias ativas, com conteúdo mais robusto e entrega física.',
+        tag: 'Novidade 2026',
+        conexao: 'Metodologias ativas digitais ampliam as possibilidades de investigação, produção e autoria dos estudantes no currículo.'
+      },
+      {
+        titulo: 'Itinerários Formativos — Nova abordagem para o Ensino Médio',
+        descricao: 'Mais de 46 itinerários organizados com temas atuais e contextualizados, incluindo Projeto de Vida e Educação Digital no impresso.',
+        tag: 'Lançamento',
+        conexao: 'Itinerários formativos são o espaço por excelência do protagonismo estudantil — o estudante escolhe seu percurso de aprofundamento.'
+      }
+    ]
+  },
+
+  visibilidade: {
+    pilar: 'Visibilidade',
+    corPilar: '#0fc3e6',
+    corFundo: '#f0fbff',
+    icone: '👁',
+    intro: 'Para tornar o aprendizado visível — para gestores, professores, famílias e estudantes — a Geekie traz à Bett 2026:',
+    ativacoes: [
+      {
+        titulo: 'Rotinas do Pensamento — Influência Project Zero (Harvard)',
+        descricao: 'Estratégias pedagógicas que tornam o raciocínio visível: levantar hipóteses, argumentar de forma estruturada, pensar sob diferentes perspectivas e evidenciar conexões entre ideias.',
+        tag: 'Destaque',
+        conexao: 'Rotinas do Pensamento revelam o raciocínio do estudante para o professor e para si mesmo — a essência de tornar visível a aprendizagem.'
+      },
+      {
+        titulo: 'Correção de Redação com IA — Geekie Teste',
+        descricao: 'Correção automática baseada na matriz do ENEM com feedbacks imediatos e individualizados, maior frequência de prática e otimização do tempo do professor.',
+        tag: 'Lançamento',
+        conexao: 'Feedback formativo em escala é visibilidade: o estudante vê exatamente onde está e o que precisa melhorar, em tempo real.'
+      },
+      {
+        titulo: 'Relatoria — Painel do Gestor, Professor e Aluno',
+        descricao: 'Solução integrada que traduz o uso dos produtos em insights pedagógicos acionáveis, com dados consolidados por habilidades e competências para cada perfil.',
+        tag: 'Destaque',
+        conexao: 'Painéis que consolidam dados de desempenho tornam o progresso visível para toda a comunidade escolar e orientam decisões pedagógicas.'
+      }
+    ]
+  },
+
+  flexibilidade: {
+    pilar: 'Flexibilidade',
+    corPilar: '#32cd91',
+    corFundo: '#f0fff8',
+    icone: '🔀',
+    intro: 'Para escolas que buscam mais autonomia curricular e integração entre o físico e o digital, a Geekie apresenta na Bett 2026:',
+    ativacoes: [
+      {
+        titulo: 'Nova Coleção Impressa 2027 — EFAI, EFAF e EM',
+        descricao: 'Coleção completamente reimaginada para ser 100% impressa, com entrega anual, conteúdo atualizado e recursos de integração digital para coleta de dados pedagógicos.',
+        tag: 'Lançamento',
+        conexao: 'Material impresso com integração digital dá autonomia para a escola trabalhar no seu ritmo, sem depender de conectividade constante.'
+      },
+      {
+        titulo: 'Ferramenta de Flexibilidade Curricular',
+        descricao: 'Permite reordenar os conteúdos do material didático, dando autonomia para a escola trabalhar na sequência que faz mais sentido para sua equipe pedagógica e contexto local.',
+        tag: 'Novidade 2026',
+        conexao: 'Autonomia para ajustar sequência, profundidade e tempo dos conteúdos é a essência da Flexibilidade curricular institucional.'
+      },
+      {
+        titulo: 'Integração Físico ↔ Digital',
+        descricao: 'Lista de checagem que acompanha o avanço dos alunos no livro impresso e gera dados automaticamente na plataforma digital, com base ampliada de exercícios online para intervenções personalizadas.',
+        tag: 'Destaque',
+        conexao: 'A integração físico-digital permite que a escola adapte o fluxo de ensino ao contexto de cada turma, combinando o melhor dos dois ambientes.'
+      }
+    ]
+  },
+
+  personalizacao: {
+    pilar: 'Personalização',
+    corPilar: '#6146f1',
+    corFundo: '#f5f3ff',
+    icone: '🎯',
+    intro: 'Para escolas que querem adaptar o ensino ao ritmo e às necessidades de cada estudante, a Geekie apresenta na Bett 2026:',
+    ativacoes: [
+      {
+        titulo: 'Plano de Estudos Personalizado',
+        descricao: 'Transforma dados de desempenho em ações: listas de exercícios adaptadas às dificuldades individuais, recomendações focadas em vestibulares e Calculadora SISU para planejamento acadêmico.',
+        tag: 'Lançamento',
+        conexao: 'Percursos de aprendizagem ajustados com base em dados de desempenho individual — personalização com evidência, não com intuição.'
+      },
+      {
+        titulo: 'Trilhas Pós-Simulados',
+        descricao: 'Após cada simulado, o estudante recebe trilhas de reforço personalizadas com base nos seus resultados, priorizando as habilidades com maior oportunidade de evolução.',
+        tag: 'Destaque',
+        conexao: 'Intervenção baseada em evidências: cada estudante recebe um percurso diferente, construído a partir das suas reais lacunas de aprendizagem.'
+      },
+      {
+        titulo: 'Geekie Teste — Impressão de Avaliações',
+        descricao: 'Escolas passam a imprimir suas avaliações, ampliando a fidelidade à experiência dos vestibulares e mantendo a análise pedagógica automatizada com indicadores por habilidades.',
+        tag: 'Novidade 2026',
+        conexao: 'Avaliações adaptadas ao perfil e contexto de cada escola geram diagnósticos mais precisos para personalizar as intervenções pedagógicas.'
+      }
+    ]
+  }
+};
+
 export const CSP_COPY = {
   ESSENCIAL: {
     titulo: 'Identificamos oportunidades claras de evolução',
