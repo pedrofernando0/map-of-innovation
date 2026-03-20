@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
-import { AppState, Escola } from './types';
-import { calculateScores } from './constants';
-import { gerarDiagnostico } from './services/geminiService';
-import { saveResponse } from './services/storageService';
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-import { Header } from './components/Header';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { AppLayout } from './screens/AppLayout';
 import { Splash } from './screens/Splash';
 import { Cadastro } from './screens/Cadastro';
 import { Instrucao } from './screens/Instrucao';
@@ -16,183 +13,23 @@ import { Resultado } from './screens/Resultado';
 import { CSP } from './screens/CSP';
 import { Admin } from './screens/Admin';
 
-const INITIAL_STATE: AppState = {
-  escola: {
-    nome: '', rede: '', segmentos: [], cidade: '', estado: '',
-    contato_nome: '', contato_cargo: '', contato_email: '', contato_telefone: '',
-    parceira_geekie: null
-  },
-  respostas: {},
-  ancora: null,
-  scores: { pilares: { aprendizagem_ativa: 0, visibilidade: 0, flexibilidade: 0, personalizacao: 0 }, eixos: { pedagogico: 0, tecnologico: 0 }, total: 0, nivel: '' },
-  diagnostico: ''
-};
-
 export default function App() {
-  const [screen, setScreen] = useState('splash');
-  const [appState, setAppState] = useState<AppState>(INITIAL_STATE);
-  const [progress, setProgress] = useState(0);
-
-  // Kiosk mode: reset after 5 mins of inactivity
-  useEffect(() => {
-    let timeoutId: number;
-    const resetTimer = () => {
-      clearTimeout(timeoutId);
-      if (screen !== 'splash' && screen !== 'admin') {
-        timeoutId = window.setTimeout(() => {
-          setAppState(INITIAL_STATE);
-          setScreen('splash');
-        }, 10 * 60 * 1000);
-      }
-    };
-
-    window.addEventListener('mousemove', resetTimer);
-    window.addEventListener('keydown', resetTimer);
-    window.addEventListener('touchstart', resetTimer);
-    resetTimer();
-
-    return () => {
-      window.removeEventListener('mousemove', resetTimer);
-      window.removeEventListener('keydown', resetTimer);
-      window.removeEventListener('touchstart', resetTimer);
-      clearTimeout(timeoutId);
-    };
-  }, [screen]);
-
-  useEffect(() => {
-    // Limpar hash residual ao iniciar (evita entrar direto no admin via refresh)
-    if (window.location.hash === '#admin') {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search);
-    }
-
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash === '#admin') {
-        setScreen('admin');
-      } else if (hash === '') {
-        setScreen('splash');
-      }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  const handleFinishQuestoes = async () => {
-    setScreen('loading');
-    const scores = calculateScores(appState.respostas);
-    const diagnostico = await gerarDiagnostico(appState.escola, scores, appState.ancora);
-    
-    const finalState = { ...appState, scores, diagnostico };
-    setAppState(finalState);
-    saveResponse(finalState);
-    
-    setScreen('resultado');
-  };
-
-  const resetToSplash = () => {
-    setAppState(INITIAL_STATE);
-    setScreen('splash');
-    setProgress(0);
-  };
-
-  const renderScreen = () => {
-    if (screen === 'cadastro') {
-      return (
-        <Cadastro
-          escola={appState.escola}
-          onChange={(escola) => setAppState({ ...appState, escola })}
-          onNext={() => { setScreen('instrucao'); setProgress(20); }}
-          onBack={() => { setScreen('splash'); setProgress(0); }}
-        />
-      );
-    }
-
-    if (screen === 'instrucao') {
-      return (
-        <Instrucao
-          onNext={() => { setScreen('ancora'); setProgress(30); }}
-          onBack={() => { setScreen('cadastro'); setProgress(10); }}
-        />
-      );
-    }
-
-    if (screen === 'ancora') {
-      return (
-        <Ancora
-          ancora={appState.ancora}
-          onChange={(ancora) => setAppState({ ...appState, ancora })}
-          onNext={() => { setScreen('questoes'); setProgress(40); }}
-          onBack={() => { setScreen('instrucao'); setProgress(20); }}
-        />
-      );
-    }
-
-    if (screen === 'questoes') {
-      return (
-        <Questoes
-          respostas={appState.respostas}
-          onChange={(id, val) => {
-            const novas = { ...appState.respostas, [id]: val };
-            setAppState({ ...appState, respostas: novas });
-            const respondidas = Object.keys(novas).length;
-            setProgress(40 + (respondidas / 20) * 40);
-          }}
-          onFinish={handleFinishQuestoes}
-          onBack={() => { setScreen('ancora'); setProgress(30); }}
-        />
-      );
-    }
-
-    if (screen === 'loading') return <Loading />;
-
-    if (screen === 'resultado') {
-      return (
-        <Resultado
-          appState={appState}
-          onNext={() => { setScreen('csp'); setProgress(100); }}
-        />
-      );
-    }
-
-    if (screen === 'csp') {
-      return (
-        <CSP
-          appState={appState}
-          onBack={() => { setScreen('resultado'); setProgress(90); }}
-          onReset={resetToSplash}
-        />
-      );
-    }
-
-    return null;
-  };
-
-  const screenTransition = {
-    duration: 0.28,
-    ease: [0.22, 1, 0.36, 1] as const,
-  };
-
-  if (screen === 'admin') return <Admin />;
-  if (screen === 'splash') return <Splash onNext={() => { setScreen('cadastro'); setProgress(10); }} />;
-
   return (
-    <div className="min-h-screen bg-[var(--color-geekie-branco)]">
-      <Header progress={progress} />
-      
-      <main className="overflow-x-hidden">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={screen}
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={screenTransition}
-          >
-            {renderScreen()}
-          </motion.div>
-        </AnimatePresence>
-      </main>
-    </div>
+    <ErrorBoundary>
+      <Routes>
+        <Route path="/" element={<Splash />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route element={<AppLayout />}>
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/instrucao" element={<Instrucao />} />
+          <Route path="/ancora" element={<Ancora />} />
+          <Route path="/questoes" element={<Questoes />} />
+          <Route path="/loading" element={<Loading />} />
+          <Route path="/resultado" element={<Resultado />} />
+          <Route path="/csp" element={<CSP />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </ErrorBoundary>
   );
 }
