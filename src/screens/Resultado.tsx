@@ -1,8 +1,8 @@
 import React, { useEffect, useState, memo } from 'react';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Tooltip } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Cell, LabelList, ResponsiveContainer, Tooltip } from 'recharts';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { Button, Badge, ProgressBar } from '../components/ui';
+import { Button, Badge } from '../components/ui';
 import { CategoryIndicator } from '../components/CategoryIndicator';
 import { EixoEspectro } from '../components/EixoEspectro';
 import { BettAtivacoes } from '../components/BettAtivacoes';
@@ -46,14 +46,6 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
   const { escola, scores, diagnostico, ancora } = appState;
   const [showPrintMessage, setShowPrintMessage] = useState(false);
 
-  // R3: score mínimo de 5 para radar nunca ficar vazio em zero
-  const radarData = [
-    { subject: 'Aprendizagem Ativa', A: Math.max(scores.pilares.aprendizagem_ativa, 5) },
-    { subject: 'Visibilidade',        A: Math.max(scores.pilares.visibilidade, 5) },
-    { subject: 'Flexibilidade',       A: Math.max(scores.pilares.flexibilidade, 5) },
-    { subject: 'Personalização',      A: Math.max(scores.pilares.personalizacao, 5) },
-  ];
-
   const cards = [
     { id: 'aa',   nome: 'Aprendizagem Ativa', score: scores.pilares.aprendizagem_ativa, cor: '#ff1547' },
     { id: 'vis',  nome: 'Visibilidade',        score: scores.pilares.visibilidade,        cor: '#0fc3e6' },
@@ -73,64 +65,55 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
     <div className="screen-resultado max-w-5xl mx-auto px-4 py-8 md:py-12 animate-in fade-in duration-500 space-y-8">
 
       {/* ── 1. Identificação + Perfil de Inovação ── */}
-      <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
+      <div className="bg-[var(--color-geekie-cereja)] rounded-3xl p-8 text-white shadow-lg">
         <div className="flex flex-col md:flex-row md:items-center gap-6">
           <div className="flex-1">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Diagnóstico — Mapa de Inovação Educacional</p>
-            <h1 className="text-3xl font-bold text-[var(--color-geekie-preto)] mb-1">{escola.nome}</h1>
-            <p className="text-gray-500">{escola.cidade}{escola.estado ? ` / ${escola.estado}` : ''} · {escola.rede}</p>
-          </div>
-          <div className="flex flex-col items-center md:items-end gap-2">
-            <Badge nivel={scores.nivel} />
-            <p className="text-xs text-gray-400 uppercase tracking-wider font-bold">Perfil de Inovação</p>
-            <p className="text-4xl font-extrabold" style={{ color: NIVEL_COR[scores.nivel] || '#ff1547' }}>
-              {scoreGeral}<span className="text-lg text-gray-400 font-normal">/100</span>
-            </p>
+            <p className="text-sm font-bold uppercase tracking-wider mb-2 opacity-75">Mapa de Inovação Educacional — Diagnóstico</p>
+            <h1 className="text-4xl font-extrabold mb-2 leading-tight">{escola.nome}</h1>
+            <p className="text-base opacity-80">{escola.cidade}{escola.estado ? ` / ${escola.estado}` : ''} · {escola.rede}</p>
             {ancora && (
-              <p className="text-xs text-gray-400">Auto-percepção: <strong className="text-gray-600">{ancora}/4</strong></p>
+              <p className="text-sm opacity-70 mt-2">Auto-percepção declarada: <strong className="opacity-100">{ancora}/3</strong></p>
             )}
+          </div>
+          <div className="flex flex-col items-center md:items-end gap-3 flex-shrink-0">
+            <Badge nivel={scores.nivel} className="bg-white bg-opacity-20 border border-white border-opacity-40 text-white" />
+            <p className="text-sm font-bold uppercase tracking-wider opacity-75">Perfil de Inovação</p>
+            <p className="text-6xl font-extrabold leading-none">
+              {scoreGeral}<span className="text-2xl font-normal opacity-60">/100</span>
+            </p>
           </div>
         </div>
       </div>
 
-      {/* ── 2. Radar + Pilares ── */}
+      {/* ── 2. Pilares — gráfico de barras horizontais ── */}
       <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
         <div className="mb-6">
-          <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider">Radar de Inovação</h3>
-          <p className="text-xs text-gray-400 mt-1">Os 4 Pilares da Geekie medem dimensões complementares da inovação educacional. Juntos, revelam como sua escola integra pedagogia e tecnologia de forma intencional.</p>
+          <h3 className="text-lg font-bold text-[var(--color-geekie-preto)]">Pilares da Geekie</h3>
+          <p className="text-sm text-gray-500 mt-1">Os 4 pilares medem dimensões complementares da inovação educacional. Juntos, revelam como sua escola integra pedagogia e tecnologia de forma intencional.</p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <div className="h-72">
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
-                <PolarGrid stroke="#e0e0e0" />
-                <PolarAngleAxis dataKey="subject" tick={{ fill: '#1c1c1c', fontSize: 12, fontWeight: 600, fontFamily: 'Mulish' }} />
-                <Tooltip cursor={{ strokeDasharray: '3 3' }} formatter={(v: number) => [Math.max(Number(v), 0) === 5 && v === 5 ? 0 : v, 'Score']} />
-                <Radar name="Score" dataKey="A" stroke="#ff1547" strokeWidth={2} fill="rgba(255,21,71,0.12)" isAnimationActive />
-              </RadarChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="space-y-3">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Pilares da Geekie</p>
-            {cards.map((c, i) => (
-              <div
-                key={c.id}
-                className="p-3 rounded-xl border animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both flex items-center gap-3"
-                style={{ borderColor: c.cor + '30', backgroundColor: c.cor + '08', animationDelay: `${i * 80}ms` }}
-              >
-                <div className="flex-1">
-                  <p className="text-xs font-bold uppercase tracking-wider" style={{ color: c.cor }}>{c.nome}</p>
-                  <p className="text-[10px] text-gray-400 mt-0.5">{PILAR_DESC[c.id]}</p>
-                </div>
-                <div className="text-right flex-shrink-0">
-                  <p className="text-xl font-extrabold" style={{ color: c.cor }}>{c.score}</p>
-                  <div className="w-16 mt-1">
-                    <ProgressBar progress={c.score} />
+
+        {/* Barras horizontais — proporção exata, legível */}
+        <div className="space-y-5">
+          {cards.map((c, i) => {
+            const displayScore = Math.max(c.score, 4); // mínimo visual de 4%
+            return (
+              <div key={c.id} className="animate-in slide-in-from-left-4 fade-in duration-500 fill-mode-both" style={{ animationDelay: `${i * 80}ms` }}>
+                <div className="flex items-baseline justify-between mb-1.5">
+                  <div>
+                    <span className="text-sm font-bold" style={{ color: c.cor }}>{c.nome}</span>
+                    <span className="text-xs text-gray-400 ml-2">{PILAR_DESC[c.id]}</span>
                   </div>
+                  <span className="text-xl font-extrabold flex-shrink-0 ml-4" style={{ color: c.cor }}>{c.score}<span className="text-xs text-gray-400 font-normal">/100</span></span>
+                </div>
+                <div className="w-full bg-gray-100 rounded-full h-4 overflow-hidden">
+                  <div
+                    className="h-4 rounded-full transition-all duration-700"
+                    style={{ width: `${displayScore}%`, backgroundColor: c.cor, opacity: 0.85 }}
+                  />
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
 
@@ -146,7 +129,7 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
               extremoDireito="Inovadora"
               cor="#ff1547"
               isMain
-              tooltip="Score ponderado: 80% Pedagógico + 20% Tecnológico. Reflete a integração institucional entre práticas de ensino e uso de tecnologia."
+              tooltip="Resultado combinado da inovação pedagógica e tecnológica da sua escola — dois eixos avaliados de forma independente e integrados nesta pontuação única."
             />
             <div className="space-y-8 pt-2">
               <EixoEspectro
@@ -155,15 +138,15 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
                 extremoEsquerdo="Transmissivo"
                 extremoDireito="Protagonista"
                 cor="#6146f1"
-                tooltip="Transformação intencional das práticas de ensino, aprendizagem, avaliação e formação docente em direção ao protagonismo do estudante. Representa 80% do score geral."
+                tooltip="Mede a transformação intencional das práticas de ensino, aprendizagem, avaliação e formação docente em direção ao protagonismo do estudante."
               />
               <EixoEspectro
                 label="Eixo Tecnológico"
                 score={scores.eixos.tecnologico}
                 extremoEsquerdo="Analógica"
                 extremoDireito="Conectada"
-                cor="#0fc3e6"
-                tooltip="Incorporação intencional de recursos digitais ao fluxo pedagógico. Mede-se pelo uso efetivo e integração à rotina, não pela presença de equipamentos. Representa 20% do score geral."
+                cor="#FF8219"
+                tooltip="Mede a incorporação intencional de recursos digitais ao fluxo pedagógico. O indicador não é 'a escola tem plataforma', mas 'a plataforma faz parte da rotina'."
               />
             </div>
           </div>

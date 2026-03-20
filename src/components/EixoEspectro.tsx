@@ -2,90 +2,96 @@ import React from 'react';
 
 interface EixoEspectroProps {
   label: string;
-  score?: number; // undefined = sem pontuação (eixos secundários no modo hierárquico)
+  score: number;
   extremoEsquerdo: string;
   extremoDireito: string;
   cor: string;
   tooltip?: string;
-  isMain?: boolean; // eixo geral — destaque visual
+  isMain?: boolean;
 }
 
 export function EixoEspectro({ label, score, extremoEsquerdo, extremoDireito, cor, tooltip, isMain = false }: EixoEspectroProps) {
-  const pct = score !== undefined ? Math.max(3, Math.min(97, score)) : 50;
+  // Garante que o marcador fique visível e dentro da trilha
+  const pct = Math.max(4, Math.min(96, score));
+
+  const trackH = isMain ? 32 : 22;
+  const dotSize = isMain ? 24 : 16;
+  const badgeFontSize = isMain ? '12px' : '11px';
 
   return (
-    <div className={`space-y-3 ${isMain ? '' : 'pl-4 border-l-2'}`} style={isMain ? {} : { borderColor: cor + '40' }}>
-      {/* Header */}
-      <div className="flex items-center gap-2">
-        {!isMain && <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">↳</span>}
-        <span className={`font-bold ${isMain ? 'text-base text-gray-800' : 'text-sm text-gray-600'}`}>{label}</span>
-        {isMain && score !== undefined && (
-          <span className="ml-2 text-2xl font-extrabold" style={{ color: cor }}>
-            {score}<span className="text-sm text-gray-400 font-normal ml-0.5">/100</span>
-          </span>
-        )}
+    <div className={isMain ? '' : 'pl-5 border-l-2'} style={isMain ? {} : { borderColor: cor + '50' }}>
+      {/* Cabeçalho */}
+      <div className="flex items-center gap-2 mb-3">
         {!isMain && (
-          <span className="ml-auto text-sm font-bold text-gray-400">
-            {score !== undefined ? `${score}/100` : ''}
+          <span className="text-xs font-bold" style={{ color: cor + 'aa' }}>↳</span>
+        )}
+        <span className={`font-bold ${isMain ? 'text-base text-[var(--color-geekie-preto)]' : 'text-sm text-gray-600'}`}>
+          {label}
+        </span>
+        {isMain && (
+          <span className="ml-2 text-3xl font-extrabold" style={{ color: cor }}>
+            {score}
+            <span className="text-base font-normal text-gray-400 ml-0.5">/100</span>
           </span>
         )}
         {tooltip && (
-          <div className="group relative cursor-help text-gray-400 text-xs ml-1">
-            ⓘ
-            <div className="absolute right-0 bottom-full mb-2 hidden group-hover:block bg-gray-800 text-white text-xs rounded-lg p-3 w-72 z-20 font-normal leading-relaxed shadow-xl">
+          <div className="group relative cursor-help ml-1">
+            <span className="text-gray-400 text-sm">ⓘ</span>
+            <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-gray-900 text-white text-xs rounded-xl p-4 w-80 z-30 leading-relaxed shadow-2xl">
               {tooltip}
             </div>
           </div>
         )}
       </div>
 
-      {/* Trilha do espectro */}
-      <div className="relative" style={{ height: isMain ? '28px' : '20px' }}>
-        {/* Degradê */}
-        <div
-          className="absolute inset-y-0 left-0 right-0 rounded-full"
-          style={{ background: `linear-gradient(to right, #e5e7eb 0%, ${cor}55 50%, ${cor} 100%)` }}
-        />
+      {/* Badge "sua escola está aqui" + linha + trilha + bolinha — tudo num container */}
+      <div className="relative" style={{ paddingTop: isMain ? '36px' : '28px' }}>
 
-        {/* Marcador */}
+        {/* Badge flutuante */}
         <div
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
-          style={{ left: `${pct}%` }}
+          className="absolute"
+          style={{ left: `${pct}%`, top: 0, transform: 'translateX(-50%)' }}
         >
-          {/* Seta acima */}
-          <div className="flex flex-col items-center" style={{ marginTop: isMain ? '-38px' : '-28px' }}>
+          <div className="flex flex-col items-center">
             <span
-              className="whitespace-nowrap font-extrabold rounded-full px-2 py-0.5 shadow-sm border"
+              className="whitespace-nowrap font-bold rounded-full border shadow-sm px-3 py-1"
               style={{
-                color: cor,
-                backgroundColor: cor + '15',
-                borderColor: cor + '40',
-                fontSize: isMain ? '11px' : '10px',
+                fontSize: badgeFontSize,
+                color: '#fff',
+                backgroundColor: cor,
+                borderColor: cor,
               }}
             >
               sua escola está aqui
             </span>
             {/* Linha conectora */}
-            <div className="w-px bg-current opacity-40" style={{ height: isMain ? '10px' : '8px', backgroundColor: cor }} />
+            <div style={{ width: '2px', height: isMain ? '12px' : '8px', backgroundColor: cor, opacity: 0.6 }} />
           </div>
+        </div>
 
-          {/* Bolinha */}
+        {/* Trilha */}
+        <div
+          className="relative rounded-full overflow-hidden"
+          style={{ height: `${trackH}px`, background: `linear-gradient(to right, #e5e7eb 0%, ${cor}60 40%, ${cor} 100%)` }}
+        >
+          {/* Bolinha — absolutamente centrada verticalmente dentro da trilha */}
           <div
-            className="rounded-full border-2 border-white shadow-lg"
+            className="absolute top-1/2 border-[3px] border-white shadow-lg rounded-full"
             style={{
-              width: isMain ? '20px' : '14px',
-              height: isMain ? '20px' : '14px',
+              width: `${dotSize}px`,
+              height: `${dotSize}px`,
+              left: `${pct}%`,
+              transform: 'translateX(-50%) translateY(-50%)',
               backgroundColor: cor,
-              marginLeft: isMain ? '-10px' : '-7px',
             }}
           />
         </div>
-      </div>
 
-      {/* Rótulos dos extremos */}
-      <div className="flex justify-between px-0.5" style={{ marginTop: isMain ? '6px' : '4px' }}>
-        <span className={`text-gray-400 font-medium ${isMain ? 'text-xs' : 'text-[10px]'}`}>{extremoEsquerdo}</span>
-        <span className={`text-gray-400 font-medium ${isMain ? 'text-xs' : 'text-[10px]'}`}>{extremoDireito}</span>
+        {/* Rótulos extremos */}
+        <div className="flex justify-between mt-2 px-0.5">
+          <span className={`text-gray-400 font-medium ${isMain ? 'text-xs' : 'text-xs'}`}>{extremoEsquerdo}</span>
+          <span className={`text-gray-400 font-medium ${isMain ? 'text-xs' : 'text-xs'}`}>{extremoDireito}</span>
+        </div>
       </div>
     </div>
   );

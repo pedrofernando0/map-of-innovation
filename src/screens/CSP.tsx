@@ -32,19 +32,25 @@ export function CSP({ appState, onBack }: CSPProps) {
 
         {/* Card principal com destaque */}
         <div className="bg-[var(--color-geekie-cereja)] rounded-3xl p-8 md:p-12 text-white text-center shadow-2xl">
-          <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-            </svg>
+          {/* Logo Geekie no lugar da bola */}
+          <div className="flex justify-center mb-6">
+            <img src="/geekie-logo.png" alt="Geekie Educação" className="h-10 object-contain" />
           </div>
 
-          <p className="text-white text-opacity-80 text-sm font-bold uppercase tracking-wider mb-3">Próximo passo</p>
+          <p className="text-sm font-bold uppercase tracking-wider mb-3 opacity-75">Próximo passo</p>
           <h1 className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
             {copy.titulo}
           </h1>
-          <p className="text-lg text-white text-opacity-90 mb-10 leading-relaxed max-w-lg mx-auto">
+          <p className="text-lg opacity-90 mb-6 leading-relaxed max-w-lg mx-auto">
             {copy.subtitulo}
           </p>
+
+          {/* Mensagem de contato em 24h */}
+          <div className="bg-white bg-opacity-15 rounded-2xl p-4 mb-8 text-left max-w-lg mx-auto">
+            <p className="text-sm leading-relaxed opacity-95">
+              <strong>Nossa equipe entrará em contato em até 24 horas</strong> para entender melhor a sua escola, suas demandas e como integrar as práticas cotidianas sugeridas pelo nosso relatório à realidade da sua instituição.
+            </p>
+          </div>
 
           <a
             href={whatsappUrl}

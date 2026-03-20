@@ -6,12 +6,26 @@ interface BettAtivacoesProps {
   scores: Scores;
 }
 
+// Lançamento = produto/feature inteiramente novo, nunca existiu antes
+// Novidade 2026 = evolução/melhoria de algo já existente
+// Expansão = ampliação de alcance de algo já validado
+// Destaque = seleção editorial (sem implicação de novidade)
 const TAG_STYLES: Record<string, string> = {
-  'Lançamento': 'bg-[#fff5f7] text-[#ff1547] border border-[#ffd0d9]',
-  'Novidade 2026': 'bg-[#f0fbff] text-[#0085a1] border border-[#b3e8f5]',
-  'Expansão': 'bg-[#f0fff8] text-[#1a7a4a] border border-[#a3e9c8]',
-  'Destaque': 'bg-[#f5f3ff] text-[#4a33c4] border border-[#cfc8fa]',
+  'Lançamento':    'bg-[#ff1547] text-white border border-[#ff1547]',           // cereja sólido — máximo destaque
+  'Expansão':      'bg-[#ffc300] text-[#7a5000] border border-[#ffc300]',       // amarelo — novo território
+  'Novidade 2026': 'bg-white text-[#6146f1] border border-[#6146f1]',           // contorno roxo — atualização
+  'Destaque':      'bg-gray-100 text-gray-600 border border-gray-200',          // neutro — curadoria editorial
 };
+
+const TAG_DESC: Record<string, string> = {
+  'Lançamento':    'Novo em 2026',
+  'Expansão':      'Expansão de produto',
+  'Novidade 2026': 'Evolução 2026',
+  'Destaque':      'Destaque editorial',
+};
+
+// Ordenação: Lançamento > Expansão > Novidade 2026 > Destaque
+const TAG_ORDEM: Record<string, number> = { 'Lançamento': 0, 'Expansão': 1, 'Novidade 2026': 2, 'Destaque': 3 };
 
 function PilarCard({ data }: { data: AtivacoesPilar }) {
   const [aberto, setAberto] = useState(false);
@@ -56,25 +70,30 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
           </p>
 
           <div className="space-y-3">
-            {data.ativacoes.map((atv, i) => (
+            {[...data.ativacoes].sort((a, b) => (TAG_ORDEM[a.tag] ?? 9) - (TAG_ORDEM[b.tag] ?? 9)).map((atv, i) => (
               <div
                 key={i}
                 className="bg-white rounded-xl p-4 shadow-sm border"
                 style={{ borderColor: data.corPilar + '25' }}
               >
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <h4 className="font-bold text-sm text-[var(--color-geekie-preto)] leading-snug">
-                    {atv.titulo}
-                  </h4>
-                  <span className={`flex-shrink-0 text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${TAG_STYLES[atv.tag]}`}>
-                    {atv.tag}
-                  </span>
+                <div className="flex items-start gap-3 mb-2">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border whitespace-nowrap ${TAG_STYLES[atv.tag]}`}>
+                        {atv.tag}
+                      </span>
+                      <span className="text-[10px] text-gray-400">{TAG_DESC[atv.tag]}</span>
+                    </div>
+                    <h4 className="font-bold text-sm text-[var(--color-geekie-preto)] leading-snug">
+                      {atv.titulo}
+                    </h4>
+                  </div>
                 </div>
-                <p className="text-xs text-gray-600 leading-relaxed mb-3">
+                <p className="text-sm text-gray-600 leading-relaxed mb-3">
                   {atv.descricao}
                 </p>
                 <div
-                  className="flex items-start gap-2 text-xs rounded-lg p-2.5"
+                  className="flex items-start gap-2 text-sm rounded-lg p-3"
                   style={{ backgroundColor: data.corPilar + '12' }}
                 >
                   <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: data.corPilar }}>→</span>
@@ -86,9 +105,9 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
             ))}
           </div>
 
-          <div className="text-center pt-2">
-            <p className="text-xs text-gray-500">
-              Converse com nosso consultor na Bett para conhecer essas soluções em detalhe.
+          <div className="mt-4 rounded-xl p-4 text-center" style={{ backgroundColor: data.corPilar + '15', border: `1.5px solid ${data.corPilar}40` }}>
+            <p className="text-sm font-bold" style={{ color: data.corPilar }}>
+              Converse com nosso consultor na Bett para conhecer essas soluções em detalhe e como aplicá-las na sua escola.
             </p>
           </div>
         </div>
