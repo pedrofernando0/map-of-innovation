@@ -38,8 +38,8 @@ Atualize esta seção manualmente (ou peça ao Claude Code para atualizar) após
 | Sprint 1 — Isolamento do Domínio | ✅ Concluído | main | 2026-03-20 |
 | Sprint 2 — Estado e Roteamento React | ✅ Concluído | main | 2026-03-20 |
 | Sprint 3 — Princípios SOLID | ✅ Concluído | feature/s3-solid | 2026-03-20 |
-| Sprint 4 — TDD e Cobertura | ⬜ Pendente | — | — |
-| Sprint 5 — Infraestrutura Contínua | ⬜ Pendente | — | — |
+| Sprint 4 — TDD e Cobertura | ✅ Concluído | feature/s4-tdd-coverage | 2026-03-20 |
+| Sprint 5 — Infraestrutura Contínua | ✅ Concluído | feature/s5-infra | 2026-03-20 |
 
 Legenda: ⬜ Pendente · 🔄 Em andamento · ✅ Concluído · ⚠️ Bloqueado
 
