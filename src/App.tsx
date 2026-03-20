@@ -18,7 +18,8 @@ import { Admin } from './screens/Admin';
 const INITIAL_STATE: AppState = {
   escola: {
     nome: '', rede: '', segmentos: [], cidade: '', estado: '',
-    contato_nome: '', contato_email: '', contato_telefone: ''
+    contato_nome: '', contato_email: '', contato_telefone: '',
+    parceira_geekie: false
   },
   respostas: {},
   ancora: null,
@@ -40,7 +41,7 @@ export default function App() {
         timeoutId = window.setTimeout(() => {
           setAppState(INITIAL_STATE);
           setScreen('splash');
-        }, 5 * 60 * 1000);
+        }, 10 * 60 * 1000);
       }
     };
 

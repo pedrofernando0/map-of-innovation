@@ -7,6 +7,7 @@ export interface Escola {
   contato_nome: string;
   contato_email: string;
   contato_telefone: string;
+  parceira_geekie: boolean;
 }
 
 export interface Scores {

@@ -10,10 +10,10 @@ interface AncoraProps {
 
 export function Ancora({ ancora, onChange, onNext, onBack }: AncoraProps) {
   const opcoes = [
-    { val: 1, label: 'Iniciante', desc: 'Estamos dando os primeiros passos na inovação.' },
-    { val: 2, label: 'Em desenvolvimento', desc: 'Temos iniciativas, mas ainda não são institucionais.' },
-    { val: 3, label: 'Avançada', desc: 'A inovação já faz parte da nossa cultura e rotina.' },
-    { val: 4, label: 'Referência', desc: 'Somos reconhecidos pelas nossas práticas inovadoras.' }
+    { val: 1, label: 'Essencial', desc: 'Estamos dando os primeiros passos. Práticas inovadoras são pontuais e dependem de iniciativas individuais.' },
+    { val: 2, label: 'Explorador', desc: 'Temos iniciativas em desenvolvimento, mas a integração ainda não é sistêmica em toda a escola.' },
+    { val: 3, label: 'Integrada', desc: 'A inovação já faz parte da nossa cultura. Práticas ativas e tecnologia estão integradas à rotina.' },
+    { val: 4, label: 'Referência', desc: 'Somos reconhecidos por práticas consolidadas. Compartilhamos e expandimos nossa cultura de inovação.' }
   ];
 
   return (

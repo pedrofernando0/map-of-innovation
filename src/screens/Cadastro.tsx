@@ -103,7 +103,7 @@ export function Cadastro({ escola, onChange, onNext, onBack }: CadastroProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-3">Segmentos Atendidos *</label>
+            <label className="block text-sm font-bold text-gray-700 mb-3">Segmentos Oferecidos *</label>
             <div className="flex flex-wrap gap-3">
               {[
                 { id: 'EI', label: 'Educação Infantil' },
@@ -126,6 +126,26 @@ export function Cadastro({ escola, onChange, onNext, onBack }: CadastroProps) {
               ))}
             </div>
             {errors.segmentos && <p className="text-red-500 text-sm mt-2">{errors.segmentos}</p>}
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-3">Sua escola já é parceira Geekie?</label>
+            <div className="flex gap-3">
+              {[{ val: true, label: 'Sim, somos parceiros' }, { val: false, label: 'Ainda não' }].map(op => (
+                <button
+                  key={String(op.val)}
+                  type="button"
+                  onClick={() => onChange({ ...escola, parceira_geekie: op.val })}
+                  className={`px-5 py-2.5 rounded-full border text-sm font-bold transition-colors ${
+                    escola.parceira_geekie === op.val
+                      ? 'bg-[var(--color-geekie-cereja)] border-[var(--color-geekie-cereja)] text-white'
+                      : 'border-gray-300 text-gray-600 hover:border-[var(--color-geekie-cereja)]'
+                  }`}
+                >
+                  {op.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <hr className="border-gray-100" />

@@ -21,7 +21,7 @@ export function Admin() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (usuario === (import.meta.env.VITE_ADMIN_USER || 'admin') && senha === (import.meta.env.VITE_ADMIN_PASS || 'admin')) {
+    if (usuario === (import.meta.env.VITE_ADMIN_USER || 'geekie') && senha === (import.meta.env.VITE_ADMIN_PASS || 'bett2026')) {
       setAuth(true);
     } else {
       alert('Usuário ou senha incorretos');
@@ -31,8 +31,8 @@ export function Admin() {
   const exportarCSV = () => {
     if (!fullData.length) return;
 
-    const headers = ['ID', 'Data', 'Nome', 'Rede', 'Segmentos', 'Cidade', 'Estado', 'Contato', 'Email', 'Telefone', 'Nível', 'Score Total', 'Pedagógico', 'Tecnológico', 'AA', 'VIS', 'FLEX', 'PERS', 'Auto-percepção'];
-    
+    const headers = ['ID', 'Data', 'Nome', 'Rede', 'Segmentos', 'Cidade', 'Estado', 'Parceira Geekie', 'Contato', 'Email', 'Telefone', 'Nível', 'Score Total', 'Pedagógico', 'Tecnológico', 'AA', 'VIS', 'FLEX', 'PERS', 'Auto-percepção'];
+
     const rows = fullData.map(d => [
       d.id,
       new Date(d.timestamp).toLocaleString(),
@@ -41,6 +41,7 @@ export function Admin() {
       d.escola.segmentos.join(';'),
       d.escola.cidade,
       d.escola.estado,
+      d.escola.parceira_geekie ? 'Sim' : 'Não',
       d.escola.contato_nome,
       d.escola.contato_email,
       d.escola.contato_telefone,
@@ -231,6 +232,7 @@ export function Admin() {
                   <th className="p-4 font-bold border-b border-gray-100">Data</th>
                   <th className="p-4 font-bold border-b border-gray-100">Escola</th>
                   <th className="p-4 font-bold border-b border-gray-100">Cidade/UF</th>
+                  <th className="p-4 font-bold border-b border-gray-100">Parceira</th>
                   <th className="p-4 font-bold border-b border-gray-100">Nível</th>
                   <th className="p-4 font-bold border-b border-gray-100 text-center">Score</th>
                   <th className="p-4 font-bold border-b border-gray-100 text-center">Ações</th>
@@ -248,6 +250,11 @@ export function Admin() {
                     </td>
                     <td className="p-4 border-b border-gray-100 text-sm text-gray-600">
                       {d.escola.cidade} / {d.escola.estado}
+                    </td>
+                    <td className="p-4 border-b border-gray-100 text-center">
+                      <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${d.escola.parceira_geekie ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+                        {d.escola.parceira_geekie ? 'Sim' : 'Não'}
+                      </span>
                     </td>
                     <td className="p-4 border-b border-gray-100">
                       <span className={`px-3 py-1 rounded-full text-xs font-bold ${

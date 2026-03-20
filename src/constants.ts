@@ -1,34 +1,36 @@
 export const QUESTOES = [
-  { id: '1.1', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo de forma a incluir projetos que mobilizam os estudantes a aplicar conhecimentos para resolver problemas reais ou contextualizados.' },
-  { id: '1.2', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'O currículo da minha escola prevê, de forma explícita, o desenvolvimento de competências socioemocionais e do pensamento crítico como objetivos de aprendizagem em todos os segmentos.' },
-  { id: '1.3', pilar: 'aprendizagem_ativa', eixo: 'tecnologico', texto: 'Minha escola prevê a utilização de recursos e plataformas digitais que ampliam as possibilidades de investigação, produção e autoria dos estudantes no desenvolvimento das atividades curriculares.' },
-  { id: '1.4', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos e recursos pedagógicos que orientam a realização de atividades investigativas, colaborativas ou baseadas em projetos.' },
-  { id: '1.5', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola organiza o planejamento docente de forma a prever experiências de aprendizagem em que os estudantes participam ativamente da construção do conhecimento.' },
-  
-  { id: '1.6', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo com objetivos de aprendizagem claros e progressivos, permitindo que estudantes e professores compreendam o percurso de desenvolvimento esperado.' },
-  { id: '1.7', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola integra ao currículo práticas que incentivam os estudantes a refletir sobre seu processo de aprendizagem e a acompanhar seu próprio progresso.' },
-  { id: '1.8', pilar: 'visibilidade', eixo: 'tecnologico', texto: 'Minha escola dispõe de painéis ou relatórios digitais atualizados que consolidam dados de desempenho dos estudantes e são acessíveis à equipe pedagógica para consulta e tomada de decisão.' },
-  { id: '1.9', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos que explicitam objetivos de aprendizagem, critérios de sucesso e evidências esperadas de desenvolvimento das habilidades.' },
-  { id: '1.10', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola orienta o planejamento docente a partir de objetivos de aprendizagem claros e de estratégias para monitorar continuamente o progresso dos estudantes.' },
+  // Escala por bloco: verbo dominante é "organizamos/prevemos/adotamos/promovemos"
+  { id: '1.1', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo de forma a incluir projetos que mobilizam os estudantes a aplicar conhecimentos para resolver problemas reais ou contextualizados.', escala: ['Não organizamos', 'Organizamos pontualmente', 'Organizamos de forma estruturada', 'Organizamos de forma consolidada'] },
+  { id: '1.2', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'O currículo da minha escola prevê, de forma explícita, o desenvolvimento de competências socioemocionais e do pensamento crítico como objetivos de aprendizagem em todos os segmentos.', escala: ['Não prevemos', 'Prevemos parcialmente', 'Prevemos de forma estruturada', 'Prevemos de forma consolidada'] },
+  { id: '1.3', pilar: 'aprendizagem_ativa', eixo: 'tecnologico', texto: 'Minha escola prevê a utilização de recursos e plataformas digitais que ampliam as possibilidades de investigação, produção e autoria dos estudantes no desenvolvimento das atividades curriculares.', escala: ['Não prevemos', 'Prevemos parcialmente', 'Prevemos de forma estruturada', 'Prevemos de forma consolidada'] },
+  { id: '1.4', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos e recursos pedagógicos que orientam a realização de atividades investigativas, colaborativas ou baseadas em projetos.', escala: ['Não adotamos', 'Adotamos pontualmente', 'Adotamos de forma estruturada', 'Adotamos de forma consolidada'] },
+  { id: '1.5', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola organiza o planejamento docente de forma a prever experiências de aprendizagem em que os estudantes participam ativamente da construção do conhecimento.', escala: ['Não organizamos', 'Organizamos pontualmente', 'Organizamos de forma estruturada', 'Organizamos de forma consolidada'] },
 
-  { id: '1.11', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo de forma a permitir articulações entre diferentes componentes curriculares em torno de temas, projetos ou problemas relevantes.' },
-  { id: '1.12', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Os professores da minha escola têm autonomia para ajustar a sequência, a profundidade e o tempo dedicado aos temas do currículo com base nas necessidades observadas na turma.' },
-  { id: '1.13', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos que permitem integrar diferentes metodologias e organizar experiências de aprendizagem variadas ao longo do percurso formativo.' },
-  { id: '1.14', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o planejamento docente de forma flexível, permitindo ajustes nas estratégias de ensino conforme o progresso e as necessidades da turma.' },
-  { id: '1.15', pilar: 'flexibilidade', eixo: 'tecnologico', texto: 'Minha escola utiliza plataforma digital para organizar conteúdo programático e adaptar sequência didática de acordo com a necessidade de cada turma.' },
+  { id: '1.6', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo com objetivos de aprendizagem claros e progressivos, permitindo que estudantes e professores compreendam o percurso de desenvolvimento esperado.', escala: ['Não organizamos', 'Organizamos parcialmente', 'Organizamos de forma estruturada', 'Organizamos de forma consolidada'] },
+  { id: '1.7', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola integra ao currículo práticas que incentivam os estudantes a refletir sobre seu processo de aprendizagem e a acompanhar seu próprio progresso.', escala: ['Não integramos', 'Integramos pontualmente', 'Integramos de forma estruturada', 'Integramos de forma consolidada'] },
+  { id: '1.8', pilar: 'visibilidade', eixo: 'tecnologico', texto: 'Minha escola dispõe de painéis ou relatórios digitais atualizados que consolidam dados de desempenho dos estudantes e são acessíveis à equipe pedagógica para consulta e tomada de decisão.', escala: ['Não dispomos', 'Dispomos parcialmente', 'Dispomos de forma estruturada', 'Dispomos de forma consolidada'] },
+  { id: '1.9', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos que explicitam objetivos de aprendizagem, critérios de sucesso e evidências esperadas de desenvolvimento das habilidades.', escala: ['Não adotamos', 'Adotamos pontualmente', 'Adotamos de forma estruturada', 'Adotamos de forma consolidada'] },
+  { id: '1.10', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola orienta o planejamento docente a partir de objetivos de aprendizagem claros e de estratégias para monitorar continuamente o progresso dos estudantes.', escala: ['Não orientamos', 'Orientamos parcialmente', 'Orientamos de forma estruturada', 'Orientamos de forma consolidada'] },
 
-  { id: '1.16', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Minha escola promove atividades que incentivam os estudantes a fazer escolhas, definir metas e assumir maior responsabilidade por sua aprendizagem.' },
-  { id: '1.17', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, planejamento curricular inclui estratégias específicas de diferenciação para estudantes com deficiência, transtornos de aprendizagem ou altas habilidades.' },
-  { id: '1.18', pilar: 'personalizacao', eixo: 'tecnologico', texto: 'Minha escola utiliza plataformas digitais com recursos adaptativos integrados ao currículo, de modo que os percursos individuais de aprendizagem sejam ajustados com base em dados de desempenho.' },
-  { id: '1.19', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, as propostas curriculares oferecem diferentes formas de acesso ao conhecimento (atividades, recursos ou abordagens variadas).' },
-  { id: '1.20', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, a organização curricular prevê momentos em que os estudantes podem avançar ou aprofundar conteúdos de acordo com seu ritmo de aprendizagem.' }
+  { id: '1.11', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo de forma a permitir articulações entre diferentes componentes curriculares em torno de temas, projetos ou problemas relevantes.', escala: ['Não organizamos', 'Organizamos pontualmente', 'Organizamos de forma estruturada', 'Organizamos de forma consolidada'] },
+  { id: '1.12', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Os professores da minha escola têm autonomia para ajustar a sequência, a profundidade e o tempo dedicado aos temas do currículo com base nas necessidades observadas na turma.', escala: ['Não têm autonomia', 'Têm autonomia limitada', 'Têm autonomia estruturada', 'Têm autonomia consolidada'] },
+  { id: '1.13', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos que permitem integrar diferentes metodologias e organizar experiências de aprendizagem variadas ao longo do percurso formativo.', escala: ['Não adotamos', 'Adotamos pontualmente', 'Adotamos de forma estruturada', 'Adotamos de forma consolidada'] },
+  { id: '1.14', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o planejamento docente de forma flexível, permitindo ajustes nas estratégias de ensino conforme o progresso e as necessidades da turma.', escala: ['Não organizamos', 'Organizamos parcialmente', 'Organizamos de forma estruturada', 'Organizamos de forma consolidada'] },
+  { id: '1.15', pilar: 'flexibilidade', eixo: 'tecnologico', texto: 'Minha escola utiliza plataforma digital para organizar conteúdo programático e adaptar sequência didática de acordo com a necessidade de cada turma.', escala: ['Não utilizamos', 'Utilizamos pontualmente', 'Utilizamos de forma estruturada', 'Utilizamos de forma consolidada'] },
+
+  { id: '1.16', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Minha escola promove atividades que incentivam os estudantes a fazer escolhas, definir metas e assumir maior responsabilidade por sua aprendizagem.', escala: ['Não promovemos', 'Promovemos pontualmente', 'Promovemos de forma estruturada', 'Promovemos de forma consolidada'] },
+  { id: '1.17', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, o planejamento curricular inclui estratégias específicas de diferenciação para estudantes com deficiência, transtornos de aprendizagem ou altas habilidades.', escala: ['Não incluímos', 'Incluímos parcialmente', 'Incluímos de forma estruturada', 'Incluímos de forma consolidada'] },
+  { id: '1.18', pilar: 'personalizacao', eixo: 'tecnologico', texto: 'Minha escola utiliza plataformas digitais com recursos adaptativos integrados ao currículo, de modo que os percursos individuais de aprendizagem sejam ajustados com base em dados de desempenho.', escala: ['Não utilizamos', 'Utilizamos pontualmente', 'Utilizamos de forma estruturada', 'Utilizamos de forma consolidada'] },
+  { id: '1.19', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, as propostas curriculares oferecem diferentes formas de acesso ao conhecimento (atividades, recursos ou abordagens variadas).', escala: ['Não oferecemos', 'Oferecemos parcialmente', 'Oferecemos de forma estruturada', 'Oferecemos de forma consolidada'] },
+  { id: '1.20', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, a organização curricular prevê momentos em que os estudantes podem avançar ou aprofundar conteúdos de acordo com seu ritmo de aprendizagem.', escala: ['Não prevemos', 'Prevemos pontualmente', 'Prevemos de forma estruturada', 'Prevemos de forma consolidada'] }
 ];
 
+// Escala genérica de fallback (não usada diretamente — cada questão tem a sua própria)
 export const ESCALA_RESPOSTAS = [
-  { valor: 1, texto: 'Discordo completamente' },
-  { valor: 2, texto: 'Discordo' },
-  { valor: 3, texto: 'Concordo' },
-  { valor: 4, texto: 'Concordo completamente' }
+  { valor: 1, texto: 'Não fazemos' },
+  { valor: 2, texto: 'Fazemos pontualmente' },
+  { valor: 3, texto: 'Fazemos de forma estruturada' },
+  { valor: 4, texto: 'Fazemos de forma consolidada' }
 ];
 
 export const FALLBACK_DIAGNOSTICO = {
@@ -44,9 +46,9 @@ export const FALLBACK_DIAGNOSTICO = {
 - Investir em formação docente voltada a metodologias ativas
 - Iniciar o uso intencional de dados para orientar decisões pedagógicas
 
-**Próximos passos:** Agende uma conversa com seu consultor Geekie para construir juntos um plano de implementação adaptado à realidade da sua escola.`,
+**Próximos passos:** Agende uma conversa com nosso consultor para construir juntos um plano de implementação adaptado à realidade da sua escola.`,
 
-  EXPLORADOR: `Sua escola está em processo consistente de transformação pedagógica.
+  EXPLORADOR: `Sua escola está em processo ativo de transformação pedagógica, com iniciativas promissoras que ainda precisam ser sistematizadas institucionalmente.
 
 **Pontos fortes identificados:**
 - Práticas inovadoras em desenvolvimento em múltiplos eixos
@@ -58,9 +60,9 @@ export const FALLBACK_DIAGNOSTICO = {
 - Ampliar o uso de dados para personalizar percursos de aprendizagem
 - Fortalecer a cultura de formação docente contínua e estruturada
 
-**Próximos passos:** Seu consultor Geekie pode ajudar a mapear quais pilares têm maior potencial de evolução e definir prioridades para o próximo ciclo.`,
+**Próximos passos:** Nosso consultor pode ajudar a mapear quais pilares têm maior potencial de evolução e definir prioridades para o próximo ciclo.`,
 
-  INTEGRADA: `Sua escola demonstra maturidade consolidada em inovação educacional.
+  INTEGRADA: `Sua escola demonstra maturidade consolidada em inovação educacional, com cultura institucional integrada ao currículo e à gestão.
 
 **Pontos fortes identificados:**
 - Cultura institucional de inovação integrada ao currículo e à gestão
@@ -72,7 +74,7 @@ export const FALLBACK_DIAGNOSTICO = {
 - Aprofundar ciclos de diagnóstico, intervenção e reavaliação
 - Compartilhar a experiência da escola como referência para a rede
 
-**Próximos passos:** Converse com seu consultor Geekie para explorar como ampliar o impacto das práticas já consolidadas e atingir novos patamares de personalização.`
+**Próximos passos:** Converse com nosso consultor para explorar como ampliar o impacto das práticas já consolidadas e atingir novos patamares de personalização.`
 };
 
 // Threshold (0–100): pilar abaixo desse valor exibe ativações da Bett correspondentes
@@ -223,41 +225,40 @@ export const CSP_COPY = {
   }
 };
 
+// IDs das 4 questões tecnológicas (20% do score total)
+const QUESTOES_TECNOLOGICAS = new Set(['1.3', '1.8', '1.15', '1.18']);
+
 export function calculateScores(respostas: Record<string, number>) {
   const pilares = { aprendizagem_ativa: 0, visibilidade: 0, flexibilidade: 0, personalizacao: 0 };
   const eixos = { pedagogico: 0, tecnologico: 0 };
-  
+
   const counts = {
     pilares: { aprendizagem_ativa: 0, visibilidade: 0, flexibilidade: 0, personalizacao: 0 },
     eixos: { pedagogico: 0, tecnologico: 0 }
   };
-
-  let totalSum = 0;
-  let totalCount = 0;
 
   QUESTOES.forEach(q => {
     const val = respostas[q.id];
     if (val) {
       pilares[q.pilar as keyof typeof pilares] += val;
       counts.pilares[q.pilar as keyof typeof counts.pilares] += 1;
-      
       eixos[q.eixo as keyof typeof eixos] += val;
       counts.eixos[q.eixo as keyof typeof counts.eixos] += 1;
-      
-      totalSum += val;
-      totalCount += 1;
     }
   });
 
-  // Normaliza a soma de respostas (escala 1-4) para percentual 0-100%.
-  // Formula: ((soma - count) / (count * 3)) * 100
-  //   - (soma - count) remove o piso de 1 ponto por questao, resultando em 0 quando todas = 1
-  //   - (count * 3) e o maximo possivel apos remocao do piso (4-1=3 por questao)
-  //   - Resultado: 0% = todas "Discordo completamente", 100% = todas "Concordo completamente"
+  // Normaliza soma 1-4 para 0-100
   const calcPercentage = (sum: number, count: number) => {
     if (count === 0) return 0;
     return Math.round(((sum - count) / (count * 3)) * 100);
   };
+
+  const pedScore = calcPercentage(eixos.pedagogico, counts.eixos.pedagogico);
+  const tecScore = calcPercentage(eixos.tecnologico, counts.eixos.tecnologico);
+
+  // Score total ponderado: 80% pedagógico + 20% tecnológico
+  // Garante que baixo desempenho tecnológico não derrube desproporcionalmente o total
+  const totalPonderado = Math.round(pedScore * 0.8 + tecScore * 0.2);
 
   const scores = {
     pilares: {
@@ -267,19 +268,20 @@ export function calculateScores(respostas: Record<string, number>) {
       personalizacao: calcPercentage(pilares.personalizacao, counts.pilares.personalizacao)
     },
     eixos: {
-      pedagogico: calcPercentage(eixos.pedagogico, counts.eixos.pedagogico),
-      tecnologico: calcPercentage(eixos.tecnologico, counts.eixos.tecnologico)
+      pedagogico: pedScore,
+      tecnologico: tecScore
     },
-    total: calcPercentage(totalSum, totalCount),
+    total: totalPonderado,
     nivel: '' as 'ESSENCIAL' | 'INTEGRADA' | 'EXPLORADOR' | ''
   };
 
-  if (scores.eixos.pedagogico >= 50 && scores.eixos.tecnologico >= 50) {
+  // Classificação baseada no score total ponderado
+  if (totalPonderado >= 71) {
     scores.nivel = 'INTEGRADA';
-  } else if (scores.eixos.pedagogico < 50 && scores.eixos.tecnologico < 50) {
-    scores.nivel = 'ESSENCIAL';
-  } else {
+  } else if (totalPonderado >= 41) {
     scores.nivel = 'EXPLORADOR';
+  } else {
+    scores.nivel = 'ESSENCIAL';
   }
 
   return scores;

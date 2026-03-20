@@ -26,18 +26,18 @@ export function CSP({ appState }: CSPProps) {
         <h1 className="text-3xl md:text-4xl font-bold text-[var(--color-geekie-preto)] mb-6">
           {copy.titulo}
         </h1>
-        
+
         <p className="text-xl text-gray-600 mb-12 leading-relaxed">
           {copy.subtitulo}
         </p>
 
-        <a 
-          href={whatsappUrl} 
-          target="_blank" 
+        <a
+          href={whatsappUrl}
+          target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center px-8 py-4 text-lg rounded-xl font-bold transition-colors bg-[#25D366] text-white hover:bg-[#128C7E] shadow-lg hover:shadow-xl transform hover:-translate-y-1"
         >
-          Falar via WhatsApp
+          Quero ser uma escola mais inovadora
         </a>
 
         <div className="mt-12 p-6 bg-gray-50 rounded-2xl border border-gray-200 text-left">

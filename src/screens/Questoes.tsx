@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '../components/ui';
-import { QUESTOES, ESCALA_RESPOSTAS } from '../constants';
+import { QUESTOES } from '../constants';
 
 interface QuestoesProps {
   respostas: Record<string, number>;
@@ -54,19 +54,22 @@ export function Questoes({ respostas, onChange, onFinish, onBack }: QuestoesProp
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-8">
-              {ESCALA_RESPOSTAS.map((op) => (
-                <button
-                  key={op.valor}
-                  onClick={() => onChange(q.id, op.valor)}
-                  className={`text-left p-4 rounded-xl border-2 transition-all duration-200 ${
-                    respostas[q.id] === op.valor
-                      ? 'border-[var(--color-geekie-cereja)] bg-red-50 text-[var(--color-geekie-cereja)] font-bold shadow-sm'
-                      : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  <div className="text-sm leading-tight">{op.texto}</div>
-                </button>
-              ))}
+              {(q.escala).map((texto, idx) => {
+                const valor = idx + 1;
+                return (
+                  <button
+                    key={valor}
+                    onClick={() => onChange(q.id, valor)}
+                    className={`text-left p-4 rounded-xl border-2 transition-all duration-200 ${
+                      respostas[q.id] === valor
+                        ? 'border-[var(--color-geekie-cereja)] bg-red-50 text-[var(--color-geekie-cereja)] font-bold shadow-sm'
+                        : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    <div className="text-sm leading-tight">{texto}</div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         ))}
