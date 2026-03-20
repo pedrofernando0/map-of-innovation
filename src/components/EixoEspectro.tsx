@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface EixoEspectroProps {
   label: string;
@@ -11,6 +11,8 @@ interface EixoEspectroProps {
 }
 
 export function EixoEspectro({ label, score, extremoEsquerdo, extremoDireito, cor, tooltip, isMain = false }: EixoEspectroProps) {
+  const [showTooltip, setShowTooltip] = useState(false);
+
   // Garante que o marcador fique visível e dentro da trilha
   const pct = Math.max(4, Math.min(96, score));
 
@@ -35,16 +37,18 @@ export function EixoEspectro({ label, score, extremoEsquerdo, extremoDireito, co
           </span>
         )}
         {tooltip && (
-          <div className="group relative cursor-help ml-1">
+          <button type="button" onClick={() => setShowTooltip(s => !s)} className="relative ml-1 cursor-help">
             <span className="text-gray-400 text-sm">ⓘ</span>
-            <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-gray-900 text-white text-xs rounded-xl p-4 w-80 z-30 leading-relaxed shadow-2xl">
-              {tooltip}
-            </div>
-          </div>
+            {showTooltip && (
+              <div className="absolute left-0 bottom-full mb-2 bg-gray-900 text-white text-xs rounded-xl p-4 w-80 z-30 leading-relaxed shadow-2xl animate-in fade-in duration-200 text-left">
+                {tooltip}
+              </div>
+            )}
+          </button>
         )}
       </div>
 
-      {/* Badge "sua escola está aqui" + linha + trilha + bolinha — tudo num container */}
+      {/* Badge "sua escola está aqui" + linha + trilha + bolinha */}
       <div className="relative" style={{ paddingTop: isMain ? '36px' : '28px' }}>
 
         {/* Badge flutuante */}
@@ -74,7 +78,7 @@ export function EixoEspectro({ label, score, extremoEsquerdo, extremoDireito, co
           className="relative rounded-full overflow-hidden"
           style={{ height: `${trackH}px`, background: `linear-gradient(to right, #e5e7eb 0%, ${cor}60 40%, ${cor} 100%)` }}
         >
-          {/* Bolinha — absolutamente centrada verticalmente dentro da trilha */}
+          {/* Bolinha */}
           <div
             className="absolute top-1/2 border-[3px] border-white shadow-lg rounded-full"
             style={{
@@ -89,8 +93,8 @@ export function EixoEspectro({ label, score, extremoEsquerdo, extremoDireito, co
 
         {/* Rótulos extremos */}
         <div className="flex justify-between mt-2 px-0.5">
-          <span className={`text-gray-400 font-medium ${isMain ? 'text-xs' : 'text-xs'}`}>{extremoEsquerdo}</span>
-          <span className={`text-gray-400 font-medium ${isMain ? 'text-xs' : 'text-xs'}`}>{extremoDireito}</span>
+          <span className="text-gray-400 font-medium text-xs">{extremoEsquerdo}</span>
+          <span className="text-gray-400 font-medium text-xs">{extremoDireito}</span>
         </div>
       </div>
     </div>

@@ -70,7 +70,7 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
             <h1 className="text-4xl font-extrabold mb-2 leading-tight">{escola.nome}</h1>
             <p className="text-base opacity-80">{escola.cidade}{escola.estado ? ` / ${escola.estado}` : ''} · {escola.rede}</p>
             {ancora && (
-              <p className="text-sm opacity-70 mt-2">Auto-percepcao declarada: <strong className="opacity-100">{ancora}/4</strong></p>
+              <p className="text-sm opacity-70 mt-2">Auto-percepção declarada: <strong className="opacity-100">{ancora}/3</strong></p>
             )}
           </div>
           <div className="flex flex-col items-center md:items-end gap-3 flex-shrink-0">
@@ -136,7 +136,7 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
                 extremoEsquerdo="Transmissivo"
                 extremoDireito="Protagonista"
                 cor="#6146f1"
-                tooltip="Na versao Bett, este eixo observa como curriculo, planejamento e experiencias de aprendizagem se organizam para sustentar a inovacao de forma institucional e ampliar o protagonismo estudantil."
+                tooltip="Transformação intencional das práticas de ensino, aprendizagem, avaliação e formação docente em direção a modelos que ampliem o protagonismo do estudante. Avaliado aqui pela categoria Currículo e organização da aprendizagem."
               />
               <EixoEspectro
                 label="Eixo Tecnológico"
@@ -144,7 +144,7 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
                 extremoEsquerdo="Analógica"
                 extremoDireito="Conectada"
                 cor="#FF8219"
-                tooltip="Na versao Bett, este eixo observa como plataformas e recursos digitais apoiam a organizacao curricular, o acompanhamento das turmas e a adaptacao de percursos de aprendizagem."
+                tooltip="Incorporação intencional de recursos digitais ao fluxo pedagógico, de modo que ampliem as possibilidades de aprendizagem. O indicador não é &quot;a escola tem plataforma&quot;, mas &quot;a plataforma é parte da rotina&quot;."
               />
             </div>
           </div>
@@ -180,10 +180,10 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
 
         <div className="mt-8 pt-6 border-t border-gray-100 no-print space-y-3">
           <Button variant="secondary" onClick={handlePrint} className="w-full">
-            Salvar versao para impressao
+            Salvar versão para impressão
           </Button>
           <Button onClick={onNext} className="w-full" size="lg">
-            Quero receber meu relatorio →
+            Quero receber meu relatório →
           </Button>
         </div>
       </div>

@@ -12,19 +12,19 @@ const categories = [
     key: 'ESSENCIAL',
     name: 'Essencial',
     range: '0 – 40',
-    cue: 'Estruturacao inicial',
+    cue: 'Estruturação inicial',
     color: 'border-amber-200 bg-amber-50 text-amber-900',
     accent: 'bg-amber-500',
-    description: 'A escola apresenta bases importantes, mas a inovacao ainda aparece de forma pontual e depende de maior estruturacao institucional.'
+    description: 'A escola apresenta bases importantes, mas a inovação ainda aparece de forma pontual e depende de maior estruturação institucional.'
   },
   {
     key: 'EXPLORADOR',
     name: 'Explorador',
     range: '41 – 70',
-    cue: 'Integracao em desenvolvimento',
+    cue: 'Integração em desenvolvimento',
     color: 'border-sky-200 bg-sky-50 text-sky-900',
     accent: 'bg-sky-500',
-    description: 'A escola ja movimenta praticas consistentes de inovacao, mas ainda convive com etapas que precisam ganhar continuidade e maior integracao.'
+    description: 'A escola já movimenta práticas consistentes de inovação, mas ainda convive com etapas que precisam ganhar continuidade e maior integração.'
   },
   {
     key: 'INTEGRADA',
@@ -33,7 +33,7 @@ const categories = [
     cue: 'Cultura consolidada',
     color: 'border-emerald-200 bg-emerald-50 text-emerald-900',
     accent: 'bg-emerald-500',
-    description: 'A inovacao aparece de forma institucionalizada, com articulacao entre curriculo, decisoes pedagogicas e acompanhamento continuo da aprendizagem.'
+    description: 'A inovação aparece de forma institucionalizada, com articulação entre currículo, decisões pedagógicas e acompanhamento contínuo da aprendizagem.'
   },
 ];
 

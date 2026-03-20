@@ -20,7 +20,7 @@ export function Splash({ onNext }: SplashProps) {
       <div className="max-w-2xl mx-auto space-y-8 animate-in fade-in duration-700 slide-in-from-bottom-8">
         <div className="flex flex-col items-center justify-center mb-8 gap-4">
           <div className="flex flex-col items-center justify-center gap-2">
-            <GeekieLogo className="h-24 object-contain" inverted />
+            <GeekieLogo variant="white" className="h-24 object-contain" />
           </div>
         </div>
         

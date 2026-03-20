@@ -87,7 +87,9 @@ export function Questoes({ respostas, onChange, onFinish, onBack }: QuestoesProp
           ← Voltar
         </Button>
         <div className="text-gray-500 font-medium hidden sm:block">
-          {bloco.qs.filter(q => respostas[q.id]).length} de {bloco.qs.length} respondidas
+          {todasRespondidas
+            ? `${bloco.qs.length} de ${bloco.qs.length} respondidas`
+            : `Faltam ${bloco.qs.length - bloco.qs.filter(q => respostas[q.id]).length} respostas para avançar`}
         </div>
         <Button 
           onClick={handleNext} 

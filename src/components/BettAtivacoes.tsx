@@ -7,30 +7,30 @@ interface BettAtivacoesProps {
 }
 
 const CATEGORY_META = {
-  novidade_2026: {
-    label: 'Novidade 2026',
-    helper: 'novo ou reformulado',
+  lancamento: {
+    label: 'Lançamento',
+    helper: 'Produto ou recurso estreando na Bett 2026',
     className: 'border border-[#ff1547] bg-[#fff1f4] text-[#b00f34]',
     order: 0,
   },
-  expansao: {
-    label: 'Expansao',
-    helper: 'alcance ampliado',
+  evolucao: {
+    label: 'Evolução',
+    helper: 'Recurso existente com avanço significativo',
     className: 'border border-[#ffd46a] bg-[#fff8df] text-[#8a5a00]',
     order: 1,
   },
-  aplicacao: {
-    label: 'Aplicacao pedagogica',
-    helper: 'uso imediato no contexto escolar',
+  destaque: {
+    label: 'Destaque pedagógico',
+    helper: 'Prática com impacto direto na sala de aula',
     className: 'border border-[#bfeef8] bg-[#f2fcff] text-[#086f83]',
     order: 2,
   },
 } as const;
 
 function normalizeTag(tag: string) {
-  if (tag === 'Expansão') return CATEGORY_META.expansao;
-  if (tag === 'Destaque') return CATEGORY_META.aplicacao;
-  return CATEGORY_META.novidade_2026;
+  if (tag === 'Expansão' || tag === 'Novidade 2026') return CATEGORY_META.evolucao;
+  if (tag === 'Destaque') return CATEGORY_META.destaque;
+  return CATEGORY_META.lancamento;
 }
 
 function PilarCard({ data }: { data: AtivacoesPilar }) {
@@ -137,7 +137,7 @@ export function BettAtivacoes({ scores }: BettAtivacoesProps) {
         <div className="flex-1">
           <div className="flex flex-wrap items-center gap-3">
             <h2 className="text-xl font-bold text-[var(--color-geekie-preto)]">
-              Conheca na Bett 2026
+              Conheça na Bett 2026
             </h2>
             <span className="inline-flex items-center gap-2 rounded-full bg-[#fff5f7] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#ff1547] border border-[#ffd0d9]">
               <span className="relative flex h-2.5 w-2.5">
@@ -148,7 +148,7 @@ export function BettAtivacoes({ scores }: BettAtivacoesProps) {
             </span>
           </div>
           <p className="text-sm text-gray-500 mt-2">
-            Selecionamos ate 3 frentes da Bett com maior aderencia ao momento atual da sua escola, priorizando o que pode apoiar sua evolucao pedagogica de forma mais concreta.
+            Selecionamos até 3 frentes da Bett com maior aderência ao momento atual da sua escola, priorizando o que pode apoiar sua evolução pedagógica de forma mais concreta.
           </p>
         </div>
       </div>
