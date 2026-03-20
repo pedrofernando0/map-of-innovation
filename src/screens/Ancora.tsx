@@ -10,10 +10,9 @@ interface AncoraProps {
 
 export function Ancora({ ancora, onChange, onNext, onBack }: AncoraProps) {
   const opcoes = [
-    { val: 1, label: 'Essencial', desc: 'Estamos dando os primeiros passos. Práticas inovadoras são pontuais e dependem de iniciativas individuais.' },
-    { val: 2, label: 'Explorador', desc: 'Temos iniciativas em desenvolvimento, mas a integração ainda não é sistêmica em toda a escola.' },
-    { val: 3, label: 'Integrada', desc: 'A inovação já faz parte da nossa cultura. Práticas ativas e tecnologia estão integradas à rotina.' },
-    { val: 4, label: 'Referência', desc: 'Somos reconhecidos por práticas consolidadas. Compartilhamos e expandimos nossa cultura de inovação.' }
+    { val: 1, label: 'Essencial', desc: 'Nossa escola possui condições básicas de funcionamento. Práticas inovadoras existem de forma pontual ou dependem de iniciativas individuais. Há espaço significativo para intencionalidade e estruturação.' },
+    { val: 2, label: 'Explorador', desc: 'Nossa escola tem processos em construção, com orientação institucional parcial. Há práticas inovadoras em desenvolvimento, mas a integração ainda não é sistêmica. Coexistem práticas tradicionais e inovadoras.' },
+    { val: 3, label: 'Integrada', desc: 'Nossa escola demonstra cultura institucional consolidada de inovação. Práticas pedagógicas ativas e uso intencional de tecnologia estão integrados ao currículo, à formação e à gestão.' }
   ];
 
   return (
@@ -27,7 +26,7 @@ export function Ancora({ ancora, onChange, onNext, onBack }: AncoraProps) {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
         {opcoes.map((op) => (
           <button
             key={op.val}

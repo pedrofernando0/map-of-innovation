@@ -24,7 +24,7 @@ export function Splash({ onNext }: SplashProps) {
         </div>
         
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight">
-          Mapa de Inovação
+          Mapa de Inovação Educacional
         </h1>
         
         <p className="text-xl md:text-2xl font-sans opacity-90 max-w-xl mx-auto">

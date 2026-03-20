@@ -18,8 +18,8 @@ import { Admin } from './screens/Admin';
 const INITIAL_STATE: AppState = {
   escola: {
     nome: '', rede: '', segmentos: [], cidade: '', estado: '',
-    contato_nome: '', contato_email: '', contato_telefone: '',
-    parceira_geekie: false
+    contato_nome: '', contato_cargo: '', contato_email: '', contato_telefone: '',
+    parceira_geekie: null
   },
   respostas: {},
   ancora: null,
@@ -145,7 +145,7 @@ export default function App() {
           />
         )}
         
-        {screen === 'csp' && <CSP appState={appState} />}
+        {screen === 'csp' && <CSP appState={appState} onBack={() => { setScreen('resultado'); setProgress(90); }} />}
       </main>
     </div>
   );

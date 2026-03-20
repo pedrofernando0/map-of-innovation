@@ -77,9 +77,9 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
                   className="flex items-start gap-2 text-xs rounded-lg p-2.5"
                   style={{ backgroundColor: data.corPilar + '12' }}
                 >
-                  <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: data.corPilar }}>↳</span>
+                  <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: data.corPilar }}>→</span>
                   <span className="text-gray-700 leading-relaxed">
-                    <strong style={{ color: data.corPilar }}>Conexão com o pilar:</strong> {atv.conexao}
+                    <strong style={{ color: data.corPilar }}>Como sua escola pode evoluir:</strong> {atv.impacto}
                   </span>
                 </div>
               </div>

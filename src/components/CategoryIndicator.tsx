@@ -7,23 +7,23 @@ interface CategoryIndicatorProps {
 }
 
 const categories = [
-  { 
-    name: 'Essencial', 
-    range: '0 - 40', 
-    color: 'bg-orange-100 text-orange-800 border-orange-200',
-    description: 'A escola possui condições mínimas. Práticas inovadoras são pontuais e a infraestrutura tecnológica é básica ou subutilizada.'
+  {
+    name: 'Essencial',
+    range: '0 – 40',
+    color: 'bg-amber-50 text-amber-800 border-amber-200',
+    description: 'Minha escola possui condições básicas de funcionamento. Práticas inovadoras existem de forma pontual ou dependem de iniciativas individuais, sem respaldo institucional. O uso de tecnologia é limitado ou subutilizado. Há espaço significativo para estruturação e intencionalidade pedagógica.'
   },
-  { 
-    name: 'Explorador', 
-    range: '41 - 70', 
-    color: 'bg-blue-100 text-blue-800 border-blue-200',
-    description: 'Processos em construção com orientação parcial. Práticas inovadoras ocorrem, mas a integração ainda não é sistêmica.'
+  {
+    name: 'Explorador',
+    range: '41 – 70',
+    color: 'bg-sky-50 text-sky-800 border-sky-200',
+    description: 'Minha escola demonstra processos em construção, com orientação institucional parcial. Existem práticas inovadoras e uso de tecnologia em diferentes contextos, mas a integração ainda não é sistêmica. Práticas tradicionais e inovadoras coexistem — o que é característico deste estágio de transformação.'
   },
-  { 
-    name: 'Integrada', 
-    range: '71 - 100', 
-    color: 'bg-green-100 text-green-800 border-green-200',
-    description: 'Cultura de inovação consolidada. Práticas ativas e tecnologia estão integradas ao currículo, formação e gestão.'
+  {
+    name: 'Integrada',
+    range: '71 – 100',
+    color: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+    description: 'Minha escola demonstra cultura institucional consolidada de inovação. Práticas pedagógicas ativas e uso intencional de tecnologia estão integrados ao currículo, à formação docente e à gestão. Existem ciclos contínuos de avaliação e melhoria que sustentam a inovação ao longo do tempo.'
   },
 ];
 

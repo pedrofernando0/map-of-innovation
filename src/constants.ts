@@ -1,36 +1,36 @@
+// Escala: 1=não fazemos | 2=fazemos pontualmente | 3=fazemos regularmente (rotina, mas não é política formal) | 4=fazemos como política institucional (documentado, monitorado, toda a escola)
 export const QUESTOES = [
-  // Escala por bloco: verbo dominante é "organizamos/prevemos/adotamos/promovemos"
-  { id: '1.1', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo de forma a incluir projetos que mobilizam os estudantes a aplicar conhecimentos para resolver problemas reais ou contextualizados.', escala: ['Não organizamos', 'Organizamos pontualmente', 'Organizamos de forma estruturada', 'Organizamos de forma consolidada'] },
-  { id: '1.2', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'O currículo da minha escola prevê, de forma explícita, o desenvolvimento de competências socioemocionais e do pensamento crítico como objetivos de aprendizagem em todos os segmentos.', escala: ['Não prevemos', 'Prevemos parcialmente', 'Prevemos de forma estruturada', 'Prevemos de forma consolidada'] },
-  { id: '1.3', pilar: 'aprendizagem_ativa', eixo: 'tecnologico', texto: 'Minha escola prevê a utilização de recursos e plataformas digitais que ampliam as possibilidades de investigação, produção e autoria dos estudantes no desenvolvimento das atividades curriculares.', escala: ['Não prevemos', 'Prevemos parcialmente', 'Prevemos de forma estruturada', 'Prevemos de forma consolidada'] },
-  { id: '1.4', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos e recursos pedagógicos que orientam a realização de atividades investigativas, colaborativas ou baseadas em projetos.', escala: ['Não adotamos', 'Adotamos pontualmente', 'Adotamos de forma estruturada', 'Adotamos de forma consolidada'] },
-  { id: '1.5', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola organiza o planejamento docente de forma a prever experiências de aprendizagem em que os estudantes participam ativamente da construção do conhecimento.', escala: ['Não organizamos', 'Organizamos pontualmente', 'Organizamos de forma estruturada', 'Organizamos de forma consolidada'] },
+  { id: '1.1', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo de forma a incluir projetos que mobilizam os estudantes a aplicar conhecimentos para resolver problemas reais ou contextualizados.', escala: ['Não organizamos', 'Organizamos pontualmente', 'Organizamos com regularidade', 'É uma política institucional'] },
+  { id: '1.2', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'O currículo da minha escola prevê, de forma explícita, o desenvolvimento de competências socioemocionais e do pensamento crítico como objetivos de aprendizagem em todos os segmentos.', escala: ['Não prevemos', 'Prevemos pontualmente', 'Prevemos com regularidade', 'É uma política institucional'] },
+  { id: '1.3', pilar: 'aprendizagem_ativa', eixo: 'tecnologico', texto: 'Minha escola prevê a utilização de recursos e plataformas digitais que ampliam as possibilidades de investigação, produção e autoria dos estudantes no desenvolvimento das atividades curriculares.', escala: ['Não prevemos', 'Prevemos pontualmente', 'Prevemos com regularidade', 'É uma política institucional'] },
+  { id: '1.4', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos e recursos pedagógicos que orientam a realização de atividades investigativas, colaborativas ou baseadas em projetos.', escala: ['Não adotamos', 'Adotamos pontualmente', 'Adotamos com regularidade', 'É uma política institucional'] },
+  { id: '1.5', pilar: 'aprendizagem_ativa', eixo: 'pedagogico', texto: 'Minha escola organiza o planejamento docente de forma a prever experiências de aprendizagem em que os estudantes participam ativamente da construção do conhecimento.', escala: ['Não organizamos', 'Organizamos pontualmente', 'Organizamos com regularidade', 'É uma política institucional'] },
 
-  { id: '1.6', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo com objetivos de aprendizagem claros e progressivos, permitindo que estudantes e professores compreendam o percurso de desenvolvimento esperado.', escala: ['Não organizamos', 'Organizamos parcialmente', 'Organizamos de forma estruturada', 'Organizamos de forma consolidada'] },
-  { id: '1.7', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola integra ao currículo práticas que incentivam os estudantes a refletir sobre seu processo de aprendizagem e a acompanhar seu próprio progresso.', escala: ['Não integramos', 'Integramos pontualmente', 'Integramos de forma estruturada', 'Integramos de forma consolidada'] },
-  { id: '1.8', pilar: 'visibilidade', eixo: 'tecnologico', texto: 'Minha escola dispõe de painéis ou relatórios digitais atualizados que consolidam dados de desempenho dos estudantes e são acessíveis à equipe pedagógica para consulta e tomada de decisão.', escala: ['Não dispomos', 'Dispomos parcialmente', 'Dispomos de forma estruturada', 'Dispomos de forma consolidada'] },
-  { id: '1.9', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos que explicitam objetivos de aprendizagem, critérios de sucesso e evidências esperadas de desenvolvimento das habilidades.', escala: ['Não adotamos', 'Adotamos pontualmente', 'Adotamos de forma estruturada', 'Adotamos de forma consolidada'] },
-  { id: '1.10', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola orienta o planejamento docente a partir de objetivos de aprendizagem claros e de estratégias para monitorar continuamente o progresso dos estudantes.', escala: ['Não orientamos', 'Orientamos parcialmente', 'Orientamos de forma estruturada', 'Orientamos de forma consolidada'] },
+  { id: '1.6', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo com objetivos de aprendizagem claros e progressivos, permitindo que estudantes e professores compreendam o percurso de desenvolvimento esperado.', escala: ['Não organizamos', 'Organizamos pontualmente', 'Organizamos com regularidade', 'É uma política institucional'] },
+  { id: '1.7', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola integra ao currículo práticas que incentivam os estudantes a refletir sobre seu processo de aprendizagem e a acompanhar seu próprio progresso.', escala: ['Não integramos', 'Integramos pontualmente', 'Integramos com regularidade', 'É uma política institucional'] },
+  { id: '1.8', pilar: 'visibilidade', eixo: 'tecnologico', texto: 'Minha escola dispõe de painéis ou relatórios digitais atualizados que consolidam dados de desempenho dos estudantes e são acessíveis à equipe pedagógica para consulta e tomada de decisão.', escala: ['Não dispomos', 'Dispomos parcialmente', 'Dispomos com regularidade', 'É uma política institucional'] },
+  { id: '1.9', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos que explicitam objetivos de aprendizagem, critérios de sucesso e evidências esperadas de desenvolvimento das habilidades.', escala: ['Não adotamos', 'Adotamos pontualmente', 'Adotamos com regularidade', 'É uma política institucional'] },
+  { id: '1.10', pilar: 'visibilidade', eixo: 'pedagogico', texto: 'Minha escola orienta o planejamento docente a partir de objetivos de aprendizagem claros e de estratégias para monitorar continuamente o progresso dos estudantes.', escala: ['Não orientamos', 'Orientamos pontualmente', 'Orientamos com regularidade', 'É uma política institucional'] },
 
-  { id: '1.11', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo de forma a permitir articulações entre diferentes componentes curriculares em torno de temas, projetos ou problemas relevantes.', escala: ['Não organizamos', 'Organizamos pontualmente', 'Organizamos de forma estruturada', 'Organizamos de forma consolidada'] },
-  { id: '1.12', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Os professores da minha escola têm autonomia para ajustar a sequência, a profundidade e o tempo dedicado aos temas do currículo com base nas necessidades observadas na turma.', escala: ['Não têm autonomia', 'Têm autonomia limitada', 'Têm autonomia estruturada', 'Têm autonomia consolidada'] },
-  { id: '1.13', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos que permitem integrar diferentes metodologias e organizar experiências de aprendizagem variadas ao longo do percurso formativo.', escala: ['Não adotamos', 'Adotamos pontualmente', 'Adotamos de forma estruturada', 'Adotamos de forma consolidada'] },
-  { id: '1.14', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o planejamento docente de forma flexível, permitindo ajustes nas estratégias de ensino conforme o progresso e as necessidades da turma.', escala: ['Não organizamos', 'Organizamos parcialmente', 'Organizamos de forma estruturada', 'Organizamos de forma consolidada'] },
-  { id: '1.15', pilar: 'flexibilidade', eixo: 'tecnologico', texto: 'Minha escola utiliza plataforma digital para organizar conteúdo programático e adaptar sequência didática de acordo com a necessidade de cada turma.', escala: ['Não utilizamos', 'Utilizamos pontualmente', 'Utilizamos de forma estruturada', 'Utilizamos de forma consolidada'] },
+  { id: '1.11', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o currículo de forma a permitir articulações entre diferentes componentes curriculares em torno de temas, projetos ou problemas relevantes.', escala: ['Não organizamos', 'Organizamos pontualmente', 'Organizamos com regularidade', 'É uma política institucional'] },
+  { id: '1.12', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Os professores da minha escola têm autonomia para ajustar a sequência, a profundidade e o tempo dedicado aos temas do currículo com base nas necessidades observadas na turma.', escala: ['Não têm autonomia', 'Têm autonomia limitada', 'Têm autonomia na prática', 'Autonomia garantida institucionalmente'] },
+  { id: '1.13', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola adota materiais didáticos que permitem integrar diferentes metodologias e organizar experiências de aprendizagem variadas ao longo do percurso formativo.', escala: ['Não adotamos', 'Adotamos pontualmente', 'Adotamos com regularidade', 'É uma política institucional'] },
+  { id: '1.14', pilar: 'flexibilidade', eixo: 'pedagogico', texto: 'Minha escola organiza o planejamento docente de forma flexível, permitindo ajustes nas estratégias de ensino conforme o progresso e as necessidades da turma.', escala: ['Não organizamos', 'Organizamos pontualmente', 'Organizamos com regularidade', 'É uma política institucional'] },
+  { id: '1.15', pilar: 'flexibilidade', eixo: 'tecnologico', texto: 'Minha escola utiliza plataforma digital para organizar conteúdo programático e adaptar sequência didática de acordo com a necessidade de cada turma.', escala: ['Não utilizamos', 'Utilizamos pontualmente', 'Utilizamos com regularidade', 'É uma política institucional'] },
 
-  { id: '1.16', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Minha escola promove atividades que incentivam os estudantes a fazer escolhas, definir metas e assumir maior responsabilidade por sua aprendizagem.', escala: ['Não promovemos', 'Promovemos pontualmente', 'Promovemos de forma estruturada', 'Promovemos de forma consolidada'] },
-  { id: '1.17', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, o planejamento curricular inclui estratégias específicas de diferenciação para estudantes com deficiência, transtornos de aprendizagem ou altas habilidades.', escala: ['Não incluímos', 'Incluímos parcialmente', 'Incluímos de forma estruturada', 'Incluímos de forma consolidada'] },
-  { id: '1.18', pilar: 'personalizacao', eixo: 'tecnologico', texto: 'Minha escola utiliza plataformas digitais com recursos adaptativos integrados ao currículo, de modo que os percursos individuais de aprendizagem sejam ajustados com base em dados de desempenho.', escala: ['Não utilizamos', 'Utilizamos pontualmente', 'Utilizamos de forma estruturada', 'Utilizamos de forma consolidada'] },
-  { id: '1.19', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, as propostas curriculares oferecem diferentes formas de acesso ao conhecimento (atividades, recursos ou abordagens variadas).', escala: ['Não oferecemos', 'Oferecemos parcialmente', 'Oferecemos de forma estruturada', 'Oferecemos de forma consolidada'] },
-  { id: '1.20', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, a organização curricular prevê momentos em que os estudantes podem avançar ou aprofundar conteúdos de acordo com seu ritmo de aprendizagem.', escala: ['Não prevemos', 'Prevemos pontualmente', 'Prevemos de forma estruturada', 'Prevemos de forma consolidada'] }
+  { id: '1.16', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Minha escola promove atividades que incentivam os estudantes a fazer escolhas, definir metas e assumir maior responsabilidade por sua aprendizagem.', escala: ['Não promovemos', 'Promovemos pontualmente', 'Promovemos com regularidade', 'É uma política institucional'] },
+  { id: '1.17', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, o planejamento curricular inclui estratégias específicas de diferenciação para estudantes com deficiência, transtornos de aprendizagem ou altas habilidades.', escala: ['Não incluímos', 'Incluímos pontualmente', 'Incluímos com regularidade', 'É uma política institucional'] },
+  { id: '1.18', pilar: 'personalizacao', eixo: 'tecnologico', texto: 'Minha escola utiliza plataformas digitais com recursos adaptativos integrados ao currículo, de modo que os percursos individuais de aprendizagem sejam ajustados com base em dados de desempenho.', escala: ['Não utilizamos', 'Utilizamos pontualmente', 'Utilizamos com regularidade', 'É uma política institucional'] },
+  { id: '1.19', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, as propostas curriculares oferecem diferentes formas de acesso ao conhecimento (atividades, recursos ou abordagens variadas).', escala: ['Não oferecemos', 'Oferecemos pontualmente', 'Oferecemos com regularidade', 'É uma política institucional'] },
+  { id: '1.20', pilar: 'personalizacao', eixo: 'pedagogico', texto: 'Na minha escola, a organização curricular prevê momentos em que os estudantes podem avançar ou aprofundar conteúdos de acordo com seu ritmo de aprendizagem.', escala: ['Não prevemos', 'Prevemos pontualmente', 'Prevemos com regularidade', 'É uma política institucional'] }
 ];
 
-// Escala genérica de fallback (não usada diretamente — cada questão tem a sua própria)
+// Escala genérica de fallback
 export const ESCALA_RESPOSTAS = [
   { valor: 1, texto: 'Não fazemos' },
   { valor: 2, texto: 'Fazemos pontualmente' },
-  { valor: 3, texto: 'Fazemos de forma estruturada' },
-  { valor: 4, texto: 'Fazemos de forma consolidada' }
+  { valor: 3, texto: 'Fazemos com regularidade' },
+  { valor: 4, texto: 'É uma política institucional' }
 ];
 
 export const FALLBACK_DIAGNOSTICO = {
@@ -84,7 +84,7 @@ export interface Ativacao {
   titulo: string;
   descricao: string;
   tag: 'Lançamento' | 'Novidade 2026' | 'Expansão' | 'Destaque';
-  conexao: string;
+  impacto: string; // como sua escola pode evoluir através desta prática
 }
 
 export interface AtivacoesPilar {
@@ -102,25 +102,25 @@ export const ATIVACOES_BETT: Record<string, AtivacoesPilar> = {
     corPilar: '#ff1547',
     corFundo: '#fff5f7',
     icone: '⚡',
-    intro: 'Para escolas que querem colocar o estudante no centro do processo, a Geekie apresenta na Bett 2026:',
+    intro: 'Sua escola tem oportunidade de avançar no protagonismo dos estudantes. Conheça o que a Geekie apresenta na Bett 2026 para apoiar essa jornada:',
     ativacoes: [
       {
         titulo: 'Estação Geekie — STEAM no Ensino Fundamental II',
-        descricao: 'Projetos interdisciplinares que mobilizam diferentes áreas do conhecimento e desenvolvem habilidades do século XXI. Expansão do EFAI para o EFAF, agora com entrega física.',
+        descricao: 'Projetos interdisciplinares com entrega física que mobilizam diferentes áreas do conhecimento. Expansão dos projetos STEAM para o Fundamental II, agora com material impresso.',
         tag: 'Expansão',
-        conexao: 'Projetos STEAM estruturam a aprendizagem por investigação e resolução de problemas reais — o núcleo da Aprendizagem Ativa.'
+        impacto: 'Sua escola pode substituir atividades tradicionais por projetos de investigação reais, fazendo com que o estudante experimente, questione e crie — em vez de apenas reproduzir conteúdo.'
       },
       {
         titulo: 'Educação Digital reformulada — EFAF',
-        descricao: 'Componente curricular que explora desafios e oportunidades do mundo digital por meio de metodologias ativas, com conteúdo mais robusto e entrega física.',
+        descricao: 'Componente curricular com conteúdo mais robusto e entrega física, que explora os desafios do mundo digital por meio de metodologias ativas.',
         tag: 'Novidade 2026',
-        conexao: 'Metodologias ativas digitais ampliam as possibilidades de investigação, produção e autoria dos estudantes no currículo.'
+        impacto: 'Sua escola pode incorporar ao currículo formal práticas de autoria, investigação e produção digital — transformando o uso da tecnologia em experiência ativa de aprendizagem.'
       },
       {
         titulo: 'Itinerários Formativos — Nova abordagem para o Ensino Médio',
-        descricao: 'Mais de 46 itinerários organizados com temas atuais e contextualizados, incluindo Projeto de Vida e Educação Digital no impresso.',
+        descricao: 'Mais de 46 itinerários com temas atuais e contextualizados, incluindo Projeto de Vida e Educação Digital no formato impresso.',
         tag: 'Lançamento',
-        conexao: 'Itinerários formativos são o espaço por excelência do protagonismo estudantil — o estudante escolhe seu percurso de aprofundamento.'
+        impacto: 'Sua escola pode oferecer percursos em que o estudante faz escolhas reais sobre sua formação — tornando o protagonismo parte da estrutura, não do discurso.'
       }
     ]
   },
@@ -130,25 +130,25 @@ export const ATIVACOES_BETT: Record<string, AtivacoesPilar> = {
     corPilar: '#0fc3e6',
     corFundo: '#f0fbff',
     icone: '👁',
-    intro: 'Para tornar o aprendizado visível — para gestores, professores, famílias e estudantes — a Geekie traz à Bett 2026:',
+    intro: 'Sua escola tem oportunidade de tornar o aprendizado mais visível para gestores, professores, estudantes e famílias. Veja o que a Geekie apresenta na Bett 2026:',
     ativacoes: [
       {
         titulo: 'Rotinas do Pensamento — Influência Project Zero (Harvard)',
-        descricao: 'Estratégias pedagógicas que tornam o raciocínio visível: levantar hipóteses, argumentar de forma estruturada, pensar sob diferentes perspectivas e evidenciar conexões entre ideias.',
+        descricao: 'Estratégias pedagógicas que tornam o raciocínio visível enquanto os estudantes aprendem: levantar hipóteses, argumentar, pensar sob diferentes perspectivas e evidenciar conexões.',
         tag: 'Destaque',
-        conexao: 'Rotinas do Pensamento revelam o raciocínio do estudante para o professor e para si mesmo — a essência de tornar visível a aprendizagem.'
+        impacto: 'Sua escola pode fazer com que professores e estudantes enxerguem o processo de pensar — não apenas o resultado — tornando a aprendizagem rastreável e orientada por evidências.'
       },
       {
         titulo: 'Correção de Redação com IA — Geekie Teste',
-        descricao: 'Correção automática baseada na matriz do ENEM com feedbacks imediatos e individualizados, maior frequência de prática e otimização do tempo do professor.',
+        descricao: 'Correção automática com base na matriz do ENEM, com feedbacks imediatos e individualizados, maior frequência de prática e otimização do tempo do professor.',
         tag: 'Lançamento',
-        conexao: 'Feedback formativo em escala é visibilidade: o estudante vê exatamente onde está e o que precisa melhorar, em tempo real.'
+        impacto: 'Sua escola pode ampliar a frequência de avaliações escritas sem sobrecarregar professores — e cada estudante recebe um retorno preciso sobre onde está e o que precisa melhorar.'
       },
       {
         titulo: 'Relatoria — Painel do Gestor, Professor e Aluno',
-        descricao: 'Solução integrada que traduz o uso dos produtos em insights pedagógicos acionáveis, com dados consolidados por habilidades e competências para cada perfil.',
+        descricao: 'Solução integrada que transforma uso de produtos em insights pedagógicos acionáveis, com dados consolidados por habilidades e competências para cada perfil.',
         tag: 'Destaque',
-        conexao: 'Painéis que consolidam dados de desempenho tornam o progresso visível para toda a comunidade escolar e orientam decisões pedagógicas.'
+        impacto: 'Sua escola pode transformar dados de desempenho em decisões pedagógicas reais — com painéis que mostram o que está funcionando e onde intervir, para cada gestor, professor e estudante.'
       }
     ]
   },
@@ -158,25 +158,25 @@ export const ATIVACOES_BETT: Record<string, AtivacoesPilar> = {
     corPilar: '#32cd91',
     corFundo: '#f0fff8',
     icone: '🔀',
-    intro: 'Para escolas que buscam mais autonomia curricular e integração entre o físico e o digital, a Geekie apresenta na Bett 2026:',
+    intro: 'Sua escola tem oportunidade de ampliar sua autonomia curricular e integrar melhor o físico e o digital. Conheça o que a Geekie apresenta na Bett 2026:',
     ativacoes: [
       {
         titulo: 'Nova Coleção Impressa 2027 — EFAI, EFAF e EM',
-        descricao: 'Coleção completamente reimaginada para ser 100% impressa, com entrega anual, conteúdo atualizado e recursos de integração digital para coleta de dados pedagógicos.',
+        descricao: 'Coleção 100% impressa, com entrega anual, conteúdo atualizado e recursos de integração digital para coleta estratégica de dados por professores e gestores.',
         tag: 'Lançamento',
-        conexao: 'Material impresso com integração digital dá autonomia para a escola trabalhar no seu ritmo, sem depender de conectividade constante.'
+        impacto: 'Sua escola pode trabalhar no próprio ritmo, sem depender de conectividade constante — e ainda gerar dados pedagógicos a partir do material impresso, com integração à plataforma digital.'
       },
       {
         titulo: 'Ferramenta de Flexibilidade Curricular',
-        descricao: 'Permite reordenar os conteúdos do material didático, dando autonomia para a escola trabalhar na sequência que faz mais sentido para sua equipe pedagógica e contexto local.',
+        descricao: 'Permite que sua escola reordene os conteúdos do material didático de acordo com a necessidade da equipe pedagógica e o contexto local.',
         tag: 'Novidade 2026',
-        conexao: 'Autonomia para ajustar sequência, profundidade e tempo dos conteúdos é a essência da Flexibilidade curricular institucional.'
+        impacto: 'Sua escola pode adaptar a sequência didática à realidade de cada turma — dando ao professor autonomia real para ajustar profundidade, ordem e tempo dos conteúdos.'
       },
       {
         titulo: 'Integração Físico ↔ Digital',
-        descricao: 'Lista de checagem que acompanha o avanço dos alunos no livro impresso e gera dados automaticamente na plataforma digital, com base ampliada de exercícios online para intervenções personalizadas.',
+        descricao: 'Lista de checagem que acompanha o avanço dos alunos no livro e gera dados automaticamente na plataforma digital, com base ampliada de exercícios online.',
         tag: 'Destaque',
-        conexao: 'A integração físico-digital permite que a escola adapte o fluxo de ensino ao contexto de cada turma, combinando o melhor dos dois ambientes.'
+        impacto: 'Sua escola pode combinar o melhor dos dois mundos — a solidez do impresso e a agilidade do digital — adaptando o fluxo de ensino ao contexto de cada turma sem abrir mão de dados.'
       }
     ]
   },
@@ -186,25 +186,25 @@ export const ATIVACOES_BETT: Record<string, AtivacoesPilar> = {
     corPilar: '#6146f1',
     corFundo: '#f5f3ff',
     icone: '🎯',
-    intro: 'Para escolas que querem adaptar o ensino ao ritmo e às necessidades de cada estudante, a Geekie apresenta na Bett 2026:',
+    intro: 'Sua escola tem oportunidade de adaptar o ensino ao ritmo e às necessidades de cada estudante. Veja o que a Geekie apresenta na Bett 2026:',
     ativacoes: [
       {
         titulo: 'Plano de Estudos Personalizado',
-        descricao: 'Transforma dados de desempenho em ações: listas de exercícios adaptadas às dificuldades individuais, recomendações focadas em vestibulares e Calculadora SISU para planejamento acadêmico.',
+        descricao: 'Transforma dados de desempenho em ações: listas de exercícios adaptadas às dificuldades individuais, recomendações com foco em vestibulares e Calculadora SISU.',
         tag: 'Lançamento',
-        conexao: 'Percursos de aprendizagem ajustados com base em dados de desempenho individual — personalização com evidência, não com intuição.'
+        impacto: 'Sua escola pode parar de tratar todos os estudantes da mesma forma — e começar a oferecer intervenções baseadas no desempenho real de cada um, com recomendações automáticas e precisas.'
       },
       {
         titulo: 'Trilhas Pós-Simulados',
-        descricao: 'Após cada simulado, o estudante recebe trilhas de reforço personalizadas com base nos seus resultados, priorizando as habilidades com maior oportunidade de evolução.',
+        descricao: 'Após cada simulado, o estudante recebe trilhas de reforço personalizadas com base nos seus resultados, priorizando as habilidades com maior potencial de evolução.',
         tag: 'Destaque',
-        conexao: 'Intervenção baseada em evidências: cada estudante recebe um percurso diferente, construído a partir das suas reais lacunas de aprendizagem.'
+        impacto: 'Sua escola pode transformar o pós-simulado em ponto de partida para a evolução — com cada estudante recebendo um percurso diferente, construído a partir das suas lacunas reais.'
       },
       {
         titulo: 'Geekie Teste — Impressão de Avaliações',
-        descricao: 'Escolas passam a imprimir suas avaliações, ampliando a fidelidade à experiência dos vestibulares e mantendo a análise pedagógica automatizada com indicadores por habilidades.',
+        descricao: 'Sua escola passa a poder imprimir suas avaliações, ampliando a fidelidade à experiência dos vestibulares e mantendo a análise pedagógica automatizada.',
         tag: 'Novidade 2026',
-        conexao: 'Avaliações adaptadas ao perfil e contexto de cada escola geram diagnósticos mais precisos para personalizar as intervenções pedagógicas.'
+        impacto: 'Sua escola pode oferecer uma experiência de avaliação mais próxima da realidade dos vestibulares — e ainda obter diagnósticos detalhados por habilidade para personalizar as intervenções seguintes.'
       }
     ]
   }

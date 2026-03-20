@@ -35,6 +35,7 @@ export function Cadastro({ escola, onChange, onNext, onBack }: CadastroProps) {
     if (!escola.rede) newErrors.rede = 'Obrigatório';
     if (escola.segmentos.length === 0) newErrors.segmentos = 'Selecione ao menos um';
     if (!escola.contato_nome) newErrors.contato_nome = 'Obrigatório';
+    if (!escola.contato_cargo) newErrors.contato_cargo = 'Obrigatório';
     if (!escola.contato_email) newErrors.contato_email = 'Obrigatório';
 
     if (Object.keys(newErrors).length > 0) {
@@ -139,7 +140,9 @@ export function Cadastro({ escola, onChange, onNext, onBack }: CadastroProps) {
                   className={`px-5 py-2.5 rounded-full border text-sm font-bold transition-colors ${
                     escola.parceira_geekie === op.val
                       ? 'bg-[var(--color-geekie-cereja)] border-[var(--color-geekie-cereja)] text-white'
-                      : 'border-gray-300 text-gray-600 hover:border-[var(--color-geekie-cereja)]'
+                      : escola.parceira_geekie === null
+                        ? 'border-gray-300 text-gray-500 hover:border-[var(--color-geekie-cereja)]'
+                        : 'border-gray-300 text-gray-400 hover:border-[var(--color-geekie-cereja)]'
                   }`}
                 >
                   {op.label}
@@ -150,18 +153,46 @@ export function Cadastro({ escola, onChange, onNext, onBack }: CadastroProps) {
 
           <hr className="border-gray-100" />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-2">Seu Nome *</label>
-              <input 
+              <input
                 type="text" name="contato_nome" value={escola.contato_nome} onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none"
               />
               {errors.contato_nome && <p className="text-red-500 text-sm mt-1">{errors.contato_nome}</p>}
             </div>
             <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2">Cargo *</label>
+              <select
+                name="contato_cargo" value={escola.contato_cargo} onChange={handleChange}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none bg-white"
+              >
+                <option value="">Selecione...</option>
+                <option value="Administrador">Administrador</option>
+                <option value="Assessor pedagógico">Assessor pedagógico</option>
+                <option value="Auxiliar de coordenação">Auxiliar de coordenação</option>
+                <option value="Coordenador Administrativo">Coordenador Administrativo</option>
+                <option value="Coordenador Pedagógico">Coordenador Pedagógico</option>
+                <option value="Diretor">Diretor</option>
+                <option value="Mantenedor">Mantenedor</option>
+                <option value="Orientador(a) Educacional">Orientador(a) Educacional</option>
+                <option value="Professor">Professor</option>
+                <option value="Psicólogo(a)">Psicólogo(a)</option>
+                <option value="Secretário">Secretário</option>
+                <option value="Supervisor">Supervisor</option>
+                <option value="Aluno">Aluno</option>
+                <option value="Pai/Responsável">Pai/Responsável</option>
+                <option value="Outros">Outros</option>
+              </select>
+              {errors.contato_cargo && <p className="text-red-500 text-sm mt-1">{errors.contato_cargo}</p>}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
               <label className="block text-sm font-bold text-gray-700 mb-2">E-mail *</label>
-              <input 
+              <input
                 type="email" name="contato_email" value={escola.contato_email} onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none"
               />
@@ -169,7 +200,7 @@ export function Cadastro({ escola, onChange, onNext, onBack }: CadastroProps) {
             </div>
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-2">Telefone</label>
-              <input 
+              <input
                 type="tel" name="contato_telefone" value={escola.contato_telefone} onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none"
                 placeholder="(00) 00000-0000"

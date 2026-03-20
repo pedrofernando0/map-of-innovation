@@ -35,6 +35,13 @@ const NIVEL_COR: Record<string, string> = {
   INTEGRADA: 'var(--color-geekie-verde)',
 };
 
+const PILAR_DESC: Record<string, string> = {
+  aa:   'Metodologias ativas e protagonismo do estudante',
+  vis:  'Avaliação, dados e feedback formativo',
+  flex: 'Autonomia curricular e adaptação ao contexto',
+  pers: 'Diferenciação e percursos individualizados',
+};
+
 export function Resultado({ appState, onNext }: ResultadoProps) {
   const { escola, scores, diagnostico, ancora } = appState;
   const [showPrintMessage, setShowPrintMessage] = useState(false);
@@ -69,7 +76,7 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
       <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
         <div className="flex flex-col md:flex-row md:items-center gap-6">
           <div className="flex-1">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Diagnóstico — Mapa de Inovação</p>
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Diagnóstico — Mapa de Inovação Educacional</p>
             <h1 className="text-3xl font-bold text-[var(--color-geekie-preto)] mb-1">{escola.nome}</h1>
             <p className="text-gray-500">{escola.cidade}{escola.estado ? ` / ${escola.estado}` : ''} · {escola.rede}</p>
           </div>
@@ -88,7 +95,10 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
 
       {/* ── 2. Radar + Pilares ── */}
       <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
-        <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Radar de Inovação</h3>
+        <div className="mb-6">
+          <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider">Radar de Inovação</h3>
+          <p className="text-xs text-gray-400 mt-1">Os 4 Pilares da Geekie medem dimensões complementares da inovação educacional. Juntos, revelam como sua escola integra pedagogia e tecnologia de forma intencional.</p>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
@@ -100,17 +110,23 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
               </RadarChart>
             </ResponsiveContainer>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="space-y-3">
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Pilares da Geekie</p>
             {cards.map((c, i) => (
               <div
                 key={c.id}
-                className="p-4 rounded-2xl border-2 animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both"
-                style={{ borderColor: c.cor + '40', backgroundColor: c.cor + '0d', animationDelay: `${i * 80}ms` }}
+                className="p-3 rounded-xl border animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both flex items-center gap-3"
+                style={{ borderColor: c.cor + '30', backgroundColor: c.cor + '08', animationDelay: `${i * 80}ms` }}
               >
-                <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: c.cor }}>{c.nome}</p>
-                <p className="text-3xl font-extrabold" style={{ color: c.cor }}>{c.score}<span className="text-xs text-gray-400 font-normal ml-0.5">/100</span></p>
-                <div className="mt-2">
-                  <ProgressBar progress={c.score} />
+                <div className="flex-1">
+                  <p className="text-xs font-bold uppercase tracking-wider" style={{ color: c.cor }}>{c.nome}</p>
+                  <p className="text-[10px] text-gray-400 mt-0.5">{PILAR_DESC[c.id]}</p>
+                </div>
+                <div className="text-right flex-shrink-0">
+                  <p className="text-xl font-extrabold" style={{ color: c.cor }}>{c.score}</p>
+                  <div className="w-16 mt-1">
+                    <ProgressBar progress={c.score} />
+                  </div>
                 </div>
               </div>
             ))}
@@ -122,31 +138,34 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
       <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 space-y-8">
         <div>
           <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Eixos de Inovação</h3>
-          <div className="space-y-8">
+          <div className="space-y-10">
             <EixoEspectro
               label="Eixo Geral"
               score={scoreGeral}
               extremoEsquerdo="Tradicional"
               extremoDireito="Inovadora"
               cor="#ff1547"
+              isMain
               tooltip="Score ponderado: 80% Pedagógico + 20% Tecnológico. Reflete a integração institucional entre práticas de ensino e uso de tecnologia."
             />
-            <EixoEspectro
-              label="Eixo Pedagógico"
-              score={scores.eixos.pedagogico}
-              extremoEsquerdo="Transmissivo"
-              extremoDireito="Protagonista"
-              cor="#6146f1"
-              tooltip="Transformação intencional das práticas de ensino, aprendizagem, avaliação e formação docente em direção ao protagonismo do estudante. Representa 80% do score geral."
-            />
-            <EixoEspectro
-              label="Eixo Tecnológico"
-              score={scores.eixos.tecnologico}
-              extremoEsquerdo="Analógica"
-              extremoDireito="Digital integrada"
-              cor="#0fc3e6"
-              tooltip="Incorporação intencional de recursos digitais ao fluxo pedagógico. Mede-se pelo uso efetivo e integração à rotina, não pela presença de equipamentos. Representa 20% do score geral."
-            />
+            <div className="space-y-8 pt-2">
+              <EixoEspectro
+                label="Eixo Pedagógico"
+                score={scores.eixos.pedagogico}
+                extremoEsquerdo="Transmissivo"
+                extremoDireito="Protagonista"
+                cor="#6146f1"
+                tooltip="Transformação intencional das práticas de ensino, aprendizagem, avaliação e formação docente em direção ao protagonismo do estudante. Representa 80% do score geral."
+              />
+              <EixoEspectro
+                label="Eixo Tecnológico"
+                score={scores.eixos.tecnologico}
+                extremoEsquerdo="Analógica"
+                extremoDireito="Conectada"
+                cor="#0fc3e6"
+                tooltip="Incorporação intencional de recursos digitais ao fluxo pedagógico. Mede-se pelo uso efetivo e integração à rotina, não pela presença de equipamentos. Representa 20% do score geral."
+              />
+            </div>
           </div>
         </div>
 
@@ -178,20 +197,18 @@ export function Resultado({ appState, onNext }: ResultadoProps) {
           <TypingMarkdown text={diagnostico} />
         </div>
 
-        <div className="mt-8 pt-6 border-t border-gray-100 no-print space-y-4">
+        <div className="mt-8 pt-6 border-t border-gray-100 no-print space-y-3">
           {showPrintMessage && (
             <div className="bg-green-50 text-green-800 p-4 rounded-xl text-center font-medium animate-in fade-in slide-in-from-bottom-2">
               O relatório completo será enviado em até 24h para {escola.contato_email}.
             </div>
           )}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button variant="secondary" onClick={handlePrint} className="flex-1">
-              Receber meu relatório
-            </Button>
-            <Button onClick={onNext} className="flex-1" size="lg">
-              Quero ser uma escola mais inovadora →
-            </Button>
-          </div>
+          <Button variant="secondary" onClick={handlePrint} className="w-full">
+            Receber meu relatório
+          </Button>
+          <Button onClick={onNext} className="w-full" size="lg">
+            Quero ser uma escola mais inovadora →
+          </Button>
         </div>
       </div>
 

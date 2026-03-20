@@ -5,9 +5,10 @@ export interface Escola {
   cidade: string;
   estado: string;
   contato_nome: string;
+  contato_cargo: string;
   contato_email: string;
   contato_telefone: string;
-  parceira_geekie: boolean;
+  parceira_geekie: boolean | null;
 }
 
 export interface Scores {

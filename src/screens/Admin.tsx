@@ -31,7 +31,7 @@ export function Admin() {
   const exportarCSV = () => {
     if (!fullData.length) return;
 
-    const headers = ['ID', 'Data', 'Nome', 'Rede', 'Segmentos', 'Cidade', 'Estado', 'Parceira Geekie', 'Contato', 'Email', 'Telefone', 'Nível', 'Score Total', 'Pedagógico', 'Tecnológico', 'AA', 'VIS', 'FLEX', 'PERS', 'Auto-percepção'];
+    const headers = ['ID', 'Data', 'Nome', 'Rede', 'Segmentos', 'Cidade', 'Estado', 'Parceira Geekie', 'Contato', 'Cargo', 'Email', 'Telefone', 'Nível', 'Score Total', 'Pedagógico', 'Tecnológico', 'AA', 'VIS', 'FLEX', 'PERS', 'Auto-percepção'];
 
     const rows = fullData.map(d => [
       d.id,
@@ -43,6 +43,7 @@ export function Admin() {
       d.escola.estado,
       d.escola.parceira_geekie ? 'Sim' : 'Não',
       d.escola.contato_nome,
+      d.escola.contato_cargo || '',
       d.escola.contato_email,
       d.escola.contato_telefone,
       d.scores.nivel,
