@@ -198,8 +198,8 @@ export function Admin() {
             <div className="flex items-center gap-4 mb-2">
               <button
                 onClick={() => navigate('/')}
-                className="text-[var(--color-text-tertiary)] hover:text-[var(--color-geekie-cereja)] transition-colors"
-                title="Voltar para o App"
+                aria-label="Voltar para o App"
+                className="text-[var(--color-text-tertiary)] hover:text-[var(--color-geekie-cereja)] transition-colors p-2 -m-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-md"
               >
                 <svg
                   width="24"
@@ -210,6 +210,8 @@ export function Admin() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  aria-hidden="true"
+                  focusable="false"
                 >
                   <line x1="19" y1="12" x2="5" y2="12"></line>
                   <polyline points="12 19 5 12 12 5"></polyline>
@@ -388,7 +390,7 @@ export function Admin() {
                     <td className="p-4 border-b border-gray-100 text-center">
                       <button
                         onClick={() => alert(JSON.stringify(d, null, 2))}
-                        className="text-[var(--color-geekie-azul)] hover:underline text-sm font-medium"
+                        className="text-[var(--color-geekie-azul)] hover:underline text-sm font-medium px-2 py-2 -mx-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-md"
                       >
                         Ver JSON
                       </button>

@@ -8,10 +8,12 @@ exports[`Snapshots — telas estáticas > CSP 1`] = `
     class="max-w-3xl w-full mx-auto space-y-4"
   >
     <button
-      class="flex items-center gap-2 text-sm text-gray-500 hover:text-[var(--color-geekie-cereja)] transition-colors font-medium"
+      class="flex items-center gap-2 text-sm text-gray-500 hover:text-[var(--color-geekie-cereja)] transition-colors font-medium py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-md"
     >
       <svg
+        aria-hidden="true"
         fill="none"
+        focusable="false"
         height="16"
         stroke="currentColor"
         stroke-linecap="round"
