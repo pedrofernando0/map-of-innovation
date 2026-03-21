@@ -1,15 +1,12 @@
-# CLAUDE-UX.md — Sprints de Experiência do Usuário
+# CLAUDE-UX-RATIONALE.md — Rationale de Decisões de UX
 
-## Mapa de Inovação Educacional
-
-> Este arquivo é complementar ao `CLAUDE-UI.md` (que trata de tokens, acessibilidade,
-> animação e componentes). Aqui, o foco é a **experiência**: o que o usuário sente,
-> pensa e recorda em cada etapa. Fundamentado em pesquisa de psicologia aplicada
-> ao design (Kahneman, Fogg, Norman, Nielsen) e em tendências de UX 2025-2026.
+> ⚠️ **ESTE É UM ARQUIVO DE REFERÊNCIA (leitura profunda).**
 >
-> **Para executar qualquer sprint deste arquivo:** use o prompt pronto em
-> `CLAUDE-SPRINTS.md`. Os sprints S4 e S5 do roadmap encapsulam os sprints UX-0
-> a UX-4 deste arquivo em prompts únicos e autocontidos.
+> Para **executar um sprint de UX**, abra `CLAUDE-SPRINTS.md` e copie o bloco de execução.
+>
+> Este arquivo contém a rationale psicológica, jornada emocional e princípios que
+> fundamentam as decisões de UX. Use para entender **por quê** as escolhas de experiência
+> foram feitas, incluindo a Regra Pico-Final, Modelo MAP de Fogg, e Carga Cognitiva.
 
 ---
 

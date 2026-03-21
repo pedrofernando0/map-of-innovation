@@ -1,13 +1,11 @@
-# CLAUDE.md — UI/UX Quality Sprints
+# CLAUDE-UI-RATIONALE.md — Rationale de Decisões de UI
 
-## Mapa de Inovação Educacional
-
-> Este arquivo orienta a execução dos sprints de qualidade visual, experiência de uso,
-> acessibilidade e sistema de design. Leia junto com `arquitetura.md` e `roadmap.md`.
+> ⚠️ **ESTE É UM ARQUIVO DE REFERÊNCIA (leitura profunda).**
 >
-> **Para executar qualquer sprint deste arquivo:** use o prompt pronto em
-> `CLAUDE-SPRINTS.md`. Cada sprint tem um bloco de prompt autocontido que
-> lê os arquivos certos, cria a branch certa e roda o gate de qualidade.
+> Para **executar um sprint de UI**, abra `CLAUDE-SPRINTS.md` e copie o bloco de execução.
+>
+> Este arquivo contém a rationale técnica, descobertas de pesquisa e princípios que
+> fundamentam as decisões de UI. Use para entender **por quê** as escolhas foram feitas.
 >
 > Fundamentação: pesquisa de mercado conduzida em março de 2026 sobre WCAG 2.2,
 > Motion v12, Radix UI / shadcn, design tokens, sistemas de ícones, princípios de

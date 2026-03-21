@@ -5,53 +5,84 @@
 
 ---
 
+## Como Navegar a Documentação
+
+### Para **executar um sprint:**
+
+1. Abra `planejamento/CLAUDE-SPRINTS.md`
+2. Localize o sprint desejado
+3. Copie o bloco "Prompt de execução" completo
+4. Cole na IA — o prompt é autocontido
+
+### Para **entender as decisões** (leitura profunda):
+
+- `planejamento/CLAUDE-UI-RATIONALE.md` — teoria de UI, decisões de bibliotecas, princípios
+- `planejamento/CLAUDE-UX-RATIONALE.md` — psicologia aplicada, jornada emocional, princípios
+
+### Para **conhecer dependências** e contexto:
+
+- `planejamento/roadmap.md` — mapa de dependências, prioridades
+- `planejamento/arquitetura.md` — stack técnico: hexagonal, Zustand, React Router v7
+- `planejamento/pendencias.md` — itens ainda por executar
+
+---
+
 ## Índice de Documentos
 
-Toda a documentação de planejamento está em `planejamento/`:
-
-| Arquivo                               | Conteúdo                                                           |
-| ------------------------------------- | ------------------------------------------------------------------ |
-| `planejamento/CLAUDE-SPRINTS.md`      | **Prompts prontos para executar cada sprint** — começar por aqui   |
-| `planejamento/arquitetura.md`         | Arquitetura atual: hexagonal, Zustand, React Router v7, testes, CI |
-| `planejamento/roadmap.md`             | Roadmap consolidado com status e prioridades (fonte de verdade)    |
-| `planejamento/pendencias.md`          | Lista executável de itens pendentes, organizados por sprint e tema |
-| `planejamento/como_rodar.md`          | Setup, scripts, variáveis de ambiente, troubleshooting             |
-| `planejamento/CLAUDE-UI.md`           | Playbook detalhado: tokens, a11y, motion, componentes (referência) |
-| `planejamento/CLAUDE-UX.md`           | Playbook detalhado: jornada, microcopy, pico, final (referência)   |
-| `planejamento/decisoes-tecnologia.md` | Análise de IA e Supabase — benefícios e impactos (para decisão)    |
-
-**Para iniciar um sprint — fluxo correto:**
-
-```
-1. Abra planejamento/CLAUDE-SPRINTS.md
-2. Localize o sprint desejado na tabela de índice
-3. Copie o bloco "Prompt de execução" completo
-4. Cole na IA — o prompt é autocontido e não precisa de instruções adicionais
-```
-
-**Para saber o que está pendente:**
-
-```
-Leia planejamento/pendencias.md e me diga qual sprint tem maior prioridade.
-```
+| Arquivo                  | Propósito                                          | Quando usar                     |
+| ------------------------ | -------------------------------------------------- | ------------------------------- |
+| `CLAUDE-SPRINTS.md`      | Prompts prontos por sprint (S1-S9)                 | Antes de cada sprint            |
+| `CLAUDE-UI-RATIONALE.md` | Rationale: UI, tokens, a11y, motion, componentes   | Para entender "por quê"         |
+| `CLAUDE-UX-RATIONALE.md` | Rationale: psicologia, jornada, microcopy, pico    | Para entender "por quê"         |
+| `arquitetura.md`         | Stack técnico atual (hexagonal, Zustand, v7)       | Antes de features técnicas      |
+| `roadmap.md`             | Mapa de dependências + prioridades (fonte verdade) | Contexto do projeto             |
+| `pendencias.md`          | Itens pendentes por sprint e tema                  | Para saber o estado             |
+| `como_rodar.md`          | Setup, scripts, variáveis de ambiente              | Para onboarding/troubleshooting |
+| `decisoes-tecnologia.md` | Análise IA e Supabase — benefícios e impactos      | Para decisões técnicas          |
 
 ---
 
 ## Estado dos Sprints
 
-| Sprint                                                | Status       | Data       |
-| ----------------------------------------------------- | ------------ | ---------- |
-| S1 — Fundação Técnica (lint, testes, CI)              | ✅ Concluído | 2026-03-20 |
-| S2 — Domínio e Contratos (hexagonal, Zustand, Router) | ✅ Concluído | 2026-03-20 |
-| S3 — Resiliência de Evento                            | ✅ Concluído | 2026-03-21 |
-| S4 — Experiência Essencial (microcopy, a11y, tokens)  | ⬜ Pendente  | —          |
-| S5 — Pico e Final (Resultado + CSP)                   | ⬜ Pendente  | —          |
-| S6 — Governança de Conteúdo                           | ⬜ Pendente  | —          |
-| S7 — Design System Completo                           | ⬜ Pendente  | —          |
-| S8 — Testes (complementar, axe)                       | ⬜ Pendente  | —          |
-| S9 — Features de Produto (backend, PDF, analytics)    | ⬜ Pendente  | —          |
+| Sprint                                                | Status          | Data       |
+| ----------------------------------------------------- | --------------- | ---------- |
+| S1 — Fundação Técnica (lint, testes, CI)              | ✅ Concluído    | 2026-03-20 |
+| S2 — Domínio e Contratos (hexagonal, Zustand, Router) | ✅ Concluído    | 2026-03-20 |
+| S3 — Resiliência de Evento (draft + resume)           | ✅ Concluído    | 2026-03-21 |
+| S4 — Experiência Essencial (UX/a11y + tokens)         | 🔄 Em andamento | 2026-03-21 |
+| S5 — Pico e Final (Resultado + CSP)                   | ⬜ Pendente     | —          |
+| S6 — Governança de Conteúdo                           | ⬜ Pendente     | —          |
+| S7 — Design System Completo                           | ⬜ Pendente     | —          |
+| S8 — Testes (complementar)                            | ⬜ Pendente     | —          |
+| S9 — Features de Produto                              | ⬜ Pendente     | —          |
 
 Legenda: ⬜ Pendente · 🔄 Em andamento · ✅ Concluído · ⚠️ Bloqueado
+
+---
+
+## 🚨 REGRA CRÍTICA: Sincronização Branch ↔ Main
+
+**IMPORTANTE:** Para evitar gaps entre documentação e código, toda sprint DEVE terminar em `main`:
+
+1. **Toda sprint termina em main.** Nunca deixar trabalho em branches por mais de 1 dia.
+   - Exceção: aguardando revisão/aprovação (máximo 24h).
+   - Se uma branch ficar "órfã" (não mergeada após 2+ dias), deletar e recriar com mesmo nome.
+
+2. **Ao fazer merge para main:**
+   - Rodar gate completo: `npm run lint && npx tsc --noEmit && npm run test`
+   - Resolver conflitos e testar
+   - Fazer commit com mensagem clara indicando sprint/tarefa
+
+3. **Atualizar documentação IMEDIATAMENTE após merge:**
+   - Atualizar tabela de status em `CLAUDE.md` (este arquivo)
+   - Atualizar `pendencias.md`: remover itens concluídos
+   - Se faltam sub-tasks: criar novo sprint ou adicionar a próximo
+
+4. **Evitar:**
+   - ❌ Deixar branches sem merge por dias
+   - ❌ Esquecer de atualizar tabela de status
+   - ❌ Rodar código sem passar no gate de qualidade primeiro
+   - ❌ Duplicar trabalho em branches paralelas sem sincronização
 
 ---
 
