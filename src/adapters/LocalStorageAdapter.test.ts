@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 
 import type { AppState } from '../types';
 
@@ -51,6 +51,10 @@ beforeEach(() => {
       this._store = {};
     },
   });
+});
+
+afterEach(() => {
+  vi.useRealTimers();
 });
 
 // ─── save ────────────────────────────────────────────────────────────────────
@@ -156,5 +160,72 @@ describe('LocalStorageAdapter.getRecord()', () => {
     localStorage.setItem('escola:bad-id', 'json corrompido{{');
     const adapter = new LocalStorageAdapter();
     expect(adapter.getRecord('bad-id')).toBeNull();
+  });
+});
+
+// ─── draft ────────────────────────────────────────────────────────────────────
+
+describe('LocalStorageAdapter.saveDraft() / loadDraft() / clearDraft()', () => {
+  it('loadDraft retorna null quando não há rascunho', () => {
+    const adapter = new LocalStorageAdapter();
+    expect(adapter.loadDraft()).toBeNull();
+  });
+
+  it('salva e carrega rascunho corretamente', () => {
+    const adapter = new LocalStorageAdapter();
+    const state = makeState();
+    adapter.saveDraft({ escola: state.escola, respostas: state.respostas, ancora: state.ancora });
+
+    const draft = adapter.loadDraft();
+    expect(draft).not.toBeNull();
+    expect(draft!.escola.nome).toBe('Escola Teste');
+    expect(draft!.respostas).toEqual(state.respostas);
+    expect(draft!.ancora).toBe(2);
+    expect(draft!.savedAt).toBeDefined();
+  });
+
+  it('clearDraft remove o rascunho', () => {
+    const adapter = new LocalStorageAdapter();
+    const state = makeState();
+    adapter.saveDraft({ escola: state.escola, respostas: state.respostas, ancora: state.ancora });
+    adapter.clearDraft();
+    expect(adapter.loadDraft()).toBeNull();
+  });
+
+  it('loadDraft retorna null quando rascunho está expirado (> 4h)', () => {
+    vi.useFakeTimers();
+    const adapter = new LocalStorageAdapter();
+    const state = makeState();
+    adapter.saveDraft({ escola: state.escola, respostas: state.respostas, ancora: state.ancora });
+    // Advance time by more than 4 hours
+    vi.advanceTimersByTime(4 * 60 * 60 * 1000 + 1);
+    expect(adapter.loadDraft()).toBeNull();
+  });
+
+  it('loadDraft retorna rascunho quando dentro de 4h', () => {
+    vi.useFakeTimers();
+    const adapter = new LocalStorageAdapter();
+    const state = makeState();
+    adapter.saveDraft({ escola: state.escola, respostas: state.respostas, ancora: state.ancora });
+    // Advance only 3 hours
+    vi.advanceTimersByTime(3 * 60 * 60 * 1000);
+    expect(adapter.loadDraft()).not.toBeNull();
+  });
+
+  it('loadDraft retorna null quando dados estão corrompidos', () => {
+    localStorage.setItem('mapa-inovacao:draft', 'json corrompido{{');
+    const adapter = new LocalStorageAdapter();
+    expect(adapter.loadDraft()).toBeNull();
+  });
+
+  it('saveDraft não lança quando localStorage.setItem falha', () => {
+    localStorage.setItem = () => {
+      throw new DOMException('QuotaExceeded');
+    };
+    const adapter = new LocalStorageAdapter();
+    const state = makeState();
+    expect(() =>
+      adapter.saveDraft({ escola: state.escola, respostas: state.respostas, ancora: state.ancora })
+    ).not.toThrow();
   });
 });

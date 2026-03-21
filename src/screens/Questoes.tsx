@@ -63,6 +63,7 @@ export function Questoes() {
     const novas = { ...respostas, [id]: val };
     setRespostas(novas);
     setProgress(40 + (Object.keys(novas).length / 20) * 40);
+    storage.saveDraft({ escola, respostas: novas, ancora });
   };
 
   const handleRandomAnswers = () => {
