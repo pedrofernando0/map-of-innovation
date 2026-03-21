@@ -20,7 +20,7 @@ Todos os itens foram implementados e mergeados para main:
 - ✅ **Aviso de kiosk progressivo** — banner 30s antes de reset em AppLayout via useKioskMode
 - ✅ **Credenciais admin sem fallback** — validação em env.ts, login bloqueado se credenciais não configuradas
 
-### 🔄 S4 — Experiência Essencial (UX) — 95% Concluído (21/03)
+### ✅ S4 — Experiência Essencial (UX) — CONCLUÍDO (21/03)
 
 **Implementado (mergeado em main):**
 
@@ -34,11 +34,11 @@ Todos os itens foram implementados e mergeados para main:
 - ✅ **Microcopy** — atualizado em Splash, Cadastro, Instrucao, Ancora, Questoes, Loading com tom apropriado
 - ✅ **Testes de a11y** — `src/__tests__/a11y.test.tsx` com coverage de acessibilidade
 
-**Pendente (documentação — não bloqueia):**
+**Documentação de jornada (concluída em 21/03):**
 
-- [ ] **`docs/persona-primaria.md`**: perfil do usuário Bett (cargo, contexto, emoções)
-- [ ] **`docs/emotional-journey.md`**: estado emocional por tela, riscos, pontos de atrito/deleite
-- [ ] **`docs/microcopy-inventory.md`**: inventário completo de strings com classificação de tom
+- ✅ **`docs/persona-primaria.md`** — Persona "Carla", Coordenadora Pedagógica, 38-50 anos
+- ✅ **`docs/emotional-journey.md`** — Mapa emocional por tela + análise pico-final completa
+- ✅ **`docs/microcopy-inventory.md`** — 40+ strings catalogadas com tipo, tom e avaliação
 
 ### S5 — Pico e Final (UX)
 
