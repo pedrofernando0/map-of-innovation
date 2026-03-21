@@ -25,8 +25,9 @@ describe('Cadastro form', () => {
     const input = screen.getByPlaceholderText('Ex: Colégio São Paulo');
     await user.click(input);
     await user.tab();
+    // UI-4.4: mensagem positiva substituiu "Obrigatório"
     await waitFor(() => {
-      expect(screen.getByText('Obrigatório')).toBeInTheDocument();
+      expect(screen.getByText('Nome da escola é necessário para continuar')).toBeInTheDocument();
     });
   });
 
@@ -34,15 +35,16 @@ describe('Cadastro form', () => {
     const user = userEvent.setup();
     const { container } = renderCadastro();
     const input = screen.getByPlaceholderText('Ex: Colégio São Paulo');
-    // The nome input is wrapped in a div; find its parent container
     const nomeWrapper = input.closest('div') as HTMLElement;
     await user.click(input);
     await user.tab();
-    await waitFor(() => expect(nomeWrapper.querySelector('.text-red-500')).toBeInTheDocument());
+    // UI-4.4: classe mudou de text-red-500 para role=alert (mais semântico)
+    await waitFor(() => expect(nomeWrapper.querySelector('[role="alert"]')).toBeInTheDocument());
     await user.type(input, 'Escola Teste');
     await user.tab();
-    await waitFor(() => expect(nomeWrapper.querySelector('.text-red-500')).not.toBeInTheDocument());
-    // suppress unused container warning
+    await waitFor(() =>
+      expect(nomeWrapper.querySelector('[role="alert"]')).not.toBeInTheDocument()
+    );
     expect(container).toBeDefined();
   });
 

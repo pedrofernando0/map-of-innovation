@@ -12,14 +12,18 @@ import { useAppStore } from '../stores/appStore';
 import type { Escola } from '../types';
 
 const escolaSchema = z.object({
-  nome: z.string().min(1, 'Obrigatório'),
-  rede: z.string().min(1, 'Obrigatório'),
-  segmentos: z.array(z.string()).min(1, 'Selecione ao menos um'),
+  // UI-4.4: mensagens com tom positivo (não "Obrigatório" sozinho)
+  nome: z.string().min(1, 'Nome da escola é necessário para continuar'),
+  rede: z.string().min(1, 'Selecione a rede de ensino para continuar'),
+  segmentos: z.array(z.string()).min(1, 'Selecione ao menos um segmento'),
   cidade: z.string().optional(),
   estado: z.string().optional(),
-  contato_nome: z.string().min(1, 'Obrigatório'),
-  contato_cargo: z.string().min(1, 'Obrigatório'),
-  contato_email: z.string().min(1, 'Obrigatório').email('E-mail inválido'),
+  contato_nome: z.string().min(1, 'Seu nome é necessário para continuar'),
+  contato_cargo: z.string().min(1, 'Selecione seu cargo para continuar'),
+  contato_email: z
+    .string()
+    .min(1, 'Seu e-mail é necessário para continuar')
+    .email('Insira um e-mail válido para continuar'),
   contato_telefone: z.string().optional(),
   parceira_geekie: z.boolean().nullable().optional(),
 });

@@ -1,11 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
+import { Circle } from '@phosphor-icons/react';
 
 import { Button } from '../components/ui';
 import { useAppStore } from '../stores/appStore';
 import { useQuestionnaire } from '../hooks/useQuestionnaire';
 import { useDiagnostico } from '../hooks/useDiagnostico';
+import { useMotionVariants } from '../hooks/useMotionVariants';
+import { useToast } from '../hooks/useToast';
 import { useServices } from '../contexts/AppServicesContext';
 import { calculateScores } from '../domain/scoring/calculateScores';
 import { QUESTOES } from '../constants';
@@ -25,6 +28,8 @@ export function Questoes() {
   } = useAppStore();
   const { storage, diagnostic } = useServices();
   const { generate } = useDiagnostico(diagnostic);
+  const { fadeUp, stagger, shouldReduce } = useMotionVariants();
+  const { success: toastSuccess, error: toastError } = useToast();
 
   const handleFinish = async (
     respostasOverride?: Record<string, number>,
@@ -38,9 +43,17 @@ export function Questoes() {
     const finalState = { ...useAppStore.getState(), scores, diagnostico };
     setScores(scores);
     setDiagnostico(diagnostico);
-    storage.save({ ...finalState, scores, diagnostico });
-    setProgress(90);
-    navigate('/resultado');
+    // UI-4.1: toast de sucesso/erro ao salvar — aparece na tela de resultado
+    try {
+      storage.save({ ...finalState, scores, diagnostico });
+      setProgress(90);
+      navigate('/resultado');
+      toastSuccess('Diagnóstico salvo com sucesso');
+    } catch {
+      toastError('Não foi possível salvar. Tente novamente.');
+      setProgress(90);
+      navigate('/resultado');
+    }
   };
 
   const handleBack = () => {
@@ -86,9 +99,9 @@ export function Questoes() {
       >
         <motion.div
           key={blocoAtual}
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: shouldReduce ? 0 : 18 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -12 }}
+          exit={{ opacity: 0, y: shouldReduce ? 0 : -12 }}
           transition={SCREEN_TRANSITION}
         >
           <div className="mb-10 flex items-start justify-between gap-4">
@@ -110,12 +123,44 @@ export function Questoes() {
             )}
           </div>
 
-          <div className="space-y-12">
+          {/* UI-4.2: Progress indicator interno do bloco — dots respondidos */}
+          <div
+            className="flex items-center gap-2 mb-6"
+            role="status"
+            aria-live="polite"
+            aria-label={`${bloco.qs.filter((q) => respostas[q.id] !== undefined).length} de ${bloco.qs.length} respondidas neste bloco`}
+          >
+            {bloco.qs.map((q) => {
+              const answered = respostas[q.id] !== undefined;
+              return (
+                <motion.span
+                  key={q.id}
+                  aria-hidden="true"
+                  animate={answered && !shouldReduce ? { scale: [1, 1.3, 1] } : { scale: 1 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <Circle
+                    size={12}
+                    weight={answered ? 'fill' : 'regular'}
+                    className={answered ? 'text-[var(--color-geekie-cereja)]' : 'text-gray-300'}
+                  />
+                </motion.span>
+              );
+            })}
+            <span className="ml-1 text-xs text-[var(--color-text-tertiary)] font-medium">
+              {bloco.qs.filter((q) => respostas[q.id] !== undefined).length}/{bloco.qs.length}
+            </span>
+          </div>
+
+          {/* UI-2.3: stagger nos cards de questão ao trocar de bloco */}
+          <motion.div className="space-y-12" variants={stagger} initial="initial" animate="animate">
             {bloco.qs.map((q, i) => {
               const questionTextId = `question-text-${q.id}`;
               return (
-                <div
+                <motion.div
                   key={q.id}
+                  variants={fadeUp}
+                  custom={i}
                   className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100"
                 >
                   <div className="flex gap-4 mb-6">
@@ -139,27 +184,36 @@ export function Questoes() {
                   >
                     {q.escala.map((texto, idx) => {
                       const valor = idx + 1;
+                      const isSelected = respostas[q.id] === valor;
                       return (
-                        <button
+                        // UI-2.5: microanimação de confirmação + hover nos não selecionados
+                        <motion.button
                           key={valor}
                           role="radio"
-                          aria-checked={respostas[q.id] === valor}
+                          aria-checked={isSelected}
                           onClick={() => handleChange(q.id, valor)}
-                          className={`text-left p-4 rounded-xl border-2 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 ${
-                            respostas[q.id] === valor
+                          whileHover={isSelected || shouldReduce ? undefined : { scale: 1.01 }}
+                          animate={
+                            isSelected && !shouldReduce
+                              ? { scale: [1, 0.97, 1.01, 1] }
+                              : { scale: 1 }
+                          }
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          className={`text-left p-4 rounded-xl border-2 transition-[border-color,background-color,color] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 ${
+                            isSelected
                               ? 'border-[var(--color-geekie-cereja)] bg-red-50 text-[var(--color-geekie-cereja)] font-bold shadow-sm'
                               : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'
                           }`}
                         >
                           <div className="text-sm leading-tight">{texto}</div>
-                        </button>
+                        </motion.button>
                       );
                     })}
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </motion.div>
       </AnimatePresence>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Warning } from '@phosphor-icons/react';
 
 import { cn } from '../../lib/utils';
 
@@ -40,7 +41,15 @@ export function SegmentoSelector({ value, onChange, error }: SegmentoSelectorPro
           </button>
         ))}
       </div>
-      {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+      {error && (
+        <p
+          role="alert"
+          className="flex items-center gap-1.5 text-[var(--color-feedback-error)] text-sm mt-2"
+        >
+          <Warning size={14} weight="fill" aria-hidden="true" />
+          {error}
+        </p>
+      )}
     </div>
   );
 }

@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Mulish:wght@400;500;700;800&display=swap');
-@import "tailwindcss";
+/* Fontes Google: @import removido — carregado via <link preload> no index.html (UI-5.2) */
+@import 'tailwindcss';
 
 @theme {
-  --font-sans: "Baloo 2", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Mulish", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Baloo 2', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Mulish', ui-sans-serif, system-ui, sans-serif;
 
   --color-geekie-cereja: #ff1547;
   --color-geekie-preto: #1c1c1c;
@@ -54,6 +54,14 @@
   --space-12: 48px;
   --space-16: 64px;
 
+  /* ── Tipografia fluida (UI-5.1) ─────────────
+     Escala de 375px a 1200px sem saltos de breakpoint.
+     clamp(min, preferido, max)
+     Uso: apenas headings display — corpo fica em 16-18px fixos. */
+  --text-display: clamp(2.5rem, 6vw, 4.5rem); /* h1 Splash e Resultado */
+  --text-heading: clamp(1.75rem, 4vw, 2.5rem); /* h1 telas internas */
+  --text-subheading: clamp(1.25rem, 2.5vw, 1.5rem); /* h2/h3 de seção */
+
   /* ── Motion tokens ───────────────────────── */
   --duration-fast: 180ms;
   --duration-base: 280ms;
@@ -76,14 +84,28 @@ body {
   background-color: var(--color-geekie-branco);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
 }
 
 @media print {
-  header, .btn-primario, .btn-secundario, .no-print { display: none !important; }
-  .screen-resultado { padding: 0 !important; }
-  .diagnostico-container { break-inside: avoid; }
+  header,
+  .btn-primario,
+  .btn-secundario,
+  .no-print {
+    display: none !important;
+  }
+  .screen-resultado {
+    padding: 0 !important;
+  }
+  .diagnostico-container {
+    break-inside: avoid;
+  }
   body::after {
     content: 'Diagnóstico gerado em ' attr(data-date) ' | geekie.com.br/mapa-inovacao';
     display: block;
@@ -94,8 +116,45 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ── Skeleton shimmer (UI-4.3) ───────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+    background: #f0f0f0;
+  }
+}
+
+/* ── Dark mode básico (UI-5.3) ───────────────────
+   Garante que o app não fique ilegível em modo escuro do SO.
+   Telas com fundo vermelho (Splash) e cards coloridos são imunes
+   — têm cores explícitas independentes dessas variáveis. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface-default: #1c1c1c;
+    --color-surface-subtle: #2a2a2a;
+    --color-text-primary: #f5f5f5;
+    --color-text-secondary: #d1d5db;
+    --color-text-tertiary: #9ca3af;
+  }
+}
+
 /* Typography for Markdown */
-.prose h1, .prose h2, .prose h3 {
+.prose h1,
+.prose h2,
+.prose h3 {
   font-family: var(--font-heading);
   color: var(--color-geekie-preto);
   font-weight: 800;
@@ -103,9 +162,15 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5em;
 }
 
-.prose h1 { font-size: 1.875rem; }
-.prose h2 { font-size: 1.5rem; }
-.prose h3 { font-size: 1.25rem; }
+.prose h1 {
+  font-size: 1.875rem;
+}
+.prose h2 {
+  font-size: 1.5rem;
+}
+.prose h3 {
+  font-size: 1.25rem;
+}
 
 .prose p {
   margin-bottom: 1em;

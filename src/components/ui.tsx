@@ -1,21 +1,36 @@
 import React from 'react';
+import { motion, type HTMLMotionProps } from 'motion/react';
 
 import { cn } from '../lib/utils';
 export { cn };
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps = Omit<HTMLMotionProps<'button'>, 'children'> & {
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'md' | 'lg';
-}
+  children?: React.ReactNode;
+};
 
-export function Button({ className, variant = 'primary', size = 'md', ...props }: ButtonProps) {
+export function Button({
+  className,
+  variant = 'primary',
+  size = 'md',
+  disabled,
+  ...props
+}: ButtonProps) {
   return (
-    <button
+    <motion.button
+      // Microinteração: hover sobe 2px, tap reduz 3% — desativado se disabled
+      whileHover={disabled ? undefined : { y: -2 }}
+      whileTap={disabled ? undefined : { scale: 0.97 }}
+      transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+      disabled={disabled}
       className={cn(
-        'inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none',
-        variant === 'primary' && 'bg-[var(--color-geekie-cereja)] text-white hover:bg-opacity-90',
+        // Removido `enabled:hover:-translate-y-0.5` — controlado pelo Motion
+        'inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none',
+        variant === 'primary' &&
+          'bg-[var(--color-brand-primary)] text-[var(--color-text-on-brand)] hover:bg-opacity-90',
         variant === 'secondary' &&
-          'border-2 border-[var(--color-geekie-cereja)] text-[var(--color-geekie-cereja)] bg-transparent hover:bg-[var(--color-geekie-cereja)] hover:text-white',
+          'border-2 border-[var(--color-brand-primary)] text-[var(--color-brand-primary)] bg-transparent hover:bg-[var(--color-brand-primary)] hover:text-[var(--color-text-on-brand)]',
         variant === 'outline' &&
           'border-2 border-gray-300 text-gray-700 bg-transparent hover:border-gray-400 hover:bg-gray-50',
         size === 'md' && 'px-6 py-3 text-base',
