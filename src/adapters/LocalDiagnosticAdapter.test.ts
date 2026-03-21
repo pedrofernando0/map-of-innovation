@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 
 import type { Escola, Scores } from '../types';
 
-import { LocalDiagnosticAdapter } from './LocalDiagnosticAdapter';
+import { LocalDiagnosticAdapter, generateFallback } from './LocalDiagnosticAdapter';
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
@@ -113,5 +113,48 @@ describe('LocalDiagnosticAdapter — eixos', () => {
     });
     const result = await adapter.generate(makeEscola(), scores, null);
     expect(result).toContain('pedagógico');
+  });
+});
+
+// ─── generateFallback ────────────────────────────────────────────────────────
+
+describe('generateFallback', () => {
+  it('menciona o nome da escola', () => {
+    const result = generateFallback(makeEscola(), makeScores('ESSENCIAL', 25));
+    expect(result).toContain('Escola Modelo');
+  });
+
+  it('menciona o nível correto', () => {
+    const result = generateFallback(makeEscola(), makeScores('INTEGRADA', 80));
+    expect(result).toContain('INTEGRADA');
+    expect(result).toContain('80/100');
+  });
+
+  it('identifica o pilar mais forte e o mais fraco', () => {
+    // pilares: aa=60, vis=40, flex=70, pers=30 → max=flex(70), min=pers(30)
+    const result = generateFallback(makeEscola(), makeScores('EXPLORADOR', 50));
+    expect(result).toContain('Flexibilidade');
+    expect(result).toContain('Personalização');
+    expect(result).toContain('70/100');
+    expect(result).toContain('30/100');
+  });
+
+  it('usa ESSENCIAL como default quando nivel é string vazia', () => {
+    const result = generateFallback(makeEscola(), makeScores('' as Scores['nivel'], 0));
+    expect(result).toContain('ESSENCIAL');
+    expect(result).toContain('Escola Modelo');
+  });
+
+  it('retorna string não vazia para todos os níveis', () => {
+    for (const nivel of ['ESSENCIAL', 'INTEGRADA', 'EXPLORADOR'] as Scores['nivel'][]) {
+      const result = generateFallback(makeEscola(), makeScores(nivel, 50));
+      expect(result.length).toBeGreaterThan(50);
+    }
+  });
+
+  it('ancora=3 → getAncoraLabel retorna "Integrada" via generate ESSENCIAL com gap', async () => {
+    // ancora=3 → score 25 < 3*25-5=70 → divergência comment; also exercises getAncoraLabel(3)
+    const result = await adapter.generate(makeEscola(), makeScores('ESSENCIAL', 25), 3);
+    expect(result).toContain('Escola Modelo');
   });
 });

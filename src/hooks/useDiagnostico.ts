@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { FALLBACK_DIAGNOSTICO } from '../adapters/LocalDiagnosticAdapter';
+import { generateFallback } from '../adapters/LocalDiagnosticAdapter';
 import type { IDiagnosticService } from '../ports/IDiagnosticService';
 import type { Escola, Scores } from '../types';
 
@@ -15,7 +15,7 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
 
 /**
  * Wraps IDiagnosticService.generate() with a configurable timeout.
- * Falls back to the static FALLBACK_DIAGNOSTICO template on timeout or error.
+ * Falls back to generateFallback (contextualized by real scores) on timeout or error.
  */
 export function useDiagnostico(service: IDiagnosticService) {
   const generate = useCallback(
@@ -23,7 +23,7 @@ export function useDiagnostico(service: IDiagnosticService) {
       try {
         return await withTimeout(service.generate(escola, scores, ancora), DEFAULT_TIMEOUT_MS);
       } catch {
-        return FALLBACK_DIAGNOSTICO[scores.nivel] ?? FALLBACK_DIAGNOSTICO['ESSENCIAL'];
+        return generateFallback(escola, scores);
       }
     },
     [service]

@@ -62,7 +62,7 @@ describe('useDiagnostico', () => {
     expect(text.length).toBeGreaterThan(0);
   });
 
-  it('retorna fallback ESSENCIAL quando nivel é inválido e serviço falha', async () => {
+  it('retorna fallback contextualizado com nivel ESSENCIAL quando nivel é inválido e serviço falha', async () => {
     const service: IDiagnosticService = {
       generate: vi.fn().mockRejectedValue(new Error('falha')),
     };
@@ -73,7 +73,8 @@ describe('useDiagnostico', () => {
     const text = await result.current.generate(escola, invalidScores, null);
 
     expect(typeof text).toBe('string');
-    expect(text).toContain('início de uma jornada');
+    expect(text).toContain('ESSENCIAL');
+    expect(text).toContain('Escola X');
   });
 
   it('retorna fallback quando o serviço excede o timeout', async () => {
