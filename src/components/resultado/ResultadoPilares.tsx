@@ -1,6 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import type { Scores } from '../../types';
+
+function InfoTooltip({ text }: { text: string }) {
+  const [show, setShow] = useState(false);
+  return (
+    <span
+      className="relative ml-1.5"
+      onMouseEnter={() => setShow(true)}
+      onMouseLeave={() => setShow(false)}
+    >
+      <span className="text-gray-400 text-sm cursor-help select-none">ⓘ</span>
+      {show && (
+        <div className="absolute left-0 bottom-full mb-2 bg-gray-900 text-white text-xs rounded-xl p-4 w-80 z-30 leading-relaxed shadow-2xl animate-in fade-in duration-200 text-left pointer-events-none">
+          {text}
+        </div>
+      )}
+    </span>
+  );
+}
 
 const PILAR_DESC: Record<string, string> = {
   aa: 'Metodologias ativas e protagonismo do estudante',
@@ -24,7 +42,10 @@ export function ResultadoPilares({ pilares }: Props) {
   return (
     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
       <div className="mb-6">
-        <h3 className="text-lg font-bold text-[var(--color-geekie-preto)]">Pilares da Geekie</h3>
+        <div className="flex items-center">
+          <h3 className="text-lg font-bold text-[var(--color-geekie-preto)]">Pilares da Geekie</h3>
+          <InfoTooltip text="A metodologia Geekie organiza a inovação educacional em 4 pilares interdependentes — Aprendizagem Ativa, Visibilidade, Flexibilidade e Personalização — derivados de evidências sobre o que diferencia escolas com alta maturidade pedagógica. Cada pilar é avaliado por 5 perguntas que cobrem tanto práticas docentes quanto o uso intencional de tecnologia, gerando um score de 0 a 100 que reflete a consistência institucional da dimensão, não iniciativas isoladas." />
+        </div>
         <p className="text-sm text-gray-500 mt-1">
           Os 4 pilares medem dimensões complementares da inovação educacional. Juntos, revelam como
           sua escola integra pedagogia e tecnologia de forma intencional.

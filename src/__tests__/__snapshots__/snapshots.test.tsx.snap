@@ -1,0 +1,385 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Snapshots — telas estáticas > CSP 1`] = `
+<div
+  class="min-h-[80vh] flex flex-col items-center justify-center p-6 animate-in fade-in duration-500"
+>
+  <div
+    class="max-w-3xl w-full mx-auto space-y-4"
+  >
+    <button
+      class="flex items-center gap-2 text-sm text-gray-500 hover:text-[var(--color-geekie-cereja)] transition-colors font-medium"
+    >
+      <svg
+        fill="none"
+        height="16"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2.5"
+        viewBox="0 0 24 24"
+        width="16"
+      >
+        <line
+          x1="19"
+          x2="5"
+          y1="12"
+          y2="12"
+        />
+        <polyline
+          points="12 19 5 12 12 5"
+        />
+      </svg>
+      Voltar ao relatório
+    </button>
+    <div
+      class="rounded-[2rem] border border-[#f2d8de] bg-[linear-gradient(180deg,#fff9f7_0%,#ffffff_100%)] p-8 md:p-12 shadow-[0_28px_80px_-48px_rgba(28,28,28,0.35)]"
+    >
+      <div
+        class="flex justify-center mb-6"
+      >
+        <img
+          alt="Geekie Educação"
+          class="block w-auto shrink-0 select-none h-10 object-contain"
+          decoding="async"
+          draggable="false"
+          src="/geekie.png"
+        />
+      </div>
+      <div
+        class="mb-6 inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-geekie-cereja)]"
+      >
+        Devolutiva pedagógica Geekie
+      </div>
+      <div
+        class="max-w-2xl"
+      >
+        <h1
+          class="text-3xl md:text-4xl font-bold text-[var(--color-geekie-preto)] mb-5"
+        >
+          O próximo passo é compreender a realidade da sua escola com mais profundidade
+        </h1>
+        <p
+          class="text-lg text-gray-600 leading-relaxed"
+        >
+          Ao solicitar o relatório, a Geekie entrará em contato para compreender o contexto da sua escola, aprofundar a leitura deste diagnóstico e discutir como aplicar os achados à rotina pedagógica específica da instituição.
+        </p>
+      </div>
+      <div
+        class="mt-10 grid gap-4 md:grid-cols-3"
+      >
+        <div
+          class="rounded-2xl border border-white bg-white/80 p-5 shadow-sm"
+        >
+          <div
+            class="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-geekie-cereja)]/10 text-sm font-bold text-[var(--color-geekie-cereja)]"
+          >
+            1
+          </div>
+          <h2
+            class="text-base font-bold text-[var(--color-geekie-preto)] mb-2"
+          >
+            Leitura do contexto escolar
+          </h2>
+          <p
+            class="text-sm leading-relaxed text-gray-600"
+          >
+            A equipe Geekie parte deste diagnóstico para compreender a etapa de ensino, a organização curricular e os desafios mais presentes na rotina da sua escola.
+          </p>
+        </div>
+        <div
+          class="rounded-2xl border border-white bg-white/80 p-5 shadow-sm"
+        >
+          <div
+            class="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-geekie-cereja)]/10 text-sm font-bold text-[var(--color-geekie-cereja)]"
+          >
+            2
+          </div>
+          <h2
+            class="text-base font-bold text-[var(--color-geekie-preto)] mb-2"
+          >
+            Devolutiva pedagógica
+          </h2>
+          <p
+            class="text-sm leading-relaxed text-gray-600"
+          >
+            O contato tem como foco aprofundar o significado dos resultados, destacando forças, pontos de atenção e prioridades possíveis para o próximo ciclo.
+          </p>
+        </div>
+        <div
+          class="rounded-2xl border border-white bg-white/80 p-5 shadow-sm"
+        >
+          <div
+            class="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-geekie-cereja)]/10 text-sm font-bold text-[var(--color-geekie-cereja)]"
+          >
+            3
+          </div>
+          <h2
+            class="text-base font-bold text-[var(--color-geekie-preto)] mb-2"
+          >
+            Aplicação à realidade da escola
+          </h2>
+          <p
+            class="text-sm leading-relaxed text-gray-600"
+          >
+            A conversa busca traduzir o diagnóstico em encaminhamentos aderentes ao contexto institucional, sem receitas prontas ou propostas desconectadas da prática.
+          </p>
+        </div>
+      </div>
+      <div
+        class="mt-8 rounded-2xl border border-[#f3e7ea] bg-white/75 p-6 text-left"
+      >
+        <h3
+          class="text-sm font-bold uppercase tracking-[0.16em] text-gray-400 mb-3"
+        >
+          Como a continuidade acontece
+        </h3>
+        <p
+          class="text-sm text-gray-700 leading-relaxed"
+        >
+          O retorno considera os dados preenchidos por 
+          <strong>
+            sua escola
+          </strong>
+           e o e-mail 
+          <strong>
+            informado no cadastro
+          </strong>
+          , para que a conversa parta do diagnóstico já realizado e avance com foco pedagógico.
+        </p>
+      </div>
+      <div
+        class="mt-10 flex justify-end pt-6 border-t border-[#f0e1e5]"
+      >
+        <button
+          class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 bg-[var(--color-geekie-cereja)] text-white hover:bg-opacity-90 px-8 py-4 text-lg"
+        >
+          Encerrar diagnóstico
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Snapshots — telas estáticas > Instrucao 1`] = `
+<div
+  class="max-w-3xl mx-auto px-4 py-16 animate-in fade-in duration-500"
+>
+  <div
+    class="bg-white rounded-3xl shadow-lg border border-gray-100 p-8 md:p-12"
+  >
+    <div
+      class="flex items-center justify-center w-16 h-16 bg-orange-100 text-[var(--color-geekie-laranja)] rounded-full mb-8"
+    >
+      <svg
+        fill="none"
+        height="32"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="32"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+        />
+        <line
+          x1="12"
+          x2="12"
+          y1="16"
+          y2="12"
+        />
+        <line
+          x1="12"
+          x2="12.01"
+          y1="8"
+          y2="8"
+        />
+      </svg>
+    </div>
+    <h1
+      class="text-3xl md:text-4xl font-bold text-[var(--color-geekie-preto)] mb-6"
+    >
+      Como funciona o Mapa
+    </h1>
+    <div
+      class="space-y-6 text-lg text-gray-600 leading-relaxed mb-12"
+    >
+      <p>
+        O Mapa de Inovação foi desenvolvido por um 
+        <strong
+          class="text-[var(--color-geekie-preto)]"
+        >
+          time interdisciplinar da Geekie
+        </strong>
+         — pedagogos, especialistas em educação e cientistas de dados — com o propósito de aferir o grau de inovação educacional dentro do ambiente escolar.
+      </p>
+      <p>
+        O objetivo é entender como a sua escola integra 
+        <strong
+          class="text-[var(--color-geekie-preto)]"
+        >
+          práticas pedagógicas
+        </strong>
+         e o uso de 
+        <strong
+          class="text-[var(--color-geekie-preto)]"
+        >
+          tecnologia
+        </strong>
+         de forma intencional e sistêmica.
+      </p>
+      <div
+        class="bg-[#fff5f7] border border-[#ffd0d9] p-5 rounded-xl"
+      >
+        <div
+          class="flex items-start gap-3"
+        >
+          <span
+            class="text-[var(--color-geekie-cereja)] text-xl mt-0.5"
+          >
+            ⓘ
+          </span>
+          <div>
+            <h3
+              class="font-bold text-[var(--color-geekie-preto)] mb-1 text-base"
+            >
+              Versão reduzida — Bett Brasil 2026
+            </h3>
+            <p
+              class="text-sm text-gray-600 leading-relaxed"
+            >
+              Esta versão avalia 
+              <strong>
+                1 das 5 categorias
+              </strong>
+               do instrumento completo: 
+              <em>
+                Currículo e organização da aprendizagem
+              </em>
+              . Na versão integral, outras 4 categorias ampliam a abrangência do diagnóstico. Após o preenchimento, nosso consultor pode apresentar o instrumento completo.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="bg-gray-50 p-6 rounded-xl border border-gray-200"
+      >
+        <h3
+          class="font-bold text-[var(--color-geekie-preto)] mb-3"
+        >
+          Como responder:
+        </h3>
+        <ul
+          class="space-y-3"
+        >
+          <li
+            class="flex items-start gap-3"
+          >
+            <span
+              class="text-[var(--color-geekie-cereja)] mt-1"
+            >
+              ✦
+            </span>
+            <span>
+              Responda com base na 
+              <strong>
+                realidade atual
+              </strong>
+               da escola, não nos planos futuros.
+            </span>
+          </li>
+          <li
+            class="flex items-start gap-3"
+          >
+            <span
+              class="text-[var(--color-geekie-cereja)] mt-1"
+            >
+              ✦
+            </span>
+            <span>
+              Pense na prática 
+              <strong>
+                institucional
+              </strong>
+              , não apenas em iniciativas isoladas de um ou outro professor.
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="flex justify-between"
+    >
+      <button
+        class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 border-2 border-gray-300 text-gray-700 bg-transparent hover:border-gray-400 hover:bg-gray-50 px-8 py-4 text-lg"
+      >
+        ← Voltar
+      </button>
+      <button
+        class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 bg-[var(--color-geekie-cereja)] text-white hover:bg-opacity-90 px-8 py-4 text-lg"
+      >
+        Entendi, vamos começar
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Snapshots — telas estáticas > Splash 1`] = `
+<div
+  class="min-h-screen flex flex-col items-center justify-center bg-[var(--color-geekie-cereja)] text-white p-6 text-center relative"
+>
+  <div
+    class="absolute top-4 right-4"
+  >
+    <button
+      class="text-sm opacity-50 hover:opacity-100 transition-opacity"
+    >
+      Acesso Admin
+    </button>
+  </div>
+  <div
+    class="max-w-2xl mx-auto space-y-8 animate-in fade-in duration-700 slide-in-from-bottom-8"
+  >
+    <div
+      class="flex flex-col items-center justify-center mb-8 gap-4"
+    >
+      <div
+        class="flex flex-col items-center justify-center gap-2"
+      >
+        <img
+          alt="Geekie Educação"
+          class="block w-auto shrink-0 select-none brightness-0 invert h-24 object-contain"
+          decoding="async"
+          draggable="false"
+          src="/geekie-logo.png"
+        />
+      </div>
+    </div>
+    <h1
+      class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight"
+    >
+      Mapa de Inovação Educacional
+    </h1>
+    <p
+      class="text-xl md:text-2xl font-sans opacity-90 max-w-xl mx-auto"
+    >
+      Descubra a maturidade da sua escola na integração entre práticas pedagógicas e tecnologia.
+    </p>
+    <div
+      class="pt-12"
+    >
+      <button
+        class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 bg-white text-[var(--color-geekie-cereja)] hover:bg-gray-50 text-xl px-12 py-6 shadow-xl"
+      >
+        Iniciar Diagnóstico
+      </button>
+    </div>
+  </div>
+</div>
+`;

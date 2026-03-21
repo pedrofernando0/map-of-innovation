@@ -1,17 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { GeekieLogo } from '../components/GeekieLogo';
 import { Button } from '../components/ui';
+import { useAppStore } from '../stores/appStore';
 
-interface SplashProps {
-  onNext: () => void;
-}
+export function Splash() {
+  const navigate = useNavigate();
+  const { reset, setProgress } = useAppStore();
 
-export function Splash({ onNext }: SplashProps) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--color-geekie-cereja)] text-white p-6 text-center relative">
       <div className="absolute top-4 right-4">
-        <button 
-          onClick={() => window.location.hash = '#admin'}
+        <button
+          onClick={() => navigate('/admin')}
           className="text-sm opacity-50 hover:opacity-100 transition-opacity"
         >
           Acesso Admin
@@ -23,19 +25,23 @@ export function Splash({ onNext }: SplashProps) {
             <GeekieLogo variant="white" className="h-24 object-contain" />
           </div>
         </div>
-        
+
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight">
           Mapa de Inovação Educacional
         </h1>
-        
+
         <p className="text-xl md:text-2xl font-sans opacity-90 max-w-xl mx-auto">
           Descubra a maturidade da sua escola na integração entre práticas pedagógicas e tecnologia.
         </p>
-        
+
         <div className="pt-12">
-          <Button 
-            onClick={onNext}
-            size="lg" 
+          <Button
+            onClick={() => {
+              reset();
+              setProgress(10);
+              navigate('/cadastro');
+            }}
+            size="lg"
             className="bg-white text-[var(--color-geekie-cereja)] hover:bg-gray-50 text-xl px-12 py-6 shadow-xl"
           >
             Iniciar Diagnóstico

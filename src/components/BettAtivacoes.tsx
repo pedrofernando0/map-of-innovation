@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { ATIVACOES_BETT, ATIVACAO_THRESHOLD, AtivacoesPilar } from '../constants';
 import { Scores } from '../types';
 
@@ -37,14 +38,11 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
   const [aberto, setAberto] = useState(false);
 
   return (
-    <div
-      className="rounded-2xl border-2 overflow-hidden transition-all duration-300"
-      style={{ borderColor: data.corPilar + '40', backgroundColor: data.corFundo }}
-    >
+    <div className="rounded-2xl border-2 overflow-hidden transition-all duration-300 bg-white border-gray-200">
       {/* Header do pilar — sempre visível */}
       <button
-        onClick={() => setAberto(a => !a)}
-        className="w-full flex items-center justify-between p-5 text-left"
+        onClick={() => setAberto((a) => !a)}
+        className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50"
       >
         <div className="flex items-center gap-3">
           <span className="text-2xl">{data.icone}</span>
@@ -58,11 +56,8 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
           </div>
         </div>
         <div
-          className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-lg transition-transform duration-300"
-          style={{
-            backgroundColor: data.corPilar,
-            transform: aberto ? 'rotate(45deg)' : 'rotate(0deg)'
-          }}
+          className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 text-gray-600 font-bold text-lg transition-transform duration-300"
+          style={{ transform: aberto ? 'rotate(45deg)' : 'rotate(0deg)' }}
         >
           +
         </div>
@@ -71,7 +66,7 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
       {/* Conteúdo expansível */}
       {aberto && (
         <div className="px-5 pb-6 space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
-          <p className="text-sm text-gray-600 leading-relaxed border-t pt-4" style={{ borderColor: data.corPilar + '30' }}>
+          <p className="text-sm text-gray-600 leading-relaxed border-t border-gray-200 pt-4">
             {data.intro}
           </p>
 
@@ -83,13 +78,14 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
                 return (
                   <div
                     key={`${atv.titulo}-${i}`}
-                    className="bg-white rounded-xl p-4 shadow-sm border"
-                    style={{ borderColor: data.corPilar + '25' }}
+                    className="bg-white rounded-xl p-4 shadow-sm border border-gray-100"
                   >
                     <div className="flex items-start gap-3 mb-2">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap ${category.className}`}>
+                          <span
+                            className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap ${category.className}`}
+                          >
                             {category.label}
                           </span>
                           <span className="text-[10px] text-gray-400">{category.helper}</span>
@@ -99,16 +95,11 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
                         </h4>
                       </div>
                     </div>
-                    <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                      {atv.descricao}
-                    </p>
-                    <div
-                      className="flex items-start gap-2 text-sm rounded-lg p-3"
-                      style={{ backgroundColor: data.corPilar + '12' }}
-                    >
-                      <span className="flex-shrink-0 font-bold mt-0.5" style={{ color: data.corPilar }}>→</span>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-3">{atv.descricao}</p>
+                    <div className="flex items-start gap-2 text-sm rounded-lg p-3 bg-gray-50">
+                      <span className="flex-shrink-0 font-bold mt-0.5">→</span>
                       <span className="text-gray-700 leading-relaxed">
-                        <strong style={{ color: data.corPilar }}>Como sua escola pode evoluir:</strong> {atv.impacto}
+                        <strong>Como sua escola pode evoluir:</strong> {atv.impacto}
                       </span>
                     </div>
                   </div>
@@ -148,7 +139,8 @@ export function BettAtivacoes({ scores }: BettAtivacoesProps) {
             </span>
           </div>
           <p className="text-sm text-gray-500 mt-2">
-            Selecionamos até 3 frentes da Bett com maior aderência ao momento atual da sua escola, priorizando o que pode apoiar sua evolução pedagógica de forma mais concreta.
+            Selecionamos até 3 frentes da Bett com maior aderência ao momento atual da sua escola,
+            priorizando o que pode apoiar sua evolução pedagógica de forma mais concreta.
           </p>
         </div>
       </div>
@@ -156,14 +148,16 @@ export function BettAtivacoes({ scores }: BettAtivacoesProps) {
       <div className="grid gap-3 md:grid-cols-3 mb-6">
         {Object.values(CATEGORY_META).map((category) => (
           <div key={category.label} className={`rounded-2xl p-4 ${category.className}`}>
-            <div className="text-[11px] font-bold uppercase tracking-[0.16em]">{category.label}</div>
+            <div className="text-[11px] font-bold uppercase tracking-[0.16em]">
+              {category.label}
+            </div>
             <div className="mt-2 text-xs leading-relaxed opacity-80">{category.helper}</div>
           </div>
         ))}
       </div>
 
       <div className="space-y-3">
-        {pilaresComOportunidade.map(chave => {
+        {pilaresComOportunidade.map((chave) => {
           const data = ATIVACOES_BETT[chave];
           if (!data) return null;
           return <PilarCard key={chave} data={data} />;

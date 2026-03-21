@@ -1,12 +1,13 @@
 import React from 'react';
+
+import { useAppStore } from '../stores/appStore';
+
 import { GeekieLogo } from './GeekieLogo';
 import { ProgressBar } from './ui';
 
-interface HeaderProps {
-  progress?: number;
-}
+export function Header() {
+  const progress = useAppStore((s) => s.progress);
 
-export function Header({ progress = 0 }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">

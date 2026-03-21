@@ -47,6 +47,12 @@ export const FALLBACK_DIAGNOSTICO: Record<string, string> = {
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
+function getAncoraLabel(val: number): string {
+  if (val === 1) return 'Essencial';
+  if (val === 2) return 'Explorador';
+  return 'Integrada';
+}
+
 const PILAR_LABEL: Record<string, string> = {
   aprendizagem_ativa: 'Aprendizagem Ativa',
   visibilidade: 'Visibilidade',
@@ -72,7 +78,7 @@ const ABERTURA: Record<string, (escola: Escola, scores: Scores, ancora: number |
       const gap = ancora !== null ? ancora * 25 - scores.total : null;
       const gapTxt =
         gap !== null && gap > 15
-          ? ` A auto-percepção indicada (${ancora}/4) está acima do score medido (${scores.total}/100), o que sugere que práticas inovadoras ainda dependem de iniciativas individuais e não estão institucionalizadas.`
+          ? ` A auto-percepção indicada (${getAncoraLabel(ancora)}) está acima do score medido (${scores.total}/100), o que sugere que práticas inovadoras ainda dependem de iniciativas individuais e não estão institucionalizadas.`
           : '';
       return `**${escola.nome}** apresenta um perfil de inovação em estágio inicial, com espaço significativo para estruturação intencional das práticas pedagógicas e do uso de tecnologia.${gapTxt}`;
     },
@@ -186,7 +192,7 @@ export class LocalDiagnosticAdapter implements IDiagnosticService {
       ancora !== null
         ? scores.total >= ancora * 25 - 5
           ? 'A auto-percepção da gestão está alinhada ao diagnóstico medido — sinal de leitura institucional consistente da realidade.'
-          : `Vale observar que a auto-percepção da gestão (${ancora}/4) difere do score medido (${scores.total}/100) — uma oportunidade para aprofundar a leitura coletiva sobre o estágio atual da escola.`
+          : `Vale observar que a auto-percepção da gestão (${getAncoraLabel(ancora)}) difere do score medido (${scores.total}/100) — uma oportunidade para aprofundar a leitura coletiva sobre o estágio atual da escola.`
         : '';
 
     return [

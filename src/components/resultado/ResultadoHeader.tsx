@@ -9,6 +9,12 @@ interface Props {
   ancora: number | null;
 }
 
+function getAncoraLabel(val: number): string {
+  if (val === 1) return 'Essencial';
+  if (val === 2) return 'Explorador';
+  return 'Integrada';
+}
+
 export function ResultadoHeader({ escola, scores, ancora }: Props) {
   return (
     <div className="bg-[var(--color-geekie-cereja)] rounded-3xl p-8 text-white shadow-lg">
@@ -24,7 +30,8 @@ export function ResultadoHeader({ escola, scores, ancora }: Props) {
           </p>
           {ancora && (
             <p className="text-sm opacity-70 mt-2">
-              Auto-percepção declarada: <strong className="opacity-100">{ancora}/3</strong>
+              Auto-percepção declarada:{' '}
+              <strong className="opacity-100">{getAncoraLabel(ancora)}</strong>
             </p>
           )}
         </div>

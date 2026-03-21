@@ -1,0 +1,23 @@
+/** Metadados mínimos das 20 questões — usados apenas pelo domínio de scoring. */
+export const QUESTOES_METADATA = [
+  { id: '1.1', pilar: 'aprendizagem_ativa', eixo: 'pedagogico' },
+  { id: '1.2', pilar: 'aprendizagem_ativa', eixo: 'pedagogico' },
+  { id: '1.3', pilar: 'aprendizagem_ativa', eixo: 'tecnologico' },
+  { id: '1.4', pilar: 'aprendizagem_ativa', eixo: 'pedagogico' },
+  { id: '1.5', pilar: 'aprendizagem_ativa', eixo: 'pedagogico' },
+  { id: '1.6', pilar: 'visibilidade', eixo: 'pedagogico' },
+  { id: '1.7', pilar: 'visibilidade', eixo: 'pedagogico' },
+  { id: '1.8', pilar: 'visibilidade', eixo: 'tecnologico' },
+  { id: '1.9', pilar: 'visibilidade', eixo: 'pedagogico' },
+  { id: '1.10', pilar: 'visibilidade', eixo: 'pedagogico' },
+  { id: '1.11', pilar: 'flexibilidade', eixo: 'pedagogico' },
+  { id: '1.12', pilar: 'flexibilidade', eixo: 'pedagogico' },
+  { id: '1.13', pilar: 'flexibilidade', eixo: 'pedagogico' },
+  { id: '1.14', pilar: 'flexibilidade', eixo: 'pedagogico' },
+  { id: '1.15', pilar: 'flexibilidade', eixo: 'tecnologico' },
+  { id: '1.16', pilar: 'personalizacao', eixo: 'pedagogico' },
+  { id: '1.17', pilar: 'personalizacao', eixo: 'pedagogico' },
+  { id: '1.18', pilar: 'personalizacao', eixo: 'tecnologico' },
+  { id: '1.19', pilar: 'personalizacao', eixo: 'pedagogico' },
+  { id: '1.20', pilar: 'personalizacao', eixo: 'pedagogico' },
+] as const;

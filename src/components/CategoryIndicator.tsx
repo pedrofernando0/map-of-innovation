@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { cn } from '../lib/utils';
 
 interface CategoryIndicatorProps {
@@ -15,7 +16,8 @@ const categories = [
     cue: 'Estruturação inicial',
     color: 'border-amber-200 bg-amber-50 text-amber-900',
     accent: 'bg-amber-500',
-    description: 'A escola apresenta bases importantes, mas a inovação ainda aparece de forma pontual e depende de maior estruturação institucional.'
+    description:
+      'A escola apresenta bases importantes, mas a inovação ainda aparece de forma pontual e depende de maior estruturação institucional.',
   },
   {
     key: 'EXPLORADOR',
@@ -24,7 +26,8 @@ const categories = [
     cue: 'Integração em desenvolvimento',
     color: 'border-sky-200 bg-sky-50 text-sky-900',
     accent: 'bg-sky-500',
-    description: 'A escola já movimenta práticas consistentes de inovação, mas ainda convive com etapas que precisam ganhar continuidade e maior integração.'
+    description:
+      'A escola já movimenta práticas consistentes de inovação, mas ainda convive com etapas que precisam ganhar continuidade e maior integração.',
   },
   {
     key: 'INTEGRADA',
@@ -33,7 +36,8 @@ const categories = [
     cue: 'Cultura consolidada',
     color: 'border-emerald-200 bg-emerald-50 text-emerald-900',
     accent: 'bg-emerald-500',
-    description: 'A inovação aparece de forma institucionalizada, com articulação entre currículo, decisões pedagógicas e acompanhamento contínuo da aprendizagem.'
+    description:
+      'A inovação aparece de forma institucionalizada, com articulação entre currículo, decisões pedagógicas e acompanhamento contínuo da aprendizagem.',
   },
 ];
 
@@ -44,10 +48,10 @@ export function CategoryIndicator({ nivel, score, className }: CategoryIndicator
   const activeCategory = categories[resolvedIndex];
 
   return (
-    <div className={cn("space-y-6", className)}>
+    <div className={cn('space-y-6', className)}>
       <div className="grid gap-3 md:grid-cols-3">
         {categories.map((cat, index) => (
-          <div 
+          <div
             key={cat.name}
             className={cn(
               'rounded-2xl border p-4 transition-all duration-300 ease-out',
@@ -59,9 +63,16 @@ export function CategoryIndicator({ nivel, score, className }: CategoryIndicator
             <div className="flex items-start justify-between gap-3">
               <div>
                 <div className="font-bold text-lg">{cat.name}</div>
-                <div className="text-xs font-semibold uppercase tracking-[0.14em] opacity-75">{cat.cue}</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.14em] opacity-75">
+                  {cat.cue}
+                </div>
               </div>
-              <span className={cn('mt-1 h-3 w-3 shrink-0 rounded-full', index === resolvedIndex ? cat.accent : 'bg-gray-200')} />
+              <span
+                className={cn(
+                  'mt-1 h-3 w-3 shrink-0 rounded-full',
+                  index === resolvedIndex ? cat.accent : 'bg-gray-200'
+                )}
+              />
             </div>
             <div className="mt-4 text-xs font-medium opacity-80">{cat.range} pontos</div>
             {index === resolvedIndex && (
@@ -73,9 +84,12 @@ export function CategoryIndicator({ nivel, score, className }: CategoryIndicator
         ))}
       </div>
       <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5 text-sm text-gray-600 leading-relaxed">
-        <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.16em] text-gray-400">Leitura do perfil</div>
+        <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.16em] text-gray-400">
+          Leitura do perfil
+        </div>
         <p>
-          <strong className="text-gray-900">{activeCategory.name}:</strong> {activeCategory.description}
+          <strong className="text-gray-900">{activeCategory.name}:</strong>{' '}
+          {activeCategory.description}
         </p>
         <p className="mt-3 text-xs font-medium text-gray-500">Score geral medido: {score}/100</p>
       </div>

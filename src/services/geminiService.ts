@@ -21,25 +21,27 @@ function faixa(score: number): 'baixo' | 'medio' | 'alto' {
 
 // ─── abertura por nível ──────────────────────────────────────────────────────
 
-const ABERTURA: Record<string, (escola: Escola, scores: Scores, ancora: number | null) => string> = {
-  ESSENCIAL: (escola, scores, ancora) => {
-    const gap = ancora !== null ? ancora * 25 - scores.total : null;
-    const gapTxt = gap !== null && gap > 15
-      ? ` A auto-percepção indicada (${ancora}/4) está acima do score medido (${scores.total}/100), o que sugere que práticas inovadoras ainda dependem de iniciativas individuais e não estão institucionalizadas.`
-      : '';
-    return `**${escola.nome}** apresenta um perfil de inovação em estágio inicial, com espaço significativo para estruturação intencional das práticas pedagógicas e do uso de tecnologia.${gapTxt}`;
-  },
-  EXPLORADOR: (escola, scores, ancora) => {
-    const entries = Object.entries(scores.pilares);
-    const max = entries.reduce((a, b) => a[1] > b[1] ? a : b);
-    return `**${escola.nome}** está em processo ativo de transformação pedagógica, com o pilar de ${span(max[0])} como principal referência interna (${max[1]}/100). O desafio central é converter iniciativas promissoras em práticas institucionais consolidadas.`;
-  },
-  INTEGRADA: (escola, scores) => {
-    const entries = Object.entries(scores.pilares);
-    const min = entries.reduce((a, b) => a[1] < b[1] ? a : b);
-    return `**${escola.nome}** demonstra maturidade consolidada em inovação educacional, com integração intencional entre pedagogia e tecnologia. O pilar de ${span(min[0])} (${min[1]}/100) representa a principal fronteira de expansão para atingir excelência sistêmica.`;
-  },
-};
+const ABERTURA: Record<string, (escola: Escola, scores: Scores, ancora: number | null) => string> =
+  {
+    ESSENCIAL: (escola, scores, ancora) => {
+      const gap = ancora !== null ? ancora * 25 - scores.total : null;
+      const gapTxt =
+        gap !== null && gap > 15
+          ? ` A auto-percepção indicada (${ancora}/4) está acima do score medido (${scores.total}/100), o que sugere que práticas inovadoras ainda dependem de iniciativas individuais e não estão institucionalizadas.`
+          : '';
+      return `**${escola.nome}** apresenta um perfil de inovação em estágio inicial, com espaço significativo para estruturação intencional das práticas pedagógicas e do uso de tecnologia.${gapTxt}`;
+    },
+    EXPLORADOR: (escola, scores, _ancora) => {
+      const entries = Object.entries(scores.pilares);
+      const max = entries.reduce((a, b) => (a[1] > b[1] ? a : b));
+      return `**${escola.nome}** está em processo ativo de transformação pedagógica, com o pilar de ${span(max[0])} como principal referência interna (${max[1]}/100). O desafio central é converter iniciativas promissoras em práticas institucionais consolidadas.`;
+    },
+    INTEGRADA: (escola, scores, _ancora) => {
+      const entries = Object.entries(scores.pilares);
+      const min = entries.reduce((a, b) => (a[1] < b[1] ? a : b));
+      return `**${escola.nome}** demonstra maturidade consolidada em inovação educacional, com integração intencional entre pedagogia e tecnologia. O pilar de ${span(min[0])} (${min[1]}/100) representa a principal fronteira de expansão para atingir excelência sistêmica.`;
+    },
+  };
 
 // ─── pontos fortes por pilar ─────────────────────────────────────────────────
 
@@ -93,7 +95,11 @@ const OPORTUNIDADES: Record<string, Record<string, string>> = {
 
 // ─── gerador principal ────────────────────────────────────────────────────────
 
-export async function gerarDiagnostico(escola: Escola, scores: Scores, ancora: number | null): Promise<string> {
+export async function gerarDiagnostico(
+  escola: Escola,
+  scores: Scores,
+  ancora: number | null
+): Promise<string> {
   const entries = Object.entries(scores.pilares) as [string, number][];
   const sorted = [...entries].sort((a, b) => b[1] - a[1]);
   const [pilarMax] = sorted[0];
@@ -104,25 +110,31 @@ export async function gerarDiagnostico(escola: Escola, scores: Scores, ancora: n
   const abertura = fn(escola, scores, ancora);
 
   // Pontos fortes: pilar mais alto + eixo pedagógico vs tecnológico
-  const fortePilarAlto = FORTES[pilarMax][faixa(scores.pilares[pilarMax as keyof typeof scores.pilares])];
+  const fortePilarAlto =
+    FORTES[pilarMax][faixa(scores.pilares[pilarMax as keyof typeof scores.pilares])];
   const fortePilarSeg = FORTES[sorted[1][0]][faixa(sorted[1][1])];
-  const forteEixo = scores.eixos.pedagogico >= scores.eixos.tecnologico
-    ? `O eixo pedagógico (${scores.eixos.pedagogico}/100) é o ponto de maior consistência da escola, refletindo práticas de ensino mais intencionais que o uso de tecnologia`
-    : `O eixo tecnológico (${scores.eixos.tecnologico}/100) está à frente das práticas pedagógicas, indicando infraestrutura disponível que pode ser melhor aproveitada`;
+  const forteEixo =
+    scores.eixos.pedagogico >= scores.eixos.tecnologico
+      ? `O eixo pedagógico (${scores.eixos.pedagogico}/100) é o ponto de maior consistência da escola, refletindo práticas de ensino mais intencionais que o uso de tecnologia`
+      : `O eixo tecnológico (${scores.eixos.tecnologico}/100) está à frente das práticas pedagógicas, indicando infraestrutura disponível que pode ser melhor aproveitada`;
 
   // Oportunidades: pilar mais baixo + segundo mais baixo + eixo fraco
-  const opPilarMin = OPORTUNIDADES[pilarMin][faixa(scores.pilares[pilarMin as keyof typeof scores.pilares])];
-  const opPilarSeg = OPORTUNIDADES[sorted[sorted.length - 2][0]][faixa(sorted[sorted.length - 2][1])];
-  const eixoFraco = scores.eixos.pedagogico < scores.eixos.tecnologico
-    ? `Alinhar as práticas pedagógicas ao nível de infraestrutura tecnológica disponível — a tecnologia existe, mas ainda não está integrada ao fluxo de ensino de forma intencional`
-    : `Ampliar o uso intencional de recursos digitais no fluxo pedagógico, transformando a tecnologia de suporte em instrumento ativo de aprendizagem`;
+  const opPilarMin =
+    OPORTUNIDADES[pilarMin][faixa(scores.pilares[pilarMin as keyof typeof scores.pilares])];
+  const opPilarSeg =
+    OPORTUNIDADES[sorted[sorted.length - 2][0]][faixa(sorted[sorted.length - 2][1])];
+  const eixoFraco =
+    scores.eixos.pedagogico < scores.eixos.tecnologico
+      ? `Alinhar as práticas pedagógicas ao nível de infraestrutura tecnológica disponível — a tecnologia existe, mas ainda não está integrada ao fluxo de ensino de forma intencional`
+      : `Ampliar o uso intencional de recursos digitais no fluxo pedagógico, transformando a tecnologia de suporte em instrumento ativo de aprendizagem`;
 
   // Eixos: comparativo auto-percepção
-  const ancoraComentario = ancora !== null
-    ? scores.total >= ancora * 25 - 5
-      ? `A auto-percepção da gestão está alinhada ao diagnóstico medido — sinal de leitura institucional consistente da realidade.`
-      : `Vale observar que a auto-percepção da gestão (${ancora}/4) difere do score medido (${scores.total}/100) — uma oportunidade para aprofundar a leitura coletiva sobre o estágio atual da escola.`
-    : '';
+  const ancoraComentario =
+    ancora !== null
+      ? scores.total >= ancora * 25 - 5
+        ? `A auto-percepção da gestão está alinhada ao diagnóstico medido — sinal de leitura institucional consistente da realidade.`
+        : `Vale observar que a auto-percepção da gestão (${ancora}/4) difere do score medido (${scores.total}/100) — uma oportunidade para aprofundar a leitura coletiva sobre o estágio atual da escola.`
+      : '';
 
   return [
     `### Síntese`,

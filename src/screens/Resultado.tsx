@@ -15,8 +15,8 @@ export function Resultado() {
   return (
     <div className="screen-resultado max-w-5xl mx-auto px-4 py-8 md:py-12 animate-in fade-in duration-500 space-y-8">
       <ResultadoHeader escola={escola} scores={scores} ancora={ancora} />
-      <ResultadoPilares pilares={scores.pilares} />
       <ResultadoEixos scores={scores} />
+      <ResultadoPilares pilares={scores.pilares} />
       <BettAtivacoes scores={scores} />
       <ResultadoDiagnostico
         diagnostico={diagnostico}

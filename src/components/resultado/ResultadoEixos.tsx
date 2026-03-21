@@ -19,7 +19,7 @@ export function ResultadoEixos({ scores }: Props) {
           <EixoEspectro
             label="Eixo Geral"
             score={scores.total}
-            extremoEsquerdo="Tradicional"
+            extremoEsquerdo="Clássica"
             extremoDireito="Inovadora"
             cor="#ff1547"
             isMain

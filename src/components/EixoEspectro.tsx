@@ -10,7 +10,15 @@ interface EixoEspectroProps {
   isMain?: boolean;
 }
 
-export function EixoEspectro({ label, score, extremoEsquerdo, extremoDireito, cor, tooltip, isMain = false }: EixoEspectroProps) {
+export function EixoEspectro({
+  label,
+  score,
+  extremoEsquerdo,
+  extremoDireito,
+  cor,
+  tooltip,
+  isMain = false,
+}: EixoEspectroProps) {
   const [showTooltip, setShowTooltip] = useState(false);
 
   // Garante que o marcador fique visível e dentro da trilha
@@ -21,13 +29,20 @@ export function EixoEspectro({ label, score, extremoEsquerdo, extremoDireito, co
   const badgeFontSize = isMain ? '12px' : '11px';
 
   return (
-    <div className={isMain ? '' : 'pl-5 border-l-2'} style={isMain ? {} : { borderColor: cor + '50' }}>
+    <div
+      className={isMain ? '' : 'pl-5 border-l-2'}
+      style={isMain ? {} : { borderColor: cor + '50' }}
+    >
       {/* Cabeçalho */}
       <div className="flex items-center gap-2 mb-3">
         {!isMain && (
-          <span className="text-xs font-bold" style={{ color: cor + 'aa' }}>↳</span>
+          <span className="text-xs font-bold" style={{ color: cor + 'aa' }}>
+            ↳
+          </span>
         )}
-        <span className={`font-bold ${isMain ? 'text-base text-[var(--color-geekie-preto)]' : 'text-sm text-gray-600'}`}>
+        <span
+          className={`font-bold ${isMain ? 'text-base text-[var(--color-geekie-preto)]' : 'text-sm text-gray-600'}`}
+        >
           {label}
         </span>
         {isMain && (
@@ -37,20 +52,23 @@ export function EixoEspectro({ label, score, extremoEsquerdo, extremoDireito, co
           </span>
         )}
         {tooltip && (
-          <button type="button" onClick={() => setShowTooltip(s => !s)} className="relative ml-1 cursor-help">
-            <span className="text-gray-400 text-sm">ⓘ</span>
+          <span
+            className="relative ml-1"
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+          >
+            <span className="text-gray-400 text-sm cursor-help select-none">ⓘ</span>
             {showTooltip && (
-              <div className="absolute left-0 bottom-full mb-2 bg-gray-900 text-white text-xs rounded-xl p-4 w-80 z-30 leading-relaxed shadow-2xl animate-in fade-in duration-200 text-left">
+              <div className="absolute left-0 bottom-full mb-2 bg-gray-900 text-white text-xs rounded-xl p-4 w-80 z-30 leading-relaxed shadow-2xl animate-in fade-in duration-200 text-left pointer-events-none">
                 {tooltip}
               </div>
             )}
-          </button>
+          </span>
         )}
       </div>
 
       {/* Badge "sua escola está aqui" + linha + trilha + bolinha */}
       <div className="relative" style={{ paddingTop: isMain ? '36px' : '28px' }}>
-
         {/* Badge flutuante */}
         <div
           className="absolute"
@@ -69,14 +87,24 @@ export function EixoEspectro({ label, score, extremoEsquerdo, extremoDireito, co
               sua escola está aqui
             </span>
             {/* Linha conectora */}
-            <div style={{ width: '2px', height: isMain ? '12px' : '8px', backgroundColor: cor, opacity: 0.6 }} />
+            <div
+              style={{
+                width: '2px',
+                height: isMain ? '12px' : '8px',
+                backgroundColor: cor,
+                opacity: 0.6,
+              }}
+            />
           </div>
         </div>
 
         {/* Trilha */}
         <div
           className="relative rounded-full overflow-hidden"
-          style={{ height: `${trackH}px`, background: `linear-gradient(to right, #e5e7eb 0%, ${cor}60 40%, ${cor} 100%)` }}
+          style={{
+            height: `${trackH}px`,
+            background: `linear-gradient(to right, #e5e7eb 0%, ${cor}60 40%, ${cor} 100%)`,
+          }}
         >
           {/* Bolinha */}
           <div
