@@ -1,40 +1,44 @@
 # Pendências — Mapa de Inovação Educacional
 
-_Atualizado: Março 2026_
+_Atualizado: Março 2026 (21/03, pós-sincronização)_
 
 > Apenas itens **ainda por executar**. Itens concluídos foram removidos.
-> Para contexto de cada item, ver `roadmap.md` e os playbooks `CLAUDE-UI.md` / `CLAUDE-UX.md`.
+> Para contexto de cada item, ver `roadmap.md` e os playbooks `CLAUDE-UI-RATIONALE.md` / `CLAUDE-UX-RATIONALE.md`.
+> Para **executar**, abra `CLAUDE-SPRINTS.md` e copie o prompt do sprint desejado.
 
 ---
 
 ## PRÉ-BETT (urgente)
 
-### S3 — Resiliência de Evento
+### ✅ S3 — Resiliência de Evento (CONCLUÍDO EM 21/03)
 
-- [ ] **Persistência de rascunho**: auto-save do `AppState` parcial no `localStorage` a cada resposta. Expirar após 4h.
-- [ ] **"Continuar onde parou"**: na tela Splash, detectar rascunho e oferecer opção de retomar.
-- [ ] **Fallback contextualizado**: reescrever `FALLBACK_DIAGNOSTICO` para usar `scores.pilares` — identificar o pilar mais forte e mais fraco da escola, em vez de texto genérico por nível.
-- [ ] **Aviso de kiosk progressivo**: exibir mensagem discreta 30s antes do reset ("Sessão encerrando em 30s — toque para continuar"). Reset continua aos 10 minutos. Usar `useKioskMode` existente.
-- [ ] **Credenciais admin sem fallback**: se `VITE_ADMIN_USER`/`VITE_ADMIN_PASS` não estiverem no `.env.local`, o login do admin deve estar bloqueado com mensagem de configuração — não acessível com credenciais hardcoded.
+Todos os itens foram implementados e mergeados para main:
 
-### S4 — Experiência Essencial (UX)
+- ✅ **Persistência de rascunho** — métodos `saveDraft()`, `loadDraft()`, `clearDraft()` em LocalStorageAdapter
+- ✅ **"Continuar onde parou"** — botão de resume na tela Splash com detecção de rascunho
+- ✅ **Fallback contextualizado** — `generateFallback()` em LocalDiagnosticAdapter identifica pilares mais forte/fraco
+- ✅ **Aviso de kiosk progressivo** — banner 30s antes de reset em AppLayout via useKioskMode
+- ✅ **Credenciais admin sem fallback** — validação em env.ts, login bloqueado se credenciais não configuradas
 
-- [ ] **`docs/persona-primaria.md`**: perfil do usuário Bett (cargo, contexto no evento, estado emocional, maior medo, frase ao sair).
-- [ ] **`docs/emotional-journey.md`**: estado emocional esperado por tela, maior risco atual, momento de atrito, ponto de deleite, relação com regra pico-final.
-- [ ] **`docs/microcopy-inventory.md`**: inventário de todas as strings por tela com classificação de tom e problema identificado.
-- [ ] **Microcopy — Splash**: subtítulo mais próximo e menos corporativo. Ex. direção: "Em 10 minutos, saiba exatamente onde sua escola está — e para onde pode ir."
-- [ ] **Microcopy — Cadastro**: labels orientadas ao benefício ("Como se chama sua escola?"), mensagens de erro que explicam o motivo ("Precisamos do nome para personalizar seu diagnóstico"), botão "Ir para o questionário →".
-- [ ] **Microcopy — Instrucao**: voz ativa e direta nos parágrafos de instrução. Indicação de tempo ("Você está a ~8 minutos do resultado").
-- [ ] **Microcopy — Ancora**: linha-resumo de 5–7 palavras antes de cada descrição longa ("Essencial — Inovações pontuais, sem sistematização").
-- [ ] **Microcopy — Questoes**: timer por bloco ("Bloco 1 de 4 · ~2 min"), contador motivador ("Tudo respondido! Pronto para avançar."), botão "Ver o diagnóstico da minha escola".
-- [ ] **Microcopy — Loading**: mensagens que comunicam processo rigoroso ("Identificando pontos fortes e oportunidades…").
-- [ ] **Acessibilidade — `index.html`**: adicionar `lang="pt-BR"` na tag `<html>`.
-- [ ] **Acessibilidade — Focus ring global**: adicionar `:focus-visible` com estilo visual em `index.css`. Remover todos os `outline-none` sem substituto.
-- [ ] **Acessibilidade — `BettAtivacoes.tsx`**: `aria-expanded` + `aria-controls` no botão de accordion.
-- [ ] **Acessibilidade — `Questoes.tsx`**: `role="radiogroup"` + `role="radio"` nas opções de resposta. `aria-labelledby` apontando para o texto da questão.
-- [ ] **Acessibilidade — `Ancora.tsx`**: `role="radio"` + `aria-checked` + `role="radiogroup"` nos cards de seleção.
-- [ ] **Acessibilidade — Contraste**: verificar e corrigir `text-gray-400` em texto real (não em placeholder/disabled). Usar `text-gray-600` onde necessário.
-- [ ] **Tokens semânticos em `index.css`**: adicionar camada semântica sobre os primitivos existentes: `--color-brand-primary`, `--color-feedback-error`, `--color-text-secondary`, `--color-focus-ring`, escala de spacing 8pt (`--space-1` a `--space-16`), tokens de motion (`--duration-base`, `--ease-out`).
+### 🔄 S4 — Experiência Essencial (UX) — 95% Concluído (21/03)
+
+**Implementado (mergeado em main):**
+
+- ✅ **Tokens semânticos em `index.css`** — camada semântica completa com cores, spacing (8pt grid), motion tokens
+- ✅ **Acessibilidade — Focus ring global** — `:focus-visible` com ring 2px offset 2px em todos os inputs/buttons
+- ✅ **Acessibilidade — `BettAtivacoes.tsx`** — `aria-expanded` + `aria-controls` no accordion
+- ✅ **Acessibilidade — `Questoes.tsx`** — `role="radiogroup"` + `role="radio"` + `aria-labelledby`
+- ✅ **Acessibilidade — `Ancora.tsx`** — `role="radio"` + `aria-checked` nos cards
+- ✅ **Acessibilidade — Contraste** — corrigido text-gray-400 → text-gray-600 onde necessário
+- ✅ **Acessibilidade — `index.html`** — `lang="pt-BR"` na tag `<html>`
+- ✅ **Microcopy** — atualizado em Splash, Cadastro, Instrucao, Ancora, Questoes, Loading com tom apropriado
+- ✅ **Testes de a11y** — `src/__tests__/a11y.test.tsx` com coverage de acessibilidade
+
+**Pendente (documentação — não bloqueia):**
+
+- [ ] **`docs/persona-primaria.md`**: perfil do usuário Bett (cargo, contexto, emoções)
+- [ ] **`docs/emotional-journey.md`**: estado emocional por tela, riscos, pontos de atrito/deleite
+- [ ] **`docs/microcopy-inventory.md`**: inventário completo de strings com classificação de tom
 
 ### S5 — Pico e Final (UX)
 
