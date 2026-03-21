@@ -110,42 +110,54 @@ export function Questoes() {
           </div>
 
           <div className="space-y-12">
-            {bloco.qs.map((q, i) => (
-              <div
-                key={q.id}
-                className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100"
-              >
-                <div className="flex gap-4 mb-6">
-                  <div
-                    className="flex-shrink-0 w-10 h-10 bg-red-50 text-[var(--color-geekie-cereja)] rounded-full flex items-center justify-center font-bold text-lg"
-                    aria-hidden="true"
-                  >
-                    <span aria-hidden="true">{blocoAtual * 5 + i + 1}</span>
+            {bloco.qs.map((q, i) => {
+              const questionTextId = `question-text-${q.id}`;
+              return (
+                <div
+                  key={q.id}
+                  className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100"
+                >
+                  <div className="flex gap-4 mb-6">
+                    <div
+                      className="flex-shrink-0 w-10 h-10 bg-red-50 text-[var(--color-geekie-cereja)] rounded-full flex items-center justify-center font-bold text-lg"
+                      aria-hidden="true"
+                    >
+                      <span aria-hidden="true">{blocoAtual * 5 + i + 1}</span>
+                    </div>
+                    <p
+                      id={questionTextId}
+                      className="text-xl md:text-2xl text-[var(--color-geekie-preto)] leading-snug pt-1"
+                    >
+                      {q.texto}
+                    </p>
                   </div>
-                  <p className="text-xl md:text-2xl text-[var(--color-geekie-preto)] leading-snug pt-1">
-                    {q.texto}
-                  </p>
+                  <div
+                    role="radiogroup"
+                    aria-labelledby={questionTextId}
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-8"
+                  >
+                    {q.escala.map((texto, idx) => {
+                      const valor = idx + 1;
+                      return (
+                        <button
+                          key={valor}
+                          role="radio"
+                          aria-checked={respostas[q.id] === valor}
+                          onClick={() => handleChange(q.id, valor)}
+                          className={`text-left p-4 rounded-xl border-2 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 ${
+                            respostas[q.id] === valor
+                              ? 'border-[var(--color-geekie-cereja)] bg-red-50 text-[var(--color-geekie-cereja)] font-bold shadow-sm'
+                              : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'
+                          }`}
+                        >
+                          <div className="text-sm leading-tight">{texto}</div>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-8">
-                  {q.escala.map((texto, idx) => {
-                    const valor = idx + 1;
-                    return (
-                      <button
-                        key={valor}
-                        onClick={() => handleChange(q.id, valor)}
-                        className={`text-left p-4 rounded-xl border-2 transition-all duration-200 ${
-                          respostas[q.id] === valor
-                            ? 'border-[var(--color-geekie-cereja)] bg-red-50 text-[var(--color-geekie-cereja)] font-bold shadow-sm'
-                            : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'
-                        }`}
-                      >
-                        <div className="text-sm leading-tight">{texto}</div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
       </AnimatePresence>

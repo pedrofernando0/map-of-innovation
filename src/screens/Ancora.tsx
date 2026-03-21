@@ -37,12 +37,18 @@ export function Ancora() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+      <div
+        role="radiogroup"
+        aria-label="Selecione sua auto-percepção"
+        className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12"
+      >
         {opcoes.map((op) => (
           <button
             key={op.val}
+            role="radio"
+            aria-checked={ancora === op.val}
             onClick={() => setAncora(op.val)}
-            className={`text-left p-6 rounded-2xl border-2 transition-all duration-200 ${
+            className={`text-left p-6 rounded-2xl border-2 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 ${
               ancora === op.val
                 ? 'border-[var(--color-geekie-cereja)] bg-red-50 shadow-md'
                 : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50'
@@ -55,6 +61,7 @@ export function Ancora() {
                 {op.label}
               </h3>
               <div
+                aria-hidden="true"
                 className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                   ancora === op.val ? 'border-[var(--color-geekie-cereja)]' : 'border-gray-300'
                 }`}

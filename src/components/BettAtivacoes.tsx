@@ -36,16 +36,21 @@ function normalizeTag(tag: string) {
 
 function PilarCard({ data }: { data: AtivacoesPilar }) {
   const [aberto, setAberto] = useState(false);
+  const contentId = `pilar-content-${data.pilar.replace(/\s+/g, '-').toLowerCase()}`;
 
   return (
     <div className="rounded-2xl border-2 overflow-hidden transition-all duration-300 bg-white border-gray-200">
       {/* Header do pilar — sempre visível */}
       <button
         onClick={() => setAberto((a) => !a)}
-        className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50"
+        aria-expanded={aberto}
+        aria-controls={contentId}
+        className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-inset"
       >
         <div className="flex items-center gap-3">
-          <span className="text-2xl">{data.icone}</span>
+          <span className="text-2xl" aria-hidden="true">
+            {data.icone}
+          </span>
           <div>
             <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-0.5">
               Oportunidade identificada
@@ -56,6 +61,7 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
           </div>
         </div>
         <div
+          aria-hidden="true"
           className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 text-gray-600 font-bold text-lg transition-transform duration-300"
           style={{ transform: aberto ? 'rotate(45deg)' : 'rotate(0deg)' }}
         >
@@ -65,7 +71,10 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
 
       {/* Conteúdo expansível */}
       {aberto && (
-        <div className="px-5 pb-6 space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+        <div
+          id={contentId}
+          className="px-5 pb-6 space-y-4 animate-in fade-in slide-in-from-top-2 duration-300"
+        >
           <p className="text-sm text-gray-600 leading-relaxed border-t border-gray-200 pt-4">
             {data.intro}
           </p>

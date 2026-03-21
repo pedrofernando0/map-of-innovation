@@ -82,11 +82,15 @@ export function Cadastro() {
               <div className="flex gap-2">
                 <input
                   {...register('cidade')}
+                  id="input-cidade"
+                  aria-label="Cidade"
                   className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none"
                   placeholder="Cidade"
                 />
                 <input
                   {...register('estado')}
+                  id="input-estado"
+                  aria-label="Estado (UF)"
                   maxLength={2}
                   className="w-16 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none bg-white uppercase text-center"
                   placeholder="UF"
@@ -115,7 +119,11 @@ export function Cadastro() {
               control={control}
               name="parceira_geekie"
               render={({ field }) => (
-                <div className="flex gap-3">
+                <div
+                  role="radiogroup"
+                  aria-label="Sua escola já é parceira Geekie?"
+                  className="flex gap-3"
+                >
                   {[
                     { val: true, label: 'Sim, somos parceiros' },
                     { val: false, label: 'Ainda não' },
@@ -123,6 +131,8 @@ export function Cadastro() {
                     <button
                       key={String(op.val)}
                       type="button"
+                      role="radio"
+                      aria-checked={field.value === op.val}
                       onClick={() => field.onChange(op.val)}
                       className={`px-5 py-2.5 rounded-full border text-sm font-bold transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none ${
                         field.value === op.val

@@ -4,15 +4,27 @@ import type { Scores } from '../../types';
 
 function InfoTooltip({ text }: { text: string }) {
   const [show, setShow] = useState(false);
+  const tooltipId = 'pilares-info-tooltip';
   return (
-    <span
-      className="relative ml-1.5"
-      onMouseEnter={() => setShow(true)}
-      onMouseLeave={() => setShow(false)}
-    >
-      <span className="text-gray-400 text-sm cursor-help select-none">ⓘ</span>
+    <span className="relative ml-1.5">
+      <button
+        type="button"
+        aria-label="Mais informações sobre os Pilares da Geekie"
+        aria-describedby={show ? tooltipId : undefined}
+        onMouseEnter={() => setShow(true)}
+        onMouseLeave={() => setShow(false)}
+        onFocus={() => setShow(true)}
+        onBlur={() => setShow(false)}
+        className="text-gray-400 text-sm cursor-help select-none p-2 -m-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-full"
+      >
+        <span aria-hidden="true">ⓘ</span>
+      </button>
       {show && (
-        <div className="absolute left-0 bottom-full mb-2 bg-gray-900 text-white text-xs rounded-xl p-4 w-80 z-30 leading-relaxed shadow-2xl animate-in fade-in duration-200 text-left pointer-events-none">
+        <div
+          id={tooltipId}
+          role="tooltip"
+          className="absolute left-0 bottom-full mb-2 bg-gray-900 text-white text-xs rounded-xl p-4 w-80 z-30 leading-relaxed shadow-2xl animate-in fade-in duration-200 text-left pointer-events-none"
+        >
           {text}
         </div>
       )}
