@@ -9,11 +9,12 @@ const TypingMarkdown = memo(({ text }: { text: string }) => {
 
   useEffect(() => {
     let i = 0;
+    // 10ms/char: perceptível como processo em andamento, não flash instantâneo (UX-3.4)
     const timer = setInterval(() => {
       setTypedText(text.substring(0, i));
       i++;
       if (i > text.length) clearInterval(timer);
-    }, 2);
+    }, 10);
     return () => clearInterval(timer);
   }, [text]);
 

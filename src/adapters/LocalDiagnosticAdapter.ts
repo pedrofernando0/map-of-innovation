@@ -228,17 +228,18 @@ export class LocalDiagnosticAdapter implements IDiagnosticService {
           : `Vale observar que a auto-percepção da gestão (${getAncoraLabel(ancora)}) difere do score medido (${scores.total}/100) — uma oportunidade para aprofundar a leitura coletiva sobre o estágio atual da escola.`
         : '';
 
+    // Sem headings ### — criam distância clínica para usuário leigo em evento (UX-3.4)
+    // Separação por negrito corrido dentro do parágrafo
     return [
-      '### Síntese',
       abertura,
       ancoraComentario,
       '',
-      '### Pontos Fortes',
+      '**Pontos de maior consistência**',
       `- ${fortePilarAlto}`,
       `- ${fortePilarSeg}`,
       `- ${forteEixo}`,
       '',
-      '### Oportunidades de Evolução',
+      '**Oportunidades de evolução**',
       `- ${opPilarMin}`,
       `- ${opPilarSeg}`,
       `- ${eixoFraco}`,

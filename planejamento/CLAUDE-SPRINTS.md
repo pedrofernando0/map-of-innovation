@@ -23,19 +23,87 @@ _Atualizado: Março 2026_
 
 ---
 
+## Protocolo de Retroalimentação (obrigatório ao final de cada sprint)
+
+Todo sprint deve atualizar os documentos das categorias abaixo que foram impactadas.
+A IA deve fazer isso como **última ação** antes de pedir aprovação para avançar.
+
+### Categoria 1 — Código → Arquitetura
+
+**Quando:** sempre que houver novo componente, hook, adapter, rota ou mudança no store.
+
+**O que atualizar:** `planejamento/arquitetura.md`
+
+- Adicionar/remover entradas na árvore de pastas
+- Atualizar contagem de testes na seção "Cobertura de Testes"
+- Atualizar interface do AppStore se campos foram adicionados/removidos
+- Atualizar a tabela de rotas se novas rotas foram criadas
+
+### Categoria 2 — UX executado → Jornada emocional
+
+**Quando:** qualquer sprint que altere microcopy, fluxo de tela, hierarquia visual ou tom.
+
+**O que atualizar:** `docs/emotional-journey.md`
+
+- Para cada tela modificada: atualizar "Risco atual" (se foi resolvido) e "Ponto de deleite"
+- Se o pico ou o final mudou estruturalmente: atualizar a seção "Análise Pico-Final"
+- Adicionar observações de simulação ao final (se foram feitas no gate)
+
+### Categoria 3 — Strings alteradas → Inventário de microcopy
+
+**Quando:** qualquer sprint que modifique texto visível ao usuário.
+
+**O que atualizar:** `docs/microcopy-inventory.md`
+
+- Atualizar avaliação (✅ ⚠️ ❌) das strings modificadas
+- Adicionar novas strings criadas no sprint
+- Registrar strings eliminadas
+
+### Categoria 4 — Pendências resolvidas → pendencias.md + CLAUDE.md
+
+**Quando:** ao final de todo sprint, sem exceção.
+
+**O que atualizar:**
+
+- `planejamento/pendencias.md`: marcar itens concluídos com ✅ ou removê-los
+- `CLAUDE.md`: atualizar tabela de status do sprint (⬜ → ✅)
+- `CLAUDE-SPRINTS.md`: atualizar tabela de índice deste arquivo
+
+### Categoria 5 — Descobertas de comportamento → Rationale
+
+**Quando:** quando o sprint revelar que uma hipótese estava errada ou incompleta.
+
+**O que atualizar:** `CLAUDE-UX-RATIONALE.md` ou `CLAUDE-UI-RATIONALE.md`
+
+- Adicionar nota "Descoberta em [sprint]: ..." na seção relevante
+- Atualizar recomendação se a evidência contradiz o que estava documentado
+- Exemplo: se o typewriter a 10ms/char foi testado e causou impaciência, registrar isso
+
+**Formato da nota de descoberta:**
+
+```
+> **Descoberta S5 (2026-03-xx):** typewriter a 10ms/char em texto de 400 palavras
+> durou 67 segundos — acima do esperado. Ajustado para 8ms + máximo de 200 palavras
+> no fallback. Ver ResultadoDiagnostico.tsx:L47.
+```
+
+---
+
+---
+
 ## Índice de Sprints
 
-| Sprint                           | Fase     | Arquivo de referência                     | Status      |
-| -------------------------------- | -------- | ----------------------------------------- | ----------- |
-| S3 — Resiliência de Evento       | PRÉ-BETT | `roadmap.md` seção S3                     | ⬜ Pendente |
-| S4 — Experiência Essencial (UX)  | PRÉ-BETT | `roadmap.md` + `CLAUDE-UX.md` UX-0 a UX-2 | ⬜ Pendente |
-| S5 — Pico e Final                | PRÉ-BETT | `roadmap.md` + `CLAUDE-UX.md` UX-3 a UX-4 | ⬜ Pendente |
-| UI-0 — Auditoria e Design Tokens | PRÉ-BETT | `CLAUDE-UI.md` seção UI-0                 | ⬜ Pendente |
-| UI-1 — Acessibilidade WCAG 2.2   | PRÉ-BETT | `CLAUDE-UI.md` seção UI-1                 | ⬜ Pendente |
-| S6 — Governança de Conteúdo      | PÓS-BETT | `roadmap.md` seção S6                     | ⬜ Pendente |
-| S7 / UI-2 a UI-5 — Design System | PÓS-BETT | `CLAUDE-UI.md` UI-2 a UI-5                | ⬜ Pendente |
-| S8 — Testes Complementares       | PÓS-BETT | `roadmap.md` seção S8                     | ⬜ Pendente |
-| S9 — Features de Produto         | PÓS-BETT | `roadmap.md` seção S9                     | ⬜ Pendente |
+| Sprint                           | Fase     | Arquivo de referência                               | Status       |
+| -------------------------------- | -------- | --------------------------------------------------- | ------------ |
+| S3 — Resiliência de Evento       | PRÉ-BETT | `roadmap.md` seção S3                               | ✅ Concluído |
+| S4 — Experiência Essencial (UX)  | PRÉ-BETT | `roadmap.md` + `CLAUDE-UX-RATIONALE.md` UX-0 a UX-2 | ✅ Concluído |
+| UI-0 — Auditoria e Design Tokens | PRÉ-BETT | `CLAUDE-UI-RATIONALE.md` seção UI-0                 | ✅ Concluído |
+| UI-1 — Acessibilidade WCAG 2.2   | PRÉ-BETT | `CLAUDE-UI-RATIONALE.md` seção UI-1                 | ✅ Concluído |
+| S5 — Pico e Final                | PRÉ-BETT | `roadmap.md` + `CLAUDE-UX-RATIONALE.md` UX-3 a UX-4 | ⬜ Pendente  |
+| S6 — Governança de Conteúdo      | PÓS-BETT | `roadmap.md` seção S6                               | ⬜ Pendente  |
+| S7 / UI-2 a UI-5 — Design System | PÓS-BETT | `CLAUDE-UI-RATIONALE.md` UI-2 a UI-5                | ⬜ Pendente  |
+| S8 — Testes Complementares       | PÓS-BETT | `roadmap.md` seção S8                               | ⬜ Pendente  |
+| S9 — Features de Produto         | PÓS-BETT | `roadmap.md` seção S9                               | ⬜ Pendente  |
 
 ---
 
@@ -222,15 +290,15 @@ Após gate: informe o resultado e aguarde aprovação para o próximo sprint.
 - `src/components/ui.tsx` — Button, Badge, ProgressBar
 - `src/index.css` — tokens CSS existentes (primitivos)
 - `constants.ts` — strings de questões, níveis, ativações (não alterar questões)
-- `CLAUDE-UX.md` — sprints UX-0 a UX-2 (mapa de jornada, microcopy, fluxo)
-- `CLAUDE-UI.md` — sprints UI-0 a UI-1 (tokens, acessibilidade)
+- `CLAUDE-UX-RATIONALE.md` — sprints UX-0 a UX-2 (mapa de jornada, microcopy, fluxo)
+- `CLAUDE-UI-RATIONALE.md` — sprints UI-0 a UI-1 (tokens, acessibilidade)
 
 ### Prompt de execução
 
 ```
 Leia os seguintes arquivos antes de qualquer ação:
-- planejamento/CLAUDE-UX.md (completo)
-- planejamento/CLAUDE-UI.md (seções "Base Teórica", "Sprint UI-0" e "Sprint UI-1")
+- planejamento/CLAUDE-UX-RATIONALE.md (completo)
+- planejamento/CLAUDE-UI-RATIONALE.md (seções "Base Teórica", "Sprint UI-0" e "Sprint UI-1")
 - planejamento/roadmap.md (seção "S4 — Experiência Essencial")
 - planejamento/arquitetura.md (completo)
 - src/index.css
@@ -349,13 +417,13 @@ Após gate: apresente o score de Lighthouse e aguarde aprovação para S5.
 - `src/stores/appStore.ts` — scores.nivel, scores.pilares, escola, ancora
 - `src/adapters/LocalDiagnosticAdapter.ts` — fallback já contextualizado (S3)
 - `constants.ts` — CSP_COPY por nível
-- `CLAUDE-UX.md` — sprints UX-3 e UX-4
+- `CLAUDE-UX-RATIONALE.md` — sprints UX-3 e UX-4
 
 ### Prompt de execução
 
 ```
 Leia os seguintes arquivos antes de qualquer ação:
-- planejamento/CLAUDE-UX.md (seções "Sprint UX-3" e "Sprint UX-4" completas)
+- planejamento/CLAUDE-UX-RATIONALE.md (seções "Sprint UX-3" e "Sprint UX-4" completas)
 - planejamento/roadmap.md (seção "S5 — Pico e Final")
 - src/screens/Resultado.tsx
 - src/components/resultado/ResultadoHeader.tsx
@@ -367,8 +435,10 @@ Leia os seguintes arquivos antes de qualquer ação:
 - src/constants.ts (seção CSP_COPY)
 - src/types.ts (interfaces Scores, Escola)
 
-Se o arquivo docs/emotional-journey.md existir (criado no S4),
-leia também antes de começar.
+Leia também (gerados no S4):
+- docs/emotional-journey.md — mapa emocional por tela + análise pico-final
+- docs/persona-primaria.md — persona Carla, coordenadora pedagógica
+- docs/microcopy-inventory.md — inventário de strings com avaliação ✅⚠️❌
 
 Crie a branch: git checkout -b feature/s5-pico-final
 
@@ -498,7 +568,19 @@ GATE FINAL S5:
    deve sentir "informado e com próximo passo claro", não "empurrado para vendas"
 4. git add -A && git commit && git push origin feature/s5-pico-final
 
-Após gate: apresente as observações das simulações e aguarde aprovação.
+RETROALIMENTAÇÃO (obrigatória antes de encerrar):
+5. docs/emotional-journey.md → atualizar seções Resultado e CSP:
+   - "Risco atual" das duas telas (o que foi resolvido, o que permanece)
+   - "Análise Pico-Final": registrar resultado real da simulação
+   - Se houve descoberta de comportamento inesperado, registrar
+6. docs/microcopy-inventory.md → atualizar avaliação das strings alteradas nas
+   telas Resultado e CSP (mudar ⚠️/❌ para ✅ ou adicionar novas strings)
+7. planejamento/arquitetura.md → adicionar ClosingStatement.tsx na árvore de pastas;
+   atualizar contagem de testes
+8. planejamento/pendencias.md → marcar todos os itens do S5 como ✅
+9. CLAUDE.md → atualizar S5 de ⬜ para ✅ com data
+
+Após gate e retroalimentação: apresente as observações das simulações e aguarde aprovação.
 ```
 
 ---
@@ -512,7 +594,7 @@ Após gate: apresente as observações das simulações e aguarde aprovação.
 
 ```
 Leia os seguintes arquivos antes de qualquer ação:
-- planejamento/CLAUDE-UI.md (seções "Base Teórica", "Sprint UI-0", "Sprint UI-1")
+- planejamento/CLAUDE-UI-RATIONALE.md (seções "Base Teórica", "Sprint UI-0", "Sprint UI-1")
 - planejamento/arquitetura.md
 - src/index.css
 - src/components/ui.tsx
@@ -615,7 +697,13 @@ GATE FINAL S6:
    Remover campo obrigatório → build quebra com erro Zod legível
 4. git add -A && git commit && git push origin feature/s6-conteudo
 
-Após gate: aguarde aprovação antes do próximo sprint.
+RETROALIMENTAÇÃO (obrigatória antes de encerrar):
+5. planejamento/arquitetura.md → adicionar pasta src/content/ na árvore de pastas
+   com os 5 arquivos JSON e seus schemas
+6. planejamento/pendencias.md → marcar todos os itens do S6 como ✅
+7. CLAUDE.md → atualizar S6 de ⬜ para ✅ com data
+
+Após gate e retroalimentação: aguarde aprovação antes do próximo sprint.
 ```
 
 ---
@@ -630,7 +718,7 @@ Após gate: aguarde aprovação antes do próximo sprint.
 
 ```
 Leia os seguintes arquivos antes de qualquer ação:
-- planejamento/CLAUDE-UI.md (completo — seções UI-2 a UI-5)
+- planejamento/CLAUDE-UI-RATIONALE.md (completo — seções UI-2 a UI-5)
 - planejamento/arquitetura.md
 - src/components/ui.tsx
 - src/lib/transitions.ts
@@ -711,6 +799,12 @@ GATE FINAL S8:
 2. Suite completa roda em < 30s
 3. Zero violations axe críticas ou graves
 4. git add -A && git commit && git push origin feature/s8-testes
+
+RETROALIMENTAÇÃO (obrigatória antes de encerrar):
+5. planejamento/arquitetura.md → atualizar seção "Cobertura de Testes" com
+   nova contagem de testes e tempo de suite
+6. planejamento/pendencias.md → marcar todos os itens do S8 como ✅
+7. CLAUDE.md → atualizar S8 de ⬜ para ✅ com data
 ```
 
 ---
@@ -774,6 +868,14 @@ GATE S9a:
 2. Fluxo completo → dados chegam no painel do backend
 3. Admin.tsx → tabela carrega dados do backend
 4. git push origin feature/s9a-backend
+
+RETROALIMENTAÇÃO (obrigatória antes de encerrar):
+5. planejamento/arquitetura.md → atualizar diagrama hexagonal com novo adapter;
+   atualizar seção "O Que Não Existe" removendo item sobre backend;
+   atualizar tabela de variáveis de ambiente com novas vars do backend
+6. planejamento/como_rodar.md → documentar setup do backend (URL, chaves, etc.)
+7. planejamento/pendencias.md → marcar itens S9a como ✅
+8. CLAUDE.md → atualizar status S9 (em andamento)
 ```
 
 ### Prompt de execução — S9d (IA externa)
@@ -818,6 +920,14 @@ GATE S9d:
 3. Timeout de 25s ainda funciona (useDiagnostico usa Promise.race)
 4. npm run test → todos passam (mock da API nos testes)
 5. git push origin feature/s9d-ia-externa
+
+RETROALIMENTAÇÃO (obrigatória antes de encerrar):
+6. planejamento/arquitetura.md → atualizar diagrama hexagonal com ExternalDiagnosticAdapter;
+   atualizar seção "O Que Não Existe" removendo item sobre ExternalDiagnosticAdapter;
+   atualizar tabela de variáveis de ambiente com a nova chave de API
+7. planejamento/decisoes-tecnologia.md → registrar qual API foi escolhida e porquê,
+   com data e contexto da decisão
+8. planejamento/pendencias.md → marcar itens S9d como ✅
 ```
 
 ---

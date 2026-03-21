@@ -6,6 +6,7 @@ import { ResultadoHeader } from '../components/resultado/ResultadoHeader';
 import { ResultadoPilares } from '../components/resultado/ResultadoPilares';
 import { ResultadoEixos } from '../components/resultado/ResultadoEixos';
 import { ResultadoDiagnostico } from '../components/resultado/ResultadoDiagnostico';
+import { AncoraComparacao } from '../components/resultado/AncoraComparacao';
 import { useAppStore } from '../stores/appStore';
 
 export function Resultado() {
@@ -15,6 +16,7 @@ export function Resultado() {
   return (
     <div className="screen-resultado max-w-5xl mx-auto px-4 py-8 md:py-12 animate-in fade-in duration-500 space-y-8">
       <ResultadoHeader escola={escola} scores={scores} ancora={ancora} />
+      <AncoraComparacao ancora={ancora} nivelReal={scores.nivel} />
       <ResultadoEixos scores={scores} />
       <ResultadoPilares pilares={scores.pilares} />
       <BettAtivacoes scores={scores} />

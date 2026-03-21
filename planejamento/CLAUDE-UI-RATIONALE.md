@@ -167,14 +167,14 @@ corretos para operações de duração indefinida (geração do diagnóstico). A
 
 ## Estado dos Sprints de UI/UX
 
-| Sprint                              | Status      | Branch final | Data |
-| ----------------------------------- | ----------- | ------------ | ---- |
-| UI-0 — Auditoria e Design Tokens    | ⬜ Pendente | —            | —    |
-| UI-1 — Acessibilidade (WCAG 2.2)    | ⬜ Pendente | —            | —    |
-| UI-2 — Motion e Microinterações     | ⬜ Pendente | —            | —    |
-| UI-3 — Primitivos e Componentes     | ⬜ Pendente | —            | —    |
-| UI-4 — Feedback e Estado do Sistema | ⬜ Pendente | —            | —    |
-| UI-5 — Performance e Polish Final   | ⬜ Pendente | —            | —    |
+| Sprint                              | Status       | Branch final  | Data       |
+| ----------------------------------- | ------------ | ------------- | ---------- |
+| UI-0 — Auditoria e Design Tokens    | ✅ Concluído | main (via S4) | 2026-03-21 |
+| UI-1 — Acessibilidade (WCAG 2.2)    | ✅ Concluído | main (via S4) | 2026-03-21 |
+| UI-2 — Motion e Microinterações     | ⬜ Pendente  | —             | —          |
+| UI-3 — Primitivos e Componentes     | ⬜ Pendente  | —             | —          |
+| UI-4 — Feedback e Estado do Sistema | ⬜ Pendente  | —             | —          |
+| UI-5 — Performance e Polish Final   | ⬜ Pendente  | —             | —          |
 
 ---
 

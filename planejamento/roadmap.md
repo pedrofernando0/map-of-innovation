@@ -3,7 +3,8 @@
 _Atualizado: Março 2026_
 
 > **Fonte de verdade única** sobre o que fazer, em que ordem e por quê.
-> Os playbooks de execução passo a passo estão em `CLAUDE-UI.md` e `CLAUDE-UX.md`.
+> Os prompts de execução de cada sprint estão em `CLAUDE-SPRINTS.md`.
+> A rationale de UI está em `CLAUDE-UI-RATIONALE.md`; a de UX em `CLAUDE-UX-RATIONALE.md`.
 > A arquitetura técnica atual está em `arquitetura.md`.
 
 ---
@@ -103,7 +104,7 @@ Se `VITE_ADMIN_USER`/`VITE_ADMIN_PASS` não estiverem no `.env.local`, o login d
 ### S4 — Experiência Essencial
 
 **Duração estimada:** 3–4 dias | **Branch:** `feature/s4-experiencia`
-**Playbooks:** `CLAUDE-UI.md` (UI-0 a UI-1) + `CLAUDE-UX.md` (UX-0 a UX-2)
+**Playbooks:** `CLAUDE-UI-RATIONALE.md` (UI-0 a UI-1) + `CLAUDE-UX-RATIONALE.md` (UX-0 a UX-2)
 
 O visual já está adequado. O que falta é calibração emocional — o que o gestor escolar sente e lembra.
 
@@ -154,7 +155,7 @@ Adicionar camada semântica em `index.css` sem remover os primitivos existentes:
 ### S5 — Pico e Final
 
 **Duração estimada:** 2–3 dias | **Branch:** `feature/s5-pico-final`
-**Playbook:** `CLAUDE-UX.md` (UX-3 a UX-4)
+**Playbook:** `CLAUDE-UX-RATIONALE.md` (UX-3 a UX-4)
 
 A Regra Pico-Final de Kahneman é o fundamento: o usuário não vai lembrar de 80% da experiência — vai lembrar do momento em que viu o resultado da escola dele (pico) e de como saiu da conversa (final). Investir aqui tem retorno desproporcional na percepção da marca Geekie.
 
@@ -222,7 +223,7 @@ Hoje, quando a equipe pedagógica precisa ajustar uma questão do instrumento, u
 ### S7 — Design System Completo
 
 **Duração estimada:** 4–6 dias | **Branch:** `feature/s7-design-system`
-**Playbook:** `CLAUDE-UI.md` (UI-2 a UI-5)
+**Playbook:** `CLAUDE-UI-RATIONALE.md` (UI-2 a UI-5)
 
 **O que faz:**
 
@@ -311,10 +312,11 @@ A cobertura global já está em 98.5% statements / 100% lines. Este sprint é de
 
 ## Relação com os Outros Documentos
 
-| Documento        | Papel                                                                           |
-| ---------------- | ------------------------------------------------------------------------------- |
-| `CLAUDE-UI.md`   | Playbook passo a passo para S4 (tokens/a11y) e S7 (motion, componentes, polish) |
-| `CLAUDE-UX.md`   | Playbook passo a passo para S4 (microcopy/fluxo) e S5 (pico e final)            |
-| `arquitetura.md` | Arquitetura técnica atual do projeto                                            |
-| `pendencias.md`  | Checklist executável de todos os itens pendentes, por tema                      |
-| `como_rodar.md`  | Setup local, scripts, variáveis de ambiente                                     |
+| Documento                | Papel                                                                    |
+| ------------------------ | ------------------------------------------------------------------------ |
+| `CLAUDE-SPRINTS.md`      | Prompts de execução autocontidos para cada sprint (S3–S9)                |
+| `CLAUDE-UI-RATIONALE.md` | Rationale técnica de UI: tokens, a11y, motion, componentes (referência)  |
+| `CLAUDE-UX-RATIONALE.md` | Rationale de UX: psicologia, jornada, microcopy, pico-final (referência) |
+| `arquitetura.md`         | Arquitetura técnica atual do projeto                                     |
+| `pendencias.md`          | Checklist executável de todos os itens pendentes, por tema               |
+| `como_rodar.md`          | Setup local, scripts, variáveis de ambiente                              |
