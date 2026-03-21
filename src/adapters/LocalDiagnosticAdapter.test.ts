@@ -51,20 +51,21 @@ describe('LocalDiagnosticAdapter — por nível', () => {
     expect(typeof result).toBe('string');
     expect(result.length).toBeGreaterThan(100);
     expect(result).toContain('Escola Modelo');
-    expect(result).toContain('Pontos Fortes');
+    // Headings ### substituídos por negrito corrido (UX-3.4 — sem distância clínica)
+    expect(result).toContain('Pontos de maior consistência');
     expect(result).toContain('Oportunidades');
   });
 
   it('EXPLORADOR: inclui o pilar mais forte na abertura', async () => {
     const result = await adapter.generate(makeEscola(), makeScores('EXPLORADOR', 55), null);
     expect(result).toContain('Escola Modelo');
-    expect(result).toContain('Pontos Fortes');
+    expect(result).toContain('Pontos de maior consistência');
   });
 
   it('INTEGRADA: inclui o pilar mais fraco na abertura', async () => {
     const result = await adapter.generate(makeEscola(), makeScores('INTEGRADA', 80), null);
     expect(result).toContain('Escola Modelo');
-    expect(result).toContain('Pontos Fortes');
+    expect(result).toContain('Pontos de maior consistência');
   });
 });
 

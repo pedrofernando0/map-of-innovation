@@ -3,6 +3,7 @@
 exports[`Snapshots — telas estáticas > CSP 1`] = `
 <div
   class="min-h-[80vh] flex flex-col items-center justify-center p-6 animate-in fade-in duration-500"
+  style="opacity: 1;"
 >
   <div
     class="max-w-3xl w-full mx-auto space-y-4"
@@ -59,12 +60,12 @@ exports[`Snapshots — telas estáticas > CSP 1`] = `
         <h1
           class="text-3xl md:text-4xl font-bold text-[var(--color-geekie-preto)] mb-5"
         >
-          O próximo passo é compreender a realidade da sua escola com mais profundidade
+          O diagnóstico aponta onde focar
         </h1>
         <p
           class="text-lg text-gray-600 leading-relaxed"
         >
-          Ao solicitar o relatório, a Geekie entrará em contato para compreender o contexto da sua escola, aprofundar a leitura deste diagnóstico e discutir como aplicar os achados à rotina pedagógica específica da instituição.
+          Sua escola já tem iniciativas em andamento. A conversa seguinte é sobre como sistematizá-las.
         </p>
       </div>
       <div
@@ -153,12 +154,31 @@ exports[`Snapshots — telas estáticas > CSP 1`] = `
         </p>
       </div>
       <div
-        class="mt-10 flex justify-end pt-6 border-t border-[#f0e1e5]"
+        class="rounded-2xl border border-[#f0e1e5] bg-[#fff9f7] p-6 space-y-4"
+      >
+        <div
+          class="space-y-2 text-sm text-gray-600 leading-relaxed"
+        >
+          <p>
+            Você dedicou tempo para olhar com honestidade para a sua escola.
+          </p>
+          <p>
+            Nos próximos dias, um pedagogo da Geekie vai ler este diagnóstico antes de entrar em contato — a conversa parte daqui, não de um roteiro genérico.
+          </p>
+        </div>
+        <p
+          class="text-base font-semibold text-[var(--color-geekie-cereja)] leading-snug"
+        >
+          O caminho está aberto. A próxima etapa é sistematizar.
+        </p>
+      </div>
+      <div
+        class="mt-6 flex justify-end pt-6 border-t border-[#f0e1e5]"
       >
         <button
           class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none bg-[var(--color-geekie-cereja)] text-white hover:bg-opacity-90 px-8 py-4 text-lg"
         >
-          Encerrar diagnóstico
+          Liberar para a próxima escola
         </button>
       </div>
     </div>

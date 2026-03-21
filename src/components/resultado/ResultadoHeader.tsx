@@ -20,10 +20,11 @@ export function ResultadoHeader({ escola, scores, ancora }: Props) {
     <div className="bg-[var(--color-geekie-cereja)] rounded-3xl p-8 text-white shadow-lg">
       <div className="flex flex-col md:flex-row md:items-center gap-6">
         <div className="flex-1">
-          <p className="text-sm font-bold uppercase tracking-wider mb-2 opacity-75">
+          <p className="text-sm font-bold uppercase tracking-wider mb-3 opacity-75">
             Mapa de Inovação Educacional — Diagnóstico
           </p>
-          <h1 className="text-4xl font-extrabold mb-2 leading-tight">{escola.nome}</h1>
+          {/* Nome da escola é o elemento de maior peso visual — reconhecimento antes de avaliação (Norman) */}
+          <h1 className="text-5xl font-extrabold mb-2 leading-tight">{escola.nome}</h1>
           <p className="text-base opacity-80">
             {escola.cidade}
             {escola.estado ? ` / ${escola.estado}` : ''} · {escola.rede}
@@ -43,9 +44,10 @@ export function ResultadoHeader({ escola, scores, ancora }: Props) {
           <p className="text-sm font-bold uppercase tracking-wider opacity-75">
             Perfil de Inovação
           </p>
-          <p className="text-6xl font-extrabold leading-none">
+          {/* Score subordinado ao nome — text-4xl vs text-5xl do nome */}
+          <p className="text-4xl font-extrabold leading-none">
             {scores.total}
-            <span className="text-2xl font-normal opacity-60">/100</span>
+            <span className="text-xl font-normal opacity-60">/100</span>
           </p>
         </div>
       </div>

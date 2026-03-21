@@ -50,7 +50,20 @@ interface Props {
   pilares: Scores['pilares'];
 }
 
+function getPilarMaisForte(pilares: Scores['pilares']): { nome: string; score: number } {
+  const melhor = CARDS.reduce(
+    (acc, card) => {
+      const score = pilares[card.key];
+      return score > acc.score ? { nome: card.nome, score } : acc;
+    },
+    { nome: CARDS[0].nome, score: pilares[CARDS[0].key] }
+  );
+  return melhor;
+}
+
 export function ResultadoPilares({ pilares }: Props) {
+  const pilarForte = getPilarMaisForte(pilares);
+
   return (
     <section
       aria-labelledby="pilares-heading"
@@ -68,6 +81,20 @@ export function ResultadoPilares({ pilares }: Props) {
           sua escola integra pedagogia e tecnologia de forma intencional.
         </p>
       </div>
+
+      {/* Âncora positiva: pilar mais forte antes da comparação — reduz reação defensiva (UX-3.2) */}
+      <div className="mb-6 flex items-center gap-2 rounded-2xl bg-[var(--color-geekie-cereja)]/5 border border-[var(--color-geekie-cereja)]/15 px-5 py-3">
+        <span className="text-[var(--color-geekie-cereja)] font-bold text-base" aria-hidden="true">
+          ✦
+        </span>
+        <p className="text-sm text-[var(--color-geekie-preto)]">
+          <span className="font-semibold text-[var(--color-geekie-cereja)]">
+            Maior consistência:
+          </span>{' '}
+          {pilarForte.nome} — <span className="font-bold">{pilarForte.score}/100</span>
+        </p>
+      </div>
+
       <div className="space-y-5">
         {CARDS.map((c, i) => {
           const score = pilares[c.key];

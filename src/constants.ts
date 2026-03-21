@@ -434,18 +434,21 @@ export const ATIVACOES_BETT: Record<string, AtivacoesPilar> = {
   },
 };
 
+// Títulos variáveis por nível — linguagem de parceiro, não de vendedor (UX-4.1)
 export const CSP_COPY = {
   ESSENCIAL: {
-    titulo: 'Identificamos oportunidades claras de evolução',
+    titulo: 'Há um caminho claro a partir daqui',
     subtitulo:
-      'Seu consultor Geekie pode apresentar um plano de implementação adaptado à sua realidade.',
+      'O diagnóstico identificou onde estão as oportunidades. O próximo passo é entender como avançar no contexto da sua escola.',
   },
   EXPLORADOR: {
-    titulo: 'Sua escola está no caminho certo',
-    subtitulo: 'Veja como potencializar os pilares que ainda têm espaço para crescer.',
+    titulo: 'O diagnóstico aponta onde focar',
+    subtitulo:
+      'Sua escola já tem iniciativas em andamento. A conversa seguinte é sobre como sistematizá-las.',
   },
   INTEGRADA: {
-    titulo: 'Sua escola lidera em inovação',
-    subtitulo: 'Descubra como manter e expandir esse nível de excelência.',
+    titulo: 'Sua escola já lidera — o próximo passo é expandir',
+    subtitulo:
+      'Práticas consolidadas merecem ser reconhecidas e aprofundadas. Veja como ir ainda mais longe.',
   },
 };

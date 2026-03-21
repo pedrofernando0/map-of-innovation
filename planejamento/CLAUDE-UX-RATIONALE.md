@@ -226,14 +226,14 @@ CSP           Confiança, próximo passo Tom vendedor, fechamento    Microcopy +
 
 ## Estado dos Sprints de UX
 
-| Sprint                                  | Status      | Branch final | Data |
-| --------------------------------------- | ----------- | ------------ | ---- |
-| UX-0 — Mapa de Jornada e Auditoria      | ⬜ Pendente | —            | —    |
-| UX-1 — Microcopy e Tom de Voz           | ⬜ Pendente | —            | —    |
-| UX-2 — Fluxo e Carga Cognitiva          | ⬜ Pendente | —            | —    |
-| UX-3 — O Pico: Tela de Resultado        | ⬜ Pendente | —            | —    |
-| UX-4 — O Final: Tela CSP e Encerramento | ⬜ Pendente | —            | —    |
-| UX-5 — Validação Comportamental         | ⬜ Pendente | —            | —    |
+| Sprint                                  | Status       | Branch final  | Data       |
+| --------------------------------------- | ------------ | ------------- | ---------- |
+| UX-0 — Mapa de Jornada e Auditoria      | ✅ Concluído | main (via S4) | 2026-03-21 |
+| UX-1 — Microcopy e Tom de Voz           | ✅ Concluído | main (via S4) | 2026-03-21 |
+| UX-2 — Fluxo e Carga Cognitiva          | ✅ Concluído | main (via S4) | 2026-03-21 |
+| UX-3 — O Pico: Tela de Resultado        | ⬜ Pendente  | —             | —          |
+| UX-4 — O Final: Tela CSP e Encerramento | ⬜ Pendente  | —             | —          |
+| UX-5 — Validação Comportamental         | ⬜ Pendente  | —             | —          |
 
 ---
 

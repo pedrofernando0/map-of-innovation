@@ -86,8 +86,8 @@ Todos os itens foram implementados e mergeados para main:
 
 > Nota: cobertura global já está em 98.5% statements e 100% lines. Este sprint é de complementação qualitativa.
 
-- [ ] Instalar `jest-axe`. Criar `src/__tests__/a11y.test.tsx` com testes axe para todas as telas
-- [ ] Testes dos novos componentes criados nos sprints S4/S5 (ClosingStatement, destaque de pilar, etc.)
+- [ ] Expandir `src/__tests__/a11y.test.tsx` (já existe — criado no S4) para cobrir telas adicionais criadas no S5
+- [ ] Testes dos novos componentes criados no S5 (ClosingStatement, destaque de pilar, comparação âncora)
 - [ ] Verificar que suite completa continua abaixo de 30s após adições
 
 ### S9 — Features de Produto

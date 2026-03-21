@@ -216,7 +216,7 @@ Zero prop drilling. Cada screen acessa o store diretamente via `useAppStore()`.
 
 ## Cobertura de Testes
 
-Suite: **82 testes** em ~3s.
+Suite: **105 testes** em ~3s (atualizado após merge dos sprints S3 e S4 em 21/03/2026).
 
 | Camada          | Stmts | Lines |
 | --------------- | ----- | ----- |

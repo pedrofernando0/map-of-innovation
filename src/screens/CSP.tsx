@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components/ui';
 import { GeekieLogo } from '../components/GeekieLogo';
+import { ClosingStatement } from '../components/ClosingStatement';
 import { useAppStore } from '../stores/appStore';
+import { CSP_COPY } from '../constants';
 
 export function CSP() {
   const navigate = useNavigate();
-  const { escola, reset, setProgress } = useAppStore();
+  const { escola, scores, reset, setProgress } = useAppStore();
+  const [isLeaving, setIsLeaving] = useState(false);
+
+  // C4: fade de saída antes do reset — cria "ponto final" intencional (UX-4.3)
+  function handleEncerrar() {
+    setIsLeaving(true);
+    setTimeout(() => {
+      reset();
+      navigate('/');
+    }, 300);
+  }
+
+  // C1: título varia por nível via CSP_COPY (UX-4.1)
+  const copy = CSP_COPY[scores.nivel as keyof typeof CSP_COPY] ?? CSP_COPY.EXPLORADOR;
 
   const nextSteps = [
     {
@@ -28,7 +43,13 @@ export function CSP() {
   ];
 
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center p-6 animate-in fade-in duration-500">
+    <div
+      className="min-h-[80vh] flex flex-col items-center justify-center p-6 animate-in fade-in duration-500"
+      style={{
+        opacity: isLeaving ? 0 : 1,
+        transition: isLeaving ? 'opacity 300ms cubic-bezier(0.22, 1, 0.36, 1)' : undefined,
+      }}
+    >
       <div className="max-w-3xl w-full mx-auto space-y-4">
         <button
           onClick={() => {
@@ -65,15 +86,12 @@ export function CSP() {
           </div>
 
           <div className="max-w-2xl">
+            {/* C1: título varia por nível — linguagem de parceiro, não de vendedor (UX-4.1) */}
             <h1 className="text-3xl md:text-4xl font-bold text-[var(--color-geekie-preto)] mb-5">
-              O próximo passo é compreender a realidade da sua escola com mais profundidade
+              {copy.titulo}
             </h1>
 
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Ao solicitar o relatório, a Geekie entrará em contato para compreender o contexto da
-              sua escola, aprofundar a leitura deste diagnóstico e discutir como aplicar os achados
-              à rotina pedagógica específica da instituição.
-            </p>
+            <p className="text-lg text-gray-600 leading-relaxed">{copy.subtitulo}</p>
           </div>
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -105,15 +123,13 @@ export function CSP() {
             </p>
           </div>
 
-          <div className="mt-10 flex justify-end pt-6 border-t border-[#f0e1e5]">
-            <Button
-              onClick={() => {
-                reset();
-                navigate('/');
-              }}
-              size="lg"
-            >
-              Encerrar diagnóstico
+          {/* C2: ClosingStatement — ritual de encerramento com closure emocional (UX-4.2) */}
+          <ClosingStatement nivel={scores.nivel} />
+
+          <div className="mt-6 flex justify-end pt-6 border-t border-[#f0e1e5]">
+            {/* C3: "Liberar para a próxima escola" — contextualiza o reset como ato intencional (UX-4.3) */}
+            <Button onClick={handleEncerrar} size="lg">
+              Liberar para a próxima escola
             </Button>
           </div>
         </div>
