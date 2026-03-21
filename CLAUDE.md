@@ -52,7 +52,7 @@
 | S4 — Experiência Essencial (UX/a11y + tokens)         | ✅ Concluído | 2026-03-21 |
 | S5 — Pico e Final (Resultado + CSP)                   | ✅ Concluído | 2026-03-21 |
 | S6 — Governança de Conteúdo                           | ⬜ Pendente  | —          |
-| S7 — Design System Completo                           | ⬜ Pendente  | —          |
+| S7 — Design System Completo                           | ✅ Concluído | 2026-03-21 |
 | S8 — Testes (complementar)                            | ⬜ Pendente  | —          |
 | S9 — Features de Produto                              | ⬜ Pendente  | —          |
 
