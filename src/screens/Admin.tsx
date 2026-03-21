@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { ArrowLeft, DownloadSimple, X, CopySimple, Check } from '@phosphor-icons/react';
 
+import { SkeletonRow } from '../components/SkeletonRow';
 import { useServices } from '../contexts/AppServicesContext';
 import { env } from '../env';
 import { StoredRecord } from '../types';
@@ -29,12 +30,17 @@ export function Admin() {
   // UI-3.3: Dialog de JSON acessível (substitui alert())
   const [jsonDialogRecord, setJsonDialogRecord] = useState<StoredRecord | null>(null);
   const [copied, setCopied] = useState(false);
+  // UI-4.3: isLoading preparado para quando Admin migrar de localStorage para API assíncrona
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (auth) {
+      // UI-4.3: setIsLoading(true) aqui quando migrar para API assíncrona
+      setIsLoading(true);
       const idx = storage.getIndex();
       const data = idx.map((e) => storage.getRecord(e.id)).filter(Boolean);
       setFullData(data);
+      setIsLoading(false);
     }
   }, [auth, storage]);
 
@@ -393,9 +399,11 @@ export function Admin() {
                     </td>
                   </tr>
                 ))}
-                {fullData.length === 0 && (
+                {/* UI-4.3: SkeletonRows enquanto isLoading=true (pronto para API assíncrona) */}
+                {isLoading && Array.from({ length: 5 }).map((_, i) => <SkeletonRow key={i} />)}
+                {!isLoading && fullData.length === 0 && (
                   <tr>
-                    <td colSpan={6} className="p-12 text-center text-gray-500">
+                    <td colSpan={7} className="p-12 text-center text-gray-500">
                       Nenhum registro encontrado.
                     </td>
                   </tr>

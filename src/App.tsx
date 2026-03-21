@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
+import { Toaster } from 'sonner';
 
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { AppLayout } from './screens/AppLayout';
@@ -20,6 +21,8 @@ export default function App() {
 
   return (
     <ErrorBoundary>
+      {/* UI-4.1: Toaster global — position bottom-center, aria-live embutido no sonner */}
+      <Toaster position="bottom-center" richColors closeButton />
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={location.pathname}

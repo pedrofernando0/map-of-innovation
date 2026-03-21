@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Mulish:wght@400;500;700;800&display=swap');
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --font-sans: "Baloo 2", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Mulish", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Baloo 2', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Mulish', ui-sans-serif, system-ui, sans-serif;
 
   --color-geekie-cereja: #ff1547;
   --color-geekie-preto: #1c1c1c;
@@ -76,14 +76,28 @@ body {
   background-color: var(--color-geekie-branco);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
 }
 
 @media print {
-  header, .btn-primario, .btn-secundario, .no-print { display: none !important; }
-  .screen-resultado { padding: 0 !important; }
-  .diagnostico-container { break-inside: avoid; }
+  header,
+  .btn-primario,
+  .btn-secundario,
+  .no-print {
+    display: none !important;
+  }
+  .screen-resultado {
+    padding: 0 !important;
+  }
+  .diagnostico-container {
+    break-inside: avoid;
+  }
   body::after {
     content: 'Diagnóstico gerado em ' attr(data-date) ' | geekie.com.br/mapa-inovacao';
     display: block;
@@ -94,8 +108,31 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ── Skeleton shimmer (UI-4.3) ───────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+    background: #f0f0f0;
+  }
+}
+
 /* Typography for Markdown */
-.prose h1, .prose h2, .prose h3 {
+.prose h1,
+.prose h2,
+.prose h3 {
   font-family: var(--font-heading);
   color: var(--color-geekie-preto);
   font-weight: 800;
@@ -103,9 +140,15 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5em;
 }
 
-.prose h1 { font-size: 1.875rem; }
-.prose h2 { font-size: 1.5rem; }
-.prose h3 { font-size: 1.25rem; }
+.prose h1 {
+  font-size: 1.875rem;
+}
+.prose h2 {
+  font-size: 1.5rem;
+}
+.prose h3 {
+  font-size: 1.25rem;
+}
 
 .prose p {
   margin-bottom: 1em;

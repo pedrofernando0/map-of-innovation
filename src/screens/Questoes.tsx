@@ -1,12 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
+import { Circle } from '@phosphor-icons/react';
 
 import { Button } from '../components/ui';
 import { useAppStore } from '../stores/appStore';
 import { useQuestionnaire } from '../hooks/useQuestionnaire';
 import { useDiagnostico } from '../hooks/useDiagnostico';
 import { useMotionVariants } from '../hooks/useMotionVariants';
+import { useToast } from '../hooks/useToast';
 import { useServices } from '../contexts/AppServicesContext';
 import { calculateScores } from '../domain/scoring/calculateScores';
 import { QUESTOES } from '../constants';
@@ -27,6 +29,7 @@ export function Questoes() {
   const { storage, diagnostic } = useServices();
   const { generate } = useDiagnostico(diagnostic);
   const { fadeUp, stagger, shouldReduce } = useMotionVariants();
+  const { success: toastSuccess, error: toastError } = useToast();
 
   const handleFinish = async (
     respostasOverride?: Record<string, number>,
@@ -40,9 +43,17 @@ export function Questoes() {
     const finalState = { ...useAppStore.getState(), scores, diagnostico };
     setScores(scores);
     setDiagnostico(diagnostico);
-    storage.save({ ...finalState, scores, diagnostico });
-    setProgress(90);
-    navigate('/resultado');
+    // UI-4.1: toast de sucesso/erro ao salvar — aparece na tela de resultado
+    try {
+      storage.save({ ...finalState, scores, diagnostico });
+      setProgress(90);
+      navigate('/resultado');
+      toastSuccess('Diagnóstico salvo com sucesso');
+    } catch {
+      toastError('Não foi possível salvar. Tente novamente.');
+      setProgress(90);
+      navigate('/resultado');
+    }
   };
 
   const handleBack = () => {
@@ -110,6 +121,35 @@ export function Questoes() {
                 Ir para o relatório
               </button>
             )}
+          </div>
+
+          {/* UI-4.2: Progress indicator interno do bloco — dots respondidos */}
+          <div
+            className="flex items-center gap-2 mb-6"
+            role="status"
+            aria-live="polite"
+            aria-label={`${bloco.qs.filter((q) => respostas[q.id] !== undefined).length} de ${bloco.qs.length} respondidas neste bloco`}
+          >
+            {bloco.qs.map((q) => {
+              const answered = respostas[q.id] !== undefined;
+              return (
+                <motion.span
+                  key={q.id}
+                  aria-hidden="true"
+                  animate={answered && !shouldReduce ? { scale: [1, 1.3, 1] } : { scale: 1 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <Circle
+                    size={12}
+                    weight={answered ? 'fill' : 'regular'}
+                    className={answered ? 'text-[var(--color-geekie-cereja)]' : 'text-gray-300'}
+                  />
+                </motion.span>
+              );
+            })}
+            <span className="ml-1 text-xs text-[var(--color-text-tertiary)] font-medium">
+              {bloco.qs.filter((q) => respostas[q.id] !== undefined).length}/{bloco.qs.length}
+            </span>
           </div>
 
           {/* UI-2.3: stagger nos cards de questão ao trocar de bloco */}
