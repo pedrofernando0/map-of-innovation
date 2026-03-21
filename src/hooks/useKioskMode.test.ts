@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { renderHook } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react';
 
 import { useKioskMode } from './useKioskMode';
 
@@ -17,7 +17,9 @@ describe('useKioskMode', () => {
   it('dispara reset após 10 minutos de inatividade', () => {
     const onReset = vi.fn();
     renderHook(() => useKioskMode(true, onReset));
-    vi.advanceTimersByTime(10 * 60 * 1000);
+    act(() => {
+      vi.advanceTimersByTime(10 * 60 * 1000);
+    });
     expect(onReset).toHaveBeenCalledTimes(1);
   });
 
@@ -33,13 +35,66 @@ describe('useKioskMode', () => {
     const onReset = vi.fn();
     renderHook(() => useKioskMode(true, onReset));
     // Advance 9 minutes, then fire a mousemove event
-    vi.advanceTimersByTime(9 * 60 * 1000);
-    window.dispatchEvent(new MouseEvent('mousemove'));
+    act(() => {
+      vi.advanceTimersByTime(9 * 60 * 1000);
+    });
+    act(() => {
+      window.dispatchEvent(new MouseEvent('mousemove'));
+    });
     // Another 9 minutes — still no reset
-    vi.advanceTimersByTime(9 * 60 * 1000);
+    act(() => {
+      vi.advanceTimersByTime(9 * 60 * 1000);
+    });
     expect(onReset).not.toHaveBeenCalled();
     // One more minute (total 10 since last interaction)
-    vi.advanceTimersByTime(60 * 1000);
+    act(() => {
+      vi.advanceTimersByTime(60 * 1000);
+    });
     expect(onReset).toHaveBeenCalledTimes(1);
+  });
+
+  it('showWarning é false no início', () => {
+    const onReset = vi.fn();
+    const { result } = renderHook(() => useKioskMode(true, onReset));
+    expect(result.current.showWarning).toBe(false);
+  });
+
+  it('showWarning fica true 30s antes do reset', () => {
+    const onReset = vi.fn();
+    const { result } = renderHook(() => useKioskMode(true, onReset));
+    // Advance to just before warning (9min29s) — still false
+    act(() => {
+      vi.advanceTimersByTime(9 * 60 * 1000 + 29 * 1000);
+    });
+    expect(result.current.showWarning).toBe(false);
+    // Advance 1 more second (9min30s) — warning triggers
+    act(() => {
+      vi.advanceTimersByTime(1000);
+    });
+    expect(result.current.showWarning).toBe(true);
+  });
+
+  it('showWarning volta a false ao interagir', () => {
+    const onReset = vi.fn();
+    const { result } = renderHook(() => useKioskMode(true, onReset));
+    // Trigger warning
+    act(() => {
+      vi.advanceTimersByTime(9 * 60 * 1000 + 30 * 1000);
+    });
+    expect(result.current.showWarning).toBe(true);
+    // User interacts — resets timer
+    act(() => {
+      window.dispatchEvent(new MouseEvent('mousemove'));
+    });
+    expect(result.current.showWarning).toBe(false);
+  });
+
+  it('showWarning é false quando isActive=false', () => {
+    const onReset = vi.fn();
+    const { result } = renderHook(() => useKioskMode(false, onReset));
+    act(() => {
+      vi.advanceTimersByTime(15 * 60 * 1000);
+    });
+    expect(result.current.showWarning).toBe(false);
   });
 });

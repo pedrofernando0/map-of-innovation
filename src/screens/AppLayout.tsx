@@ -22,7 +22,7 @@ export function AppLayout() {
     navigate('/');
   }, [reset, navigate]);
 
-  useKioskMode(true, handleReset);
+  const { showWarning } = useKioskMode(true, handleReset);
 
   return (
     <div className="min-h-screen bg-[var(--color-geekie-branco)]">
@@ -31,6 +31,15 @@ export function AppLayout() {
       <main className="overflow-x-hidden">
         <Outlet />
       </main>
+      {showWarning && (
+        <div
+          role="status"
+          aria-live="assertive"
+          className="fixed bottom-0 left-0 right-0 z-50 bg-black/80 text-white text-center py-4 px-6 text-sm font-medium"
+        >
+          Sessão encerrando em 30 segundos por inatividade — toque para continuar
+        </div>
+      )}
     </div>
   );
 }

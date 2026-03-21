@@ -1,21 +1,42 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 const INACTIVITY_MS = 10 * 60 * 1000; // 10 minutes
+const WARNING_BEFORE_MS = 30 * 1000; // show warning 30s before reset
+
+export interface KioskModeResult {
+  showWarning: boolean;
+}
 
 /**
  * Resets the app after INACTIVITY_MS of no user interaction.
+ * Shows a warning banner WARNING_BEFORE_MS before the reset.
  * @param isActive - false on splash and admin screens (no timer needed)
  * @param onReset  - callback to reset state and navigate to splash
  */
-export function useKioskMode(isActive: boolean, onReset: () => void): void {
+export function useKioskMode(isActive: boolean, onReset: () => void): KioskModeResult {
+  const [showWarning, setShowWarning] = useState(false);
+
+  const handleReset = useCallback(() => {
+    setShowWarning(false);
+    onReset();
+  }, [onReset]);
+
   useEffect(() => {
     if (!isActive) return;
 
-    let timeoutId: ReturnType<typeof setTimeout>;
+    let resetTimeoutId: ReturnType<typeof setTimeout>;
+    let warningTimeoutId: ReturnType<typeof setTimeout>;
 
     const resetTimer = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(onReset, INACTIVITY_MS);
+      clearTimeout(resetTimeoutId);
+      clearTimeout(warningTimeoutId);
+      setShowWarning(false);
+
+      warningTimeoutId = setTimeout(() => {
+        setShowWarning(true);
+      }, INACTIVITY_MS - WARNING_BEFORE_MS);
+
+      resetTimeoutId = setTimeout(handleReset, INACTIVITY_MS);
     };
 
     window.addEventListener('mousemove', resetTimer);
@@ -27,7 +48,10 @@ export function useKioskMode(isActive: boolean, onReset: () => void): void {
       window.removeEventListener('mousemove', resetTimer);
       window.removeEventListener('keydown', resetTimer);
       window.removeEventListener('touchstart', resetTimer);
-      clearTimeout(timeoutId);
+      clearTimeout(resetTimeoutId);
+      clearTimeout(warningTimeoutId);
     };
-  }, [isActive, onReset]);
+  }, [isActive, handleReset]);
+
+  return { showWarning };
 }
