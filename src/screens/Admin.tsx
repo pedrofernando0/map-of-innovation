@@ -12,6 +12,8 @@ import {
   Cell,
 } from 'recharts';
 import { useNavigate } from 'react-router-dom';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { ArrowLeft, DownloadSimple, X, CopySimple, Check } from '@phosphor-icons/react';
 
 import { useServices } from '../contexts/AppServicesContext';
 import { env } from '../env';
@@ -24,6 +26,9 @@ export function Admin() {
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
   const [auth, setAuth] = useState(false);
+  // UI-3.3: Dialog de JSON acessível (substitui alert())
+  const [jsonDialogRecord, setJsonDialogRecord] = useState<StoredRecord | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (auth) {
@@ -139,6 +144,13 @@ export function Admin() {
     };
   }, [fullData]);
 
+  const handleCopyJson = async () => {
+    if (!jsonDialogRecord) return;
+    await navigator.clipboard.writeText(JSON.stringify(jsonDialogRecord, null, 2));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   const adminConfigured = Boolean(env.ADMIN_USER && env.ADMIN_PASS);
 
   if (!auth) {
@@ -148,19 +160,8 @@ export function Admin() {
           onClick={() => navigate('/')}
           className="absolute top-8 left-8 text-gray-500 hover:text-[var(--color-geekie-cereja)] font-medium flex items-center gap-2 transition-colors"
         >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
+          {/* UI-3.4: Phosphor ArrowLeft weight=regular (navegação) */}
+          <ArrowLeft size={20} weight="regular" aria-hidden="true" />
           Voltar para o App
         </button>
         {!adminConfigured ? (
@@ -217,21 +218,8 @@ export function Admin() {
                 aria-label="Voltar para o App"
                 className="text-[var(--color-text-tertiary)] hover:text-[var(--color-geekie-cereja)] transition-colors p-2 -m-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-md"
               >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <line x1="19" y1="12" x2="5" y2="12"></line>
-                  <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
+                {/* UI-3.4: Phosphor ArrowLeft weight=regular (navegação secundária) */}
+                <ArrowLeft size={24} weight="regular" aria-hidden="true" />
               </button>
               <h1 className="text-3xl font-bold text-[var(--color-geekie-preto)]">
                 Painel Administrativo
@@ -241,22 +229,10 @@ export function Admin() {
           </div>
           <button
             onClick={exportarCSV}
-            className="bg-[var(--color-geekie-verde)] text-white px-6 py-3 rounded-xl font-bold hover:bg-opacity-90 transition-colors flex items-center gap-2"
+            className="bg-[var(--color-geekie-verde)] text-white px-6 py-3 rounded-xl font-bold hover:bg-opacity-90 transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2"
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
+            {/* UI-3.4: Phosphor DownloadSimple weight=bold (ação primária) */}
+            <DownloadSimple size={20} weight="bold" aria-hidden="true" />
             Exportar CSV
           </button>
         </div>
@@ -404,8 +380,12 @@ export function Admin() {
                       {d.scores.total}
                     </td>
                     <td className="p-4 border-b border-gray-100 text-center">
+                      {/* UI-3.3: Botão que abre Dialog acessível — substitui alert() */}
                       <button
-                        onClick={() => alert(JSON.stringify(d, null, 2))}
+                        onClick={() => {
+                          setJsonDialogRecord(d);
+                          setCopied(false);
+                        }}
                         className="text-[var(--color-geekie-azul)] hover:underline text-sm font-medium px-2 py-2 -mx-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-md"
                       >
                         Ver JSON
@@ -425,6 +405,61 @@ export function Admin() {
           </div>
         </div>
       </div>
+
+      {/* UI-3.3: Dialog acessível para exibir JSON — focus trap, ESC fecha, botão Copiar */}
+      <DialogPrimitive.Root
+        open={jsonDialogRecord !== null}
+        onOpenChange={(open) => {
+          if (!open) setJsonDialogRecord(null);
+        }}
+      >
+        <DialogPrimitive.Portal>
+          <DialogPrimitive.Overlay className="fixed inset-0 bg-black/50 z-40 animate-in fade-in-0" />
+          <DialogPrimitive.Content
+            className="fixed left-1/2 top-1/2 z-50 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white shadow-2xl p-6 animate-in fade-in-0 zoom-in-95 focus-visible:outline-none"
+            aria-describedby="json-dialog-desc"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <DialogPrimitive.Title className="text-lg font-bold text-[var(--color-geekie-preto)]">
+                Dados do Registro
+              </DialogPrimitive.Title>
+              <DialogPrimitive.Close
+                className="text-[var(--color-text-tertiary)] hover:text-[var(--color-geekie-cereja)] transition-colors p-2 -m-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-md"
+                aria-label="Fechar"
+              >
+                <X size={20} weight="bold" aria-hidden="true" />
+              </DialogPrimitive.Close>
+            </div>
+            <DialogPrimitive.Description id="json-dialog-desc" className="sr-only">
+              JSON completo do registro de diagnóstico selecionado
+            </DialogPrimitive.Description>
+            <pre className="bg-gray-50 rounded-xl p-4 text-xs overflow-y-auto max-h-96 text-gray-700 font-mono leading-relaxed border border-gray-200">
+              {jsonDialogRecord ? JSON.stringify(jsonDialogRecord, null, 2) : ''}
+            </pre>
+            <div className="mt-4 flex justify-end gap-3">
+              <button
+                onClick={handleCopyJson}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-[var(--color-geekie-azul)] text-[var(--color-geekie-azul)] font-bold text-sm hover:bg-[var(--color-geekie-azul)] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2"
+              >
+                {copied ? (
+                  <>
+                    <Check size={16} weight="bold" aria-hidden="true" /> Copiado!
+                  </>
+                ) : (
+                  <>
+                    <CopySimple size={16} weight="bold" aria-hidden="true" /> Copiar
+                  </>
+                )}
+              </button>
+              <DialogPrimitive.Close asChild>
+                <button className="px-4 py-2 rounded-lg bg-gray-100 text-gray-700 font-bold text-sm hover:bg-gray-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2">
+                  Fechar
+                </button>
+              </DialogPrimitive.Close>
+            </div>
+          </DialogPrimitive.Content>
+        </DialogPrimitive.Portal>
+      </DialogPrimitive.Root>
     </div>
   );
 }

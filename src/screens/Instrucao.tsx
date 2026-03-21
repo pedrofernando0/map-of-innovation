@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Info } from '@phosphor-icons/react';
 
 import { Button } from '../components/ui';
 import { useAppStore } from '../stores/appStore';
@@ -11,26 +12,12 @@ export function Instrucao() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-16 animate-in fade-in duration-500">
       <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-8 md:p-12">
+        {/* UI-3.4: Phosphor Info weight=regular (informativo decorativo) */}
         <div
           className="flex items-center justify-center w-16 h-16 bg-orange-100 text-[var(--color-geekie-laranja)] rounded-full mb-8"
           aria-hidden="true"
         >
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="16" x2="12" y2="12"></line>
-            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-          </svg>
+          <Info size={32} weight="regular" aria-hidden="true" />
         </div>
 
         <h1 className="text-3xl md:text-4xl font-bold text-[var(--color-geekie-preto)] mb-6">
@@ -55,9 +42,13 @@ export function Instrucao() {
 
           <div className="bg-[#fff5f7] border border-[#ffd0d9] p-5 rounded-xl">
             <div className="flex items-start gap-3">
-              <span className="text-[var(--color-geekie-cereja)] text-xl mt-0.5" aria-hidden="true">
-                ⓘ
-              </span>
+              {/* UI-3.4: Phosphor Info weight=fill (estado informativo ativo) */}
+              <Info
+                size={20}
+                weight="fill"
+                className="text-[var(--color-geekie-cereja)] mt-0.5 flex-shrink-0"
+                aria-hidden="true"
+              />
               <div>
                 <h3 className="font-bold text-[var(--color-geekie-preto)] mb-1 text-base">
                   Versão reduzida — Bett Brasil 2026

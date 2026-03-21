@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 
 interface EixoEspectroProps {
   label: string;
@@ -19,9 +20,6 @@ export function EixoEspectro({
   tooltip,
   isMain = false,
 }: EixoEspectroProps) {
-  const [showTooltip, setShowTooltip] = useState(false);
-  const tooltipId = `tooltip-eixo-${label.replace(/\s+/g, '-').toLowerCase()}`;
-
   // Garante que o marcador fique visível e dentro da trilha
   const pct = Math.max(4, Math.min(96, score));
 
@@ -55,29 +53,31 @@ export function EixoEspectro({
           </span>
         )}
         {tooltip && (
-          <span className="relative ml-1">
-            <button
-              type="button"
-              aria-label={`Mais informações sobre ${label}`}
-              aria-describedby={showTooltip ? tooltipId : undefined}
-              onMouseEnter={() => setShowTooltip(true)}
-              onMouseLeave={() => setShowTooltip(false)}
-              onFocus={() => setShowTooltip(true)}
-              onBlur={() => setShowTooltip(false)}
-              className="text-[var(--color-text-tertiary)] text-sm cursor-help select-none p-2 -m-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-full"
-            >
-              <span aria-hidden="true">ⓘ</span>
-            </button>
-            {showTooltip && (
-              <div
-                id={tooltipId}
-                role="tooltip"
-                className="absolute left-0 bottom-full mb-2 bg-gray-900 text-white text-xs rounded-xl p-4 w-80 z-30 leading-relaxed shadow-2xl animate-in fade-in duration-200 text-left pointer-events-none"
-              >
-                {tooltip}
-              </div>
-            )}
-          </span>
+          // UI-3.2: Radix Tooltip — foco por teclado, ESC fecha, posicionamento automático sem overflow
+          <TooltipPrimitive.Provider delayDuration={200}>
+            <TooltipPrimitive.Root>
+              <TooltipPrimitive.Trigger asChild>
+                <button
+                  type="button"
+                  aria-label={`Mais informações sobre ${label}`}
+                  className="text-[var(--color-text-tertiary)] text-sm cursor-help select-none p-2 -m-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-full"
+                >
+                  <span aria-hidden="true">ⓘ</span>
+                </button>
+              </TooltipPrimitive.Trigger>
+              <TooltipPrimitive.Portal>
+                <TooltipPrimitive.Content
+                  side="top"
+                  align="start"
+                  sideOffset={8}
+                  className="z-50 max-w-xs rounded-xl bg-gray-900 px-4 py-3 text-xs text-white leading-relaxed shadow-2xl animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+                >
+                  {tooltip}
+                  <TooltipPrimitive.Arrow className="fill-gray-900" />
+                </TooltipPrimitive.Content>
+              </TooltipPrimitive.Portal>
+            </TooltipPrimitive.Root>
+          </TooltipPrimitive.Provider>
         )}
       </div>
 
