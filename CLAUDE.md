@@ -43,7 +43,7 @@ Leia planejamento/pendencias.md e me diga qual sprint tem maior prioridade.
 | ----------------------------------------------------- | ------------ | ---------- |
 | S1 — Fundação Técnica (lint, testes, CI)              | ✅ Concluído | 2026-03-20 |
 | S2 — Domínio e Contratos (hexagonal, Zustand, Router) | ✅ Concluído | 2026-03-20 |
-| S3 — Resiliência de Evento                            | ⬜ Pendente  | —          |
+| S3 — Resiliência de Evento                            | ✅ Concluído | 2026-03-21 |
 | S4 — Experiência Essencial (microcopy, a11y, tokens)  | ⬜ Pendente  | —          |
 | S5 — Pico e Final (Resultado + CSP)                   | ⬜ Pendente  | —          |
 | S6 — Governança de Conteúdo                           | ⬜ Pendente  | —          |
