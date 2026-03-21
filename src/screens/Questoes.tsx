@@ -116,8 +116,11 @@ export function Questoes() {
                 className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100"
               >
                 <div className="flex gap-4 mb-6">
-                  <div className="flex-shrink-0 w-10 h-10 bg-red-50 text-[var(--color-geekie-cereja)] rounded-full flex items-center justify-center font-bold text-lg">
-                    {blocoAtual * 5 + i + 1}
+                  <div
+                    className="flex-shrink-0 w-10 h-10 bg-red-50 text-[var(--color-geekie-cereja)] rounded-full flex items-center justify-center font-bold text-lg"
+                    aria-hidden="true"
+                  >
+                    <span aria-hidden="true">{blocoAtual * 5 + i + 1}</span>
                   </div>
                   <p className="text-xl md:text-2xl text-[var(--color-geekie-preto)] leading-snug pt-1">
                     {q.texto}

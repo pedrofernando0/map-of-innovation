@@ -10,11 +10,17 @@ interface Props {
 
 export function ResultadoEixos({ scores }: Props) {
   return (
-    <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 space-y-8">
+    <section
+      aria-labelledby="eixos-heading"
+      className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 space-y-8"
+    >
       <div>
-        <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">
+        <h2
+          id="eixos-heading"
+          className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6"
+        >
           Eixos de Inovação
-        </h3>
+        </h2>
         <div className="space-y-10">
           <EixoEspectro
             label="Eixo Geral"
@@ -46,11 +52,14 @@ export function ResultadoEixos({ scores }: Props) {
         </div>
       </div>
       <div className="border-t border-gray-100 pt-8">
-        <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">
+        <h3
+          id="perfil-heading"
+          className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6"
+        >
           Perfil de Inovação
         </h3>
         <CategoryIndicator nivel={scores.nivel} score={scores.total} />
       </div>
-    </div>
+    </section>
   );
 }

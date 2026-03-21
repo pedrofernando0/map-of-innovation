@@ -122,12 +122,18 @@ export function BettAtivacoes({ scores }: BettAtivacoesProps) {
   if (pilaresComOportunidade.length === 0) return null;
 
   return (
-    <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 no-print">
+    <section
+      aria-labelledby="bett-ativacoes-heading"
+      className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 no-print"
+    >
       <div className="flex items-start gap-3 mb-2">
         <span className="text-[var(--color-geekie-cereja)] text-xl mt-0.5">✦</span>
         <div className="flex-1">
           <div className="flex flex-wrap items-center gap-3">
-            <h2 className="text-xl font-bold text-[var(--color-geekie-preto)]">
+            <h2
+              id="bett-ativacoes-heading"
+              className="text-xl font-bold text-[var(--color-geekie-preto)]"
+            >
               Conheça na Bett 2026
             </h2>
             <span className="inline-flex items-center gap-2 rounded-full bg-[#fff5f7] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#ff1547] border border-[#ffd0d9]">
@@ -163,6 +169,6 @@ export function BettAtivacoes({ scores }: BettAtivacoesProps) {
           return <PilarCard key={chave} data={data} />;
         })}
       </div>
-    </div>
+    </section>
   );
 }

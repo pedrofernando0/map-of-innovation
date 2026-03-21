@@ -40,10 +40,15 @@ interface Props {
 
 export function ResultadoPilares({ pilares }: Props) {
   return (
-    <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
+    <section
+      aria-labelledby="pilares-heading"
+      className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8"
+    >
       <div className="mb-6">
         <div className="flex items-center">
-          <h3 className="text-lg font-bold text-[var(--color-geekie-preto)]">Pilares da Geekie</h3>
+          <h2 id="pilares-heading" className="text-lg font-bold text-[var(--color-geekie-preto)]">
+            Pilares da Geekie
+          </h2>
           <InfoTooltip text="A metodologia Geekie organiza a inovação educacional em 4 pilares interdependentes — Aprendizagem Ativa, Visibilidade, Flexibilidade e Personalização — derivados de evidências sobre o que diferencia escolas com alta maturidade pedagógica. Cada pilar é avaliado por 5 perguntas que cobrem tanto práticas docentes quanto o uso intencional de tecnologia, gerando um score de 0 a 100 que reflete a consistência institucional da dimensão, não iniciativas isoladas." />
         </div>
         <p className="text-sm text-gray-500 mt-1">
@@ -86,6 +91,6 @@ export function ResultadoPilares({ pilares }: Props) {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }

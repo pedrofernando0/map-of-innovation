@@ -11,7 +11,10 @@ export function Instrucao() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-16 animate-in fade-in duration-500">
       <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-8 md:p-12">
-        <div className="flex items-center justify-center w-16 h-16 bg-orange-100 text-[var(--color-geekie-laranja)] rounded-full mb-8">
+        <div
+          className="flex items-center justify-center w-16 h-16 bg-orange-100 text-[var(--color-geekie-laranja)] rounded-full mb-8"
+          aria-hidden="true"
+        >
           <svg
             width="32"
             height="32"
@@ -21,6 +24,8 @@ export function Instrucao() {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
+            aria-hidden="true"
+            focusable="false"
           >
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="12" y1="16" x2="12" y2="12"></line>
@@ -50,7 +55,9 @@ export function Instrucao() {
 
           <div className="bg-[#fff5f7] border border-[#ffd0d9] p-5 rounded-xl">
             <div className="flex items-start gap-3">
-              <span className="text-[var(--color-geekie-cereja)] text-xl mt-0.5">ⓘ</span>
+              <span className="text-[var(--color-geekie-cereja)] text-xl mt-0.5" aria-hidden="true">
+                ⓘ
+              </span>
               <div>
                 <h3 className="font-bold text-[var(--color-geekie-preto)] mb-1 text-base">
                   Versão reduzida — Bett Brasil 2026
@@ -69,14 +76,18 @@ export function Instrucao() {
             <h3 className="font-bold text-[var(--color-geekie-preto)] mb-3">Como responder:</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <span className="text-[var(--color-geekie-cereja)] mt-1">✦</span>
+                <span className="text-[var(--color-geekie-cereja)] mt-1" aria-hidden="true">
+                  ✦
+                </span>
                 <span>
                   Responda com base na <strong>realidade atual</strong> da escola, não nos planos
                   futuros.
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[var(--color-geekie-cereja)] mt-1">✦</span>
+                <span className="text-[var(--color-geekie-cereja)] mt-1" aria-hidden="true">
+                  ✦
+                </span>
                 <span>
                   Pense na prática <strong>institucional</strong>, não apenas em iniciativas
                   isoladas de um ou outro professor.

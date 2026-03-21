@@ -28,10 +28,15 @@ interface Props {
 
 export function ResultadoDiagnostico({ diagnostico, onPrint, onContinue }: Props) {
   return (
-    <div className="diagnostico-container bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
+    <section
+      aria-labelledby="diagnostico-heading"
+      className="diagnostico-container bg-white rounded-3xl shadow-sm border border-gray-100 p-8"
+    >
       <div className="flex items-center gap-3 mb-2 pb-6 border-b border-gray-100">
-        <span className="text-[var(--color-geekie-cereja)] text-xl">✦</span>
-        <h2 className="text-xl font-bold text-[var(--color-geekie-preto)]">
+        <span className="text-[var(--color-geekie-cereja)] text-xl" aria-hidden="true">
+          ✦
+        </span>
+        <h2 id="diagnostico-heading" className="text-xl font-bold text-[var(--color-geekie-preto)]">
           Diagnóstico personalizado
         </h2>
         <span className="ml-auto bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
@@ -59,6 +64,6 @@ export function ResultadoDiagnostico({ diagnostico, onPrint, onContinue }: Props
           Quero receber meu relatório →
         </Button>
       </div>
-    </div>
+    </section>
   );
 }
