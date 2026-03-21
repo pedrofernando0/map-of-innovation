@@ -82,13 +82,13 @@ export function Cadastro() {
               <div className="flex gap-2">
                 <input
                   {...register('cidade')}
-                  className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none"
+                  className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none"
                   placeholder="Cidade"
                 />
                 <input
                   {...register('estado')}
                   maxLength={2}
-                  className="w-16 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none bg-white uppercase text-center"
+                  className="w-16 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none bg-white uppercase text-center"
                   placeholder="UF"
                 />
               </div>
@@ -124,7 +124,7 @@ export function Cadastro() {
                       key={String(op.val)}
                       type="button"
                       onClick={() => field.onChange(op.val)}
-                      className={`px-5 py-2.5 rounded-full border text-sm font-bold transition-colors ${
+                      className={`px-5 py-2.5 rounded-full border text-sm font-bold transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none ${
                         field.value === op.val
                           ? 'bg-[var(--color-geekie-cereja)] border-[var(--color-geekie-cereja)] text-white'
                           : 'border-gray-300 text-gray-500 hover:border-[var(--color-geekie-cereja)]'

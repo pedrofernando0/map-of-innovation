@@ -63,6 +63,13 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* ── Focus ring global (WCAG 2.2 — 2.4.11) ── */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: 4px;
+}
+
 body {
   font-family: var(--font-sans);
   color: var(--color-geekie-preto);

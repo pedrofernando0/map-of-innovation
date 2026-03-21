@@ -170,18 +170,18 @@ export function Admin() {
             value={usuario}
             onChange={(e) => setUsuario(e.target.value)}
             placeholder="Usuário"
-            className="w-full p-3 border border-gray-300 rounded mb-4 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none"
+            className="w-full p-3 border border-gray-300 rounded mb-4 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none"
           />
           <input
             type="password"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
             placeholder="Senha"
-            className="w-full p-3 border border-gray-300 rounded mb-6 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none"
+            className="w-full p-3 border border-gray-300 rounded mb-6 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none"
           />
           <button
             type="submit"
-            className="w-full bg-[var(--color-geekie-cereja)] text-white p-3 rounded font-bold hover:bg-opacity-90 transition-colors"
+            className="w-full bg-[var(--color-geekie-cereja)] text-white p-3 rounded font-bold hover:bg-opacity-90 transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             Entrar
           </button>

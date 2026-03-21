@@ -12,7 +12,7 @@ export function Button({ className, variant = 'primary', size = 'md', ...props }
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5',
+        'inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none',
         variant === 'primary' && 'bg-[var(--color-geekie-cereja)] text-white hover:bg-opacity-90',
         variant === 'secondary' &&
           'border-2 border-[var(--color-geekie-cereja)] text-[var(--color-geekie-cereja)] bg-transparent hover:bg-[var(--color-geekie-cereja)] hover:text-white',

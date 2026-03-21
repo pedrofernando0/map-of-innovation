@@ -30,7 +30,7 @@ export function SegmentoSelector({ value, onChange, error }: SegmentoSelectorPro
             type="button"
             onClick={() => toggle(seg.id)}
             className={cn(
-              'px-4 py-2 rounded-full border text-sm font-bold transition-colors',
+              'px-4 py-2 rounded-full border text-sm font-bold transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none',
               value.includes(seg.id)
                 ? 'bg-[var(--color-geekie-cereja)] border-[var(--color-geekie-cereja)] text-white'
                 : 'border-gray-300 text-gray-600 hover:border-[var(--color-geekie-cereja)]'
