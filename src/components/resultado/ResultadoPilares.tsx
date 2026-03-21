@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 
+import { useMotionVariants } from '../../hooks/useMotionVariants';
 import type { Scores } from '../../types';
 
 function InfoTooltip({ text }: { text: string }) {
@@ -63,6 +65,7 @@ function getPilarMaisForte(pilares: Scores['pilares']): { nome: string; score: n
 
 export function ResultadoPilares({ pilares }: Props) {
   const pilarForte = getPilarMaisForte(pilares);
+  const { shouldReduce } = useMotionVariants();
 
   return (
     <section
@@ -99,12 +102,10 @@ export function ResultadoPilares({ pilares }: Props) {
         {CARDS.map((c, i) => {
           const score = pilares[c.key];
           const displayScore = Math.max(score, 4);
+          // UI-2.4: delay em cascata — 0, 80, 160, 240ms por pilar
+          const delayMs = shouldReduce ? 0 : i * 80;
           return (
-            <div
-              key={c.id}
-              className="animate-in slide-in-from-left-4 fade-in duration-500 fill-mode-both"
-              style={{ animationDelay: `${i * 80}ms` }}
-            >
+            <div key={c.id}>
               <div className="flex items-baseline justify-between mb-1.5">
                 <div>
                   <span className="text-sm font-bold" style={{ color: c.cor }}>
@@ -125,9 +126,17 @@ export function ResultadoPilares({ pilares }: Props) {
                 </span>
               </div>
               <div className="w-full bg-gray-100 rounded-full h-4 overflow-hidden">
-                <div
-                  className="h-4 rounded-full transition-all duration-700"
-                  style={{ width: `${displayScore}%`, backgroundColor: c.cor, opacity: 0.85 }}
+                {/* UI-2.4: motion.div com animate={{ width }} — prefers-reduced-motion via shouldReduce */}
+                <motion.div
+                  className="h-4 rounded-full"
+                  style={{ backgroundColor: c.cor, opacity: 0.85 }}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${displayScore}%` }}
+                  transition={{
+                    duration: shouldReduce ? 0.01 : 0.7,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: delayMs / 1000,
+                  }}
                 />
               </div>
             </div>

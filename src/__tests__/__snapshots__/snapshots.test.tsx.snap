@@ -176,7 +176,8 @@ exports[`Snapshots — telas estáticas > CSP 1`] = `
         class="mt-6 flex justify-end pt-6 border-t border-[#f0e1e5]"
       >
         <button
-          class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none bg-[var(--color-geekie-cereja)] text-white hover:bg-opacity-90 px-8 py-4 text-lg"
+          class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none bg-[var(--color-brand-primary)] text-[var(--color-text-on-brand)] hover:bg-opacity-90 px-8 py-4 text-lg"
+          tabindex="0"
         >
           Liberar para a próxima escola
         </button>
@@ -350,12 +351,14 @@ exports[`Snapshots — telas estáticas > Instrucao 1`] = `
       class="flex justify-between"
     >
       <button
-        class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none border-2 border-gray-300 text-gray-700 bg-transparent hover:border-gray-400 hover:bg-gray-50 px-8 py-4 text-lg"
+        class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none border-2 border-gray-300 text-gray-700 bg-transparent hover:border-gray-400 hover:bg-gray-50 px-8 py-4 text-lg"
+        tabindex="0"
       >
         ← Voltar
       </button>
       <button
-        class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none bg-[var(--color-geekie-cereja)] text-white hover:bg-opacity-90 px-8 py-4 text-lg"
+        class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none bg-[var(--color-brand-primary)] text-[var(--color-text-on-brand)] hover:bg-opacity-90 px-8 py-4 text-lg"
+        tabindex="0"
       >
         Entendi, vamos começar
       </button>
@@ -409,7 +412,8 @@ exports[`Snapshots — telas estáticas > Splash 1`] = `
       class="pt-12 flex flex-col items-center gap-4"
     >
       <button
-        class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none bg-white text-[var(--color-geekie-cereja)] hover:bg-gray-50 text-xl px-12 py-6 shadow-xl"
+        class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none bg-white text-[var(--color-geekie-cereja)] hover:bg-gray-50 text-xl px-12 py-6 shadow-xl"
+        tabindex="0"
       >
         Iniciar Diagnóstico
       </button>
