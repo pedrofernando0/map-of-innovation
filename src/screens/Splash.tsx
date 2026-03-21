@@ -49,7 +49,11 @@ export function Splash() {
           </div>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight">
+        {/* UI-5.1: tipografia fluida — sem salto brusco entre breakpoints */}
+        <h1
+          className="font-extrabold tracking-tight leading-tight"
+          style={{ fontSize: 'var(--text-display)' }}
+        >
           Mapa de Inovação Educacional
         </h1>
 

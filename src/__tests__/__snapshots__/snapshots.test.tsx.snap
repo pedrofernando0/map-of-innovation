@@ -202,7 +202,8 @@ exports[`Snapshots — telas estáticas > Instrucao 1`] = `
       </svg>
     </div>
     <h1
-      class="text-3xl md:text-4xl font-bold text-[var(--color-geekie-preto)] mb-6"
+      class="font-bold text-[var(--color-geekie-preto)] mb-6"
+      style="font-size: var(--text-heading);"
     >
       Como funciona o Mapa
     </h1>
@@ -378,7 +379,8 @@ exports[`Snapshots — telas estáticas > Splash 1`] = `
       </div>
     </div>
     <h1
-      class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight"
+      class="font-extrabold tracking-tight leading-tight"
+      style="font-size: var(--text-display);"
     >
       Mapa de Inovação Educacional
     </h1>

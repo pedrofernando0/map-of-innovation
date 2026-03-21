@@ -20,7 +20,11 @@ export function Instrucao() {
           <Info size={32} weight="regular" aria-hidden="true" />
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-bold text-[var(--color-geekie-preto)] mb-6">
+        {/* UI-5.1: tipografia fluida */}
+        <h1
+          className="font-bold text-[var(--color-geekie-preto)] mb-6"
+          style={{ fontSize: 'var(--text-heading)' }}
+        >
           Como funciona o Mapa
         </h1>
 

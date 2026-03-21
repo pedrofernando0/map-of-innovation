@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Mulish:wght@400;500;700;800&display=swap');
+/* Fontes Google: @import removido — carregado via <link preload> no index.html (UI-5.2) */
 @import 'tailwindcss';
 
 @theme {
@@ -53,6 +53,14 @@
   --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
+
+  /* ── Tipografia fluida (UI-5.1) ─────────────
+     Escala de 375px a 1200px sem saltos de breakpoint.
+     clamp(min, preferido, max)
+     Uso: apenas headings display — corpo fica em 16-18px fixos. */
+  --text-display: clamp(2.5rem, 6vw, 4.5rem); /* h1 Splash e Resultado */
+  --text-heading: clamp(1.75rem, 4vw, 2.5rem); /* h1 telas internas */
+  --text-subheading: clamp(1.25rem, 2.5vw, 1.5rem); /* h2/h3 de seção */
 
   /* ── Motion tokens ───────────────────────── */
   --duration-fast: 180ms;
@@ -126,6 +134,20 @@ h6 {
   .skeleton-shimmer {
     animation: none;
     background: #f0f0f0;
+  }
+}
+
+/* ── Dark mode básico (UI-5.3) ───────────────────
+   Garante que o app não fique ilegível em modo escuro do SO.
+   Telas com fundo vermelho (Splash) e cards coloridos são imunes
+   — têm cores explícitas independentes dessas variáveis. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface-default: #1c1c1c;
+    --color-surface-subtle: #2a2a2a;
+    --color-text-primary: #f5f5f5;
+    --color-text-secondary: #d1d5db;
+    --color-text-tertiary: #9ca3af;
   }
 }
 

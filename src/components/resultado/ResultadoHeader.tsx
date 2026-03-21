@@ -24,7 +24,13 @@ export function ResultadoHeader({ escola, scores, ancora }: Props) {
             Mapa de Inovação Educacional — Diagnóstico
           </p>
           {/* Nome da escola é o elemento de maior peso visual — reconhecimento antes de avaliação (Norman) */}
-          <h1 className="text-5xl font-extrabold mb-2 leading-tight">{escola.nome}</h1>
+          {/* UI-5.1: tipografia fluida — nome da escola como elemento de maior peso visual */}
+          <h1
+            className="font-extrabold mb-2 leading-tight"
+            style={{ fontSize: 'var(--text-display)' }}
+          >
+            {escola.nome}
+          </h1>
           <p className="text-base opacity-80">
             {escola.cidade}
             {escola.estado ? ` / ${escola.estado}` : ''} · {escola.rede}

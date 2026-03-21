@@ -4,15 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mapa de Inovação Educacional — Geekie</title>
-    <meta name="description" content="Descubra o nível de maturidade da sua escola na integração entre práticas pedagógicas e tecnologia. Diagnóstico personalizado gerado pela Geekie." />
+    <meta
+      name="description"
+      content="Descubra o nível de maturidade da sua escola na integração entre práticas pedagógicas e tecnologia. Diagnóstico personalizado gerado pela Geekie."
+    />
     <meta property="og:title" content="Mapa de Inovação Educacional — Geekie" />
-    <meta property="og:description" content="Responda ao questionário e receba um diagnóstico personalizado sobre a inovação educacional da sua escola." />
+    <meta
+      property="og:description"
+      content="Responda ao questionário e receba um diagnóstico personalizado sobre a inovação educacional da sua escola."
+    />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#ff1547" />
+    <!-- UI-5.2: Otimização de fontes — preconnect elimina RTT extra, preload inicia fetch
+         antes do CSS ser processado, media=print+onload garante carregamento não-bloqueante -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Mulish:wght@400;500;700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Mulish:wght@400;500;700;800&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Mulish:wght@400;500;700;800&display=swap"
+      />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
