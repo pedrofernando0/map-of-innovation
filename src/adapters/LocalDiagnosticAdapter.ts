@@ -152,6 +152,39 @@ const OPORTUNIDADES: Record<string, Record<string, string>> = {
   },
 };
 
+// ─── fallback contextualizado (usado quando a API externa falha) ──────────────
+
+const NIVEL_PARAGRAPH: Record<string, string> = {
+  ESSENCIAL: `A escola está no estágio inicial da jornada de inovação. Há espaço significativo para estruturar práticas pedagógicas intencionais e ampliar o uso de tecnologia de forma integrada ao currículo. O próximo passo é construir um plano de implementação com metas de médio prazo.`,
+  INTEGRADA: `A escola demonstra maturidade consolidada em inovação educacional, com integração intencional entre pedagogia e tecnologia. O desafio agora é expandir as práticas consolidadas para todos os segmentos e aprofundar os ciclos de diagnóstico e intervenção.`,
+  EXPLORADOR: `A escola está em processo ativo de transformação pedagógica, com iniciativas promissoras em desenvolvimento. O foco central deve ser converter práticas isoladas em processos institucionais consolidados e ampliar o uso de dados para personalizar percursos.`,
+};
+
+/**
+ * Gera um diagnóstico de fallback contextualizado com base nos scores reais da escola.
+ * Usado quando o serviço de IA externo não está disponível.
+ */
+export function generateFallback(escola: Escola, scores: Scores): string {
+  const nivel = scores.nivel || 'ESSENCIAL';
+  const entries = Object.entries(scores.pilares) as [string, number][];
+  const sorted = [...entries].sort((a, b) => b[1] - a[1]);
+  const [pilarMaxKey, pilarMaxScore] = sorted[0];
+  const [pilarMinKey, pilarMinScore] = sorted[sorted.length - 1];
+
+  const pilarMaxLabel = PILAR_LABEL[pilarMaxKey] ?? pilarMaxKey;
+  const pilarMinLabel = PILAR_LABEL[pilarMinKey] ?? pilarMinKey;
+  const paragraph = NIVEL_PARAGRAPH[nivel] ?? NIVEL_PARAGRAPH['ESSENCIAL'];
+
+  return [
+    `**${escola.nome}** apresenta nível **${nivel}** de maturidade em inovação (${scores.total}/100).`,
+    '',
+    `**Ponto de maior consistência:** ${pilarMaxLabel} (${pilarMaxScore}/100).`,
+    `**Maior oportunidade identificada:** ${pilarMinLabel} (${pilarMinScore}/100).`,
+    '',
+    paragraph,
+  ].join('\n');
+}
+
 // ─── adaptador principal ──────────────────────────────────────────────────────
 
 /**

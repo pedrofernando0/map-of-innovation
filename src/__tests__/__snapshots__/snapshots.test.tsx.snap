@@ -386,7 +386,7 @@ exports[`Snapshots — telas estáticas > Splash 1`] = `
       Descubra a maturidade da sua escola na integração entre práticas pedagógicas e tecnologia.
     </p>
     <div
-      class="pt-12"
+      class="pt-12 flex flex-col items-center gap-4"
     >
       <button
         class="inline-flex items-center justify-center rounded-lg font-bold transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none enabled:hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:ring-offset-2 focus-visible:outline-none bg-white text-[var(--color-geekie-cereja)] hover:bg-gray-50 text-xl px-12 py-6 shadow-xl"

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 const envSchema = z.object({
-  ADMIN_USER: z.string().default('geekie'),
-  ADMIN_PASS: z.string().default('bett2026'),
+  ADMIN_USER: z.string().optional(),
+  ADMIN_PASS: z.string().optional(),
   WHATSAPP_NUMBER: z.string().default('5511000000000'),
   DIAGNOSTIC_TIMEOUT_MS: z.coerce.number().default(30_000),
 });
@@ -19,4 +19,11 @@ if (!parsed.success) {
   console.error(`[env] Variáveis de ambiente inválidas: ${missing}`);
 }
 
-export const env = parsed.success ? parsed.data : envSchema.parse({});
+export const env = parsed.success
+  ? parsed.data
+  : {
+      ADMIN_USER: undefined,
+      ADMIN_PASS: undefined,
+      WHATSAPP_NUMBER: '5511000000000',
+      DIAGNOSTIC_TIMEOUT_MS: 30_000,
+    };
