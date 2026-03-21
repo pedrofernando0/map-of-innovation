@@ -139,6 +139,8 @@ export function Admin() {
     };
   }, [fullData]);
 
+  const adminConfigured = Boolean(env.ADMIN_USER && env.ADMIN_PASS);
+
   if (!auth) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 relative">
@@ -161,31 +163,45 @@ export function Admin() {
           </svg>
           Voltar para o App
         </button>
-        <form onSubmit={handleLogin} className="bg-white p-8 rounded-xl shadow-md w-96">
-          <h2 className="text-2xl font-bold mb-6 text-center text-[var(--color-geekie-preto)]">
-            Admin Login
-          </h2>
-          <input
-            type="text"
-            value={usuario}
-            onChange={(e) => setUsuario(e.target.value)}
-            placeholder="Usuário"
-            className="w-full p-3 border border-gray-300 rounded mb-4 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none"
-          />
-          <input
-            type="password"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            placeholder="Senha"
-            className="w-full p-3 border border-gray-300 rounded mb-6 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none"
-          />
-          <button
-            type="submit"
-            className="w-full bg-[var(--color-geekie-cereja)] text-white p-3 rounded font-bold hover:bg-opacity-90 transition-colors"
-          >
-            Entrar
-          </button>
-        </form>
+        {!adminConfigured ? (
+          <div className="bg-white p-8 rounded-xl shadow-md w-96 text-center">
+            <h2 className="text-2xl font-bold mb-4 text-[var(--color-geekie-preto)]">
+              Admin não configurado
+            </h2>
+            <p className="text-gray-600 text-sm">
+              Painel admin não configurado. Defina{' '}
+              <code className="bg-gray-100 px-1 rounded">VITE_ADMIN_USER</code> e{' '}
+              <code className="bg-gray-100 px-1 rounded">VITE_ADMIN_PASS</code> no{' '}
+              <code className="bg-gray-100 px-1 rounded">.env.local</code>
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleLogin} className="bg-white p-8 rounded-xl shadow-md w-96">
+            <h2 className="text-2xl font-bold mb-6 text-center text-[var(--color-geekie-preto)]">
+              Admin Login
+            </h2>
+            <input
+              type="text"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
+              placeholder="Usuário"
+              className="w-full p-3 border border-gray-300 rounded mb-4 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none"
+            />
+            <input
+              type="password"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              placeholder="Senha"
+              className="w-full p-3 border border-gray-300 rounded mb-6 focus:ring-2 focus:ring-[var(--color-geekie-cereja)] outline-none"
+            />
+            <button
+              type="submit"
+              className="w-full bg-[var(--color-geekie-cereja)] text-white p-3 rounded font-bold hover:bg-opacity-90 transition-colors"
+            >
+              Entrar
+            </button>
+          </form>
+        )}
       </div>
     );
   }
