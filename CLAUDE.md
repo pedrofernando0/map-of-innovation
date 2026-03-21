@@ -50,7 +50,7 @@
 | S2 — Domínio e Contratos (hexagonal, Zustand, Router) | ✅ Concluído | 2026-03-20 |
 | S3 — Resiliência de Evento (draft + resume)           | ✅ Concluído | 2026-03-21 |
 | S4 — Experiência Essencial (UX/a11y + tokens)         | ✅ Concluído | 2026-03-21 |
-| S5 — Pico e Final (Resultado + CSP)                   | ⬜ Pendente  | —          |
+| S5 — Pico e Final (Resultado + CSP)                   | ✅ Concluído | 2026-03-21 |
 | S6 — Governança de Conteúdo                           | ⬜ Pendente  | —          |
 | S7 — Design System Completo                           | ⬜ Pendente  | —          |
 | S8 — Testes (complementar)                            | ⬜ Pendente  | —          |

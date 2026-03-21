@@ -1,6 +1,6 @@
 # Pendências — Mapa de Inovação Educacional
 
-_Atualizado: Março 2026 (21/03, pós-sincronização)_
+_Atualizado: Março 2026 (21/03, pós-S5)_
 
 > Apenas itens **ainda por executar**. Itens concluídos foram removidos.
 > Para contexto de cada item, ver `roadmap.md` e os playbooks `CLAUDE-UI-RATIONALE.md` / `CLAUDE-UX-RATIONALE.md`.
@@ -40,17 +40,17 @@ Todos os itens foram implementados e mergeados para main:
 - ✅ **`docs/emotional-journey.md`** — Mapa emocional por tela + análise pico-final completa
 - ✅ **`docs/microcopy-inventory.md`** — 40+ strings catalogadas com tipo, tom e avaliação
 
-### S5 — Pico e Final (UX)
+### ✅ S5 — Pico e Final (UX) — CONCLUÍDO (21/03)
 
-- [ ] **Resultado — Hierarquia de entrada**: nome da escola como elemento de maior peso visual, antes do badge e do score.
-- [ ] **Resultado — Destaque do pilar mais forte**: elemento acima das barras de pilar: "✦ Ponto de maior consistência: [Pilar X] — [score]/100".
-- [ ] **Resultado — Comparação âncora vs. real**: elemento visual conciso quando `ancora !== null`, com tom neutro-positivo em todos os casos (âncora acima, abaixo ou igual ao nível real).
-- [ ] **Resultado — Velocidade do typewriter**: ajustar de 2ms para 8–12ms por caractere. Testar em tablet físico.
-- [ ] **Resultado — Headers markdown**: avaliar se `### Síntese`, `### Pontos Fortes` etc. servem ao usuário leigo ou criam distância clínica. Substituir por negrito corrido se necessário.
-- [ ] **CSP — Título por nível**: variar o H1 com linguagem não-vendedora por nível (ESSENCIAL/EXPLORADOR/INTEGRADA).
-- [ ] **CSP — `<ClosingStatement />`**: componente de encerramento com reconhecimento do esforço + próxima ação concreta + frase que o usuário carrega, variável por nível.
-- [ ] **CSP — Fade de saída**: transição suave (300ms, easeOut) antes do reset para Splash.
-- [ ] **CSP — Botão contextual**: "Liberar para a próxima escola" (modo kiosk) / "Concluir diagnóstico" (geral).
+- ✅ **Resultado — Hierarquia de entrada**: nome da escola `text-5xl` > score `text-4xl` (reconhecimento antes de avaliação — Norman).
+- ✅ **Resultado — Destaque do pilar mais forte**: `AncoraComparacao` — card com "✦ Maior consistência: [Pilar] — [score]/100" antes do grid de barras.
+- ✅ **Resultado — Comparação âncora vs. real**: componente `AncoraComparacao` — card branco com 3 mensagens neutro-positivas (igual / âncora alta / âncora baixa).
+- ✅ **Resultado — Velocidade do typewriter**: 2ms → 10ms/char. Testar em tablet físico na Bett.
+- ✅ **Resultado — Headers markdown**: `### Síntese / Pontos Fortes / Oportunidades` → `**negrito corrido**` no `LocalDiagnosticAdapter`.
+- ✅ **CSP — Título por nível**: `CSP_COPY` atualizado com títulos não-vendedores; h1 e subtítulo variam por `scores.nivel`.
+- ✅ **CSP — `<ClosingStatement />`**: reconhecimento do esforço + expectativa concreta do contato + frase por nível (ESSENCIAL/EXPLORADOR/INTEGRADA).
+- ✅ **CSP — Fade de saída**: `opacity 0` em 300ms `cubic-bezier(0.22, 1, 0.36, 1)` antes do `reset()`.
+- ✅ **CSP — Botão contextual**: `"Encerrar diagnóstico"` → `"Liberar para a próxima escola"`.
 
 ---
 
