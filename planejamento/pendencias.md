@@ -135,6 +135,6 @@ _Atualizado: Março 2026_
 
 > Estes itens não podem ser resolvidos tecnicamente — exigem decisão de produto ou contexto.
 
-1. **Data do evento Bett Brasil**: sem essa informação, não é possível ajustar a prioridade dos sprints pré-Bett com precisão de tempo.
-2. **Serviço externo de IA para `ExternalDiagnosticAdapter`**: qual API? Quais credenciais? Qual modelo? O contrato `IDiagnosticService` está pronto — falta a decisão de implementação.
-3. **Backend de produção**: Firestore vs. Supabase vs. outro? Isso determina o Sprint 9a.
+1. **Data do evento Bett Brasil**: ✅ **5 a 8 de maio de 2026.** Restam ~45 dias. Sprints S3, S4 e S5 são críticos e precisam ser concluídos antes dessa data.
+2. **Serviço externo de IA para `ExternalDiagnosticAdapter`**: nenhuma API será usada por agora. O `LocalDiagnosticAdapter` (fallback local) é a implementação de produção para a Bett. A análise de qual API adotar no futuro e o que ela muda no produto está em `decisoes-tecnologia.md`.
+3. **Backend de produção**: ainda sem decisão entre Supabase e outras opções. A análise de benefícios e impactos no produto está em `decisoes-tecnologia.md`.
