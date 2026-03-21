@@ -137,11 +137,13 @@ exports[`Snapshots — telas estáticas > CSP 1`] = `
         <p
           class="text-sm text-gray-700 leading-relaxed"
         >
-          O retorno considera os dados preenchidos por 
+          O retorno considera os dados preenchidos por
+           
           <strong>
             sua escola
           </strong>
-           e o e-mail 
+           e o e-mail
+           
           <strong>
             informado no cadastro
           </strong>
@@ -210,16 +212,19 @@ exports[`Snapshots — telas estáticas > Instrucao 1`] = `
       class="space-y-6 text-lg text-gray-600 leading-relaxed mb-12"
     >
       <p>
-        O Mapa de Inovação foi desenvolvido por um 
+        O Mapa de Inovação foi desenvolvido por um
+         
         <strong
           class="text-[var(--color-geekie-preto)]"
         >
           time interdisciplinar da Geekie
         </strong>
-         — pedagogos, especialistas em educação e cientistas de dados — com o propósito de aferir o grau de inovação educacional dentro do ambiente escolar.
+         
+        — pedagogos, especialistas em educação e cientistas de dados — com o propósito de aferir o grau de inovação educacional dentro do ambiente escolar.
       </p>
       <p>
-        O objetivo é entender como a sua escola integra 
+        O objetivo é entender como a sua escola integra
+         
         <strong
           class="text-[var(--color-geekie-preto)]"
         >
@@ -257,7 +262,8 @@ exports[`Snapshots — telas estáticas > Instrucao 1`] = `
               <strong>
                 1 das 5 categorias
               </strong>
-               do instrumento completo: 
+               do instrumento completo:
+               
               <em>
                 Currículo e organização da aprendizagem
               </em>
