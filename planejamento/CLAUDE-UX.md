@@ -1,10 +1,28 @@
 # CLAUDE-UX.md — Sprints de Experiência do Usuário
+
 ## Mapa de Inovação Educacional
 
 > Este arquivo é complementar ao `CLAUDE-UI.md` (que trata de tokens, acessibilidade,
 > animação e componentes). Aqui, o foco é a **experiência**: o que o usuário sente,
 > pensa e recorda em cada etapa. Fundamentado em pesquisa de psicologia aplicada
 > ao design (Kahneman, Fogg, Norman, Nielsen) e em tendências de UX 2025-2026.
+>
+> **Para executar qualquer sprint deste arquivo:** use o prompt pronto em
+> `CLAUDE-SPRINTS.md`. Os sprints S4 e S5 do roadmap encapsulam os sprints UX-0
+> a UX-4 deste arquivo em prompts únicos e autocontidos.
+
+---
+
+## Pontos de Arquitetura Relevantes para os Sprints de UX
+
+| O que alterar                    | Onde fica                                           | Regra                                                                   |
+| -------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------- |
+| Strings de microcopy             | `src/screens/*.tsx` e `src/constants.ts`            | Toda mudança de string tem justificativa psicológica no commit          |
+| Conteúdo variável por nível      | `src/constants.ts` (CSP_COPY, FALLBACK_DIAGNOSTICO) | Acessar via `scores.nivel` do `useAppStore()` — nunca hardcoded na tela |
+| Estado emocional/dados da escola | `src/stores/appStore.ts` via `useAppStore()`        | Zero prop drilling — qualquer tela acessa o store diretamente           |
+| Lógica de kiosk                  | `src/hooks/useKioskMode.ts`                         | Estender, não duplicar — o hook já tem o timer                          |
+| Navegação entre telas            | `useNavigate()` do React Router                     | Nunca `window.location`                                                 |
+| Documentação de UX               | `docs/` (criar se não existir)                      | Arquivos de jornada e persona ficam em `docs/`, não em `planejamento/`  |
 
 ---
 
@@ -77,19 +95,19 @@ Quando um comportamento não ocorre, ao menos um dos três está ausente ou insu
 O comportamento-alvo principal é completar o questionário de 20 questões. Analisar
 pelas três dimensões:
 
-*Motivação:* o gestor está no estande porque tem curiosidade sobre a posição da
+_Motivação:_ o gestor está no estande porque tem curiosidade sobre a posição da
 escola. A motivação inicial é moderada-alta. Mas ela degrada com o tempo e com o
 esforço percebido. A tela Instrucao.tsx e a Ancora.tsx existem para sustentar a
 motivação antes de entrar nas questões — e devem fazê-lo de forma genuína, não com
 linguagem de marketing.
 
-*Habilidade:* 20 questões em 4 blocos de 5 é cognitivamente gerenciável. O risco
+_Habilidade:_ 20 questões em 4 blocos de 5 é cognitivamente gerenciável. O risco
 está na formulação das questões — linguagem complexa ou ambígua reduz a habilidade
 percebida e cria ansiedade de resposta ("o que exatamente querem dizer com isso?").
 A escala de 4 pontos (de "não fazemos" a "é uma política institucional") é clara
 e funcional.
 
-*Prompt:* o app depende de um consultor Geekie como gatilho físico no estande. No
+_Prompt:_ o app depende de um consultor Geekie como gatilho físico no estande. No
 design, os prompts internos são os botões de avanço e o feedback de progresso. O
 botão desabilitado sem explicação visível (quando faltam respostas) é um anti-prompt
 — suprime o comportamento sem orientar.
@@ -181,6 +199,7 @@ Pesquisas da Nielsen Norman Group e dados da indústria convergem nos mesmos ach
 
 **O MIE tem microcopy funcional mas não emocional.** Exemplos atuais que podem
 evoluir:
+
 - "Continuar →" → "Calcular meu diagnóstico →"
 - "Ver Resultado Final" → "Ver o resultado da [escola.nome]" (personalizado)
 - "Obrigatório" → "Informe para personalizarmos o diagnóstico"
@@ -210,14 +229,14 @@ CSP           Confiança, próximo passo Tom vendedor, fechamento    Microcopy +
 
 ## Estado dos Sprints de UX
 
-| Sprint | Status | Branch final | Data |
-|--------|--------|-------------|------|
-| UX-0 — Mapa de Jornada e Auditoria | ⬜ Pendente | — | — |
-| UX-1 — Microcopy e Tom de Voz | ⬜ Pendente | — | — |
-| UX-2 — Fluxo e Carga Cognitiva | ⬜ Pendente | — | — |
-| UX-3 — O Pico: Tela de Resultado | ⬜ Pendente | — | — |
-| UX-4 — O Final: Tela CSP e Encerramento | ⬜ Pendente | — | — |
-| UX-5 — Validação Comportamental | ⬜ Pendente | — | — |
+| Sprint                                  | Status      | Branch final | Data |
+| --------------------------------------- | ----------- | ------------ | ---- |
+| UX-0 — Mapa de Jornada e Auditoria      | ⬜ Pendente | —            | —    |
+| UX-1 — Microcopy e Tom de Voz           | ⬜ Pendente | —            | —    |
+| UX-2 — Fluxo e Carga Cognitiva          | ⬜ Pendente | —            | —    |
+| UX-3 — O Pico: Tela de Resultado        | ⬜ Pendente | —            | —    |
+| UX-4 — O Final: Tela CSP e Encerramento | ⬜ Pendente | —            | —    |
+| UX-5 — Validação Comportamental         | ⬜ Pendente | —            | —    |
 
 ---
 
@@ -254,6 +273,7 @@ Este sprint produz documentação, não código de produção.
 ### Tarefas
 
 **UX-0.1 — Definir a persona primária do MIE**
+
 ```
 Tarefa UX-0.1: crie docs/persona-primaria.md com a persona do usuário
 principal do app em contexto de Bett.
@@ -272,6 +292,7 @@ O cargo mais recorrente tende a ser Coordenador Pedagógico ou Diretor.
 ```
 
 **UX-0.2 — Mapear o estado emocional em cada tela**
+
 ```
 Tarefa UX-0.2: crie docs/emotional-journey.md com o mapa emocional
 completo. Para cada tela do fluxo, documente:
@@ -288,6 +309,7 @@ Fluxo: Splash → Cadastro → Instrucao → Ancora → Questoes (4 blocos)
 ```
 
 **UX-0.3 — Inventário de microcopy atual**
+
 ```
 Tarefa UX-0.3: crie docs/microcopy-inventory.md.
 Para cada tela, liste todas as strings que o usuário lê e classifique:
@@ -299,6 +321,7 @@ Não altere nenhum arquivo de código. Apenas documente.
 ```
 
 **UX-0.4 — Identificar o pico e o final**
+
 ```
 Tarefa UX-0.4: com base nos documentos anteriores, adicione uma seção
 "Análise Pico-Final" em docs/emotional-journey.md:
@@ -371,20 +394,21 @@ comportamental anotada no commit. Não existe "soa melhor" como justificativa.
 
 Antes das tarefas, o Claude Code deve internalizar este mapa de tom:
 
-| Tela | Tom | Justificativa | Proibido |
-|------|-----|---------------|---------|
-| Splash | Convidativo, direto | Primeira impressão; criar curiosidade sem prometer demais | Jargão pedagógico, hipérboles ("revolucionário") |
-| Cadastro | Parceiro solicitando, não sistema exigindo | Reduz atrito do formulário | "Obrigatório", asteriscos sem explicação |
-| Instrucao | Professor empático, não manual técnico | A pessoa precisa se sentir capaz antes de começar | Linguagem passiva, frases longas |
-| Ancora | Espelho respeitoso | O usuário está fazendo auto-avaliação; não deve sentir julgamento | Linguagem que soa como "certo ou errado" |
-| Questoes | Claro, sem ambiguidade | Texto da questão já é denso; o resto deve ser zero fricção | Instrução redundante, termos técnicos nos botões |
-| Loading | Antecipação com credibilidade | O diagnóstico sendo gerado deve parecer rigoroso, não instantâneo | "Carregando..." (genérico), frases vazias |
-| Resultado | Diagnóstico autorizado, não relatório frio | O gestor deve sentir que foi visto com precisão | "Seu score é X" (reduz a pessoa a número) |
-| CSP | Convite sem pressão de venda | O final deve criar desejo, não obrigação | "Nosso consultor entrará em contato", linguagem de pipeline |
+| Tela      | Tom                                        | Justificativa                                                     | Proibido                                                    |
+| --------- | ------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------------------- |
+| Splash    | Convidativo, direto                        | Primeira impressão; criar curiosidade sem prometer demais         | Jargão pedagógico, hipérboles ("revolucionário")            |
+| Cadastro  | Parceiro solicitando, não sistema exigindo | Reduz atrito do formulário                                        | "Obrigatório", asteriscos sem explicação                    |
+| Instrucao | Professor empático, não manual técnico     | A pessoa precisa se sentir capaz antes de começar                 | Linguagem passiva, frases longas                            |
+| Ancora    | Espelho respeitoso                         | O usuário está fazendo auto-avaliação; não deve sentir julgamento | Linguagem que soa como "certo ou errado"                    |
+| Questoes  | Claro, sem ambiguidade                     | Texto da questão já é denso; o resto deve ser zero fricção        | Instrução redundante, termos técnicos nos botões            |
+| Loading   | Antecipação com credibilidade              | O diagnóstico sendo gerado deve parecer rigoroso, não instantâneo | "Carregando..." (genérico), frases vazias                   |
+| Resultado | Diagnóstico autorizado, não relatório frio | O gestor deve sentir que foi visto com precisão                   | "Seu score é X" (reduz a pessoa a número)                   |
+| CSP       | Convite sem pressão de venda               | O final deve criar desejo, não obrigação                          | "Nosso consultor entrará em contato", linguagem de pipeline |
 
 ### Tarefas
 
 **UX-1.1 — Reescrever microcopy de Splash e Cadastro**
+
 ```
 Tarefa UX-1.1: com base no tom acima e na análise do UX-0, reescreva:
 
@@ -409,6 +433,7 @@ Commit: "ux(1.1): rewrite Splash and Cadastro microcopy with intent"
 ```
 
 **UX-1.2 — Reescrever microcopy de Instrucao e Ancora**
+
 ```
 Tarefa UX-1.2:
 
@@ -436,6 +461,7 @@ Commit: "ux(1.2): rewrite Instrucao and Ancora microcopy"
 ```
 
 **UX-1.3 — Reescrever microcopy de Questoes**
+
 ```
 Tarefa UX-1.3: o texto das questões está fixo (é o instrumento pedagógico
 — não alterar). O que pode ser reescrito:
@@ -455,6 +481,7 @@ Commit: "ux(1.3): rewrite questionnaire navigation microcopy"
 ```
 
 **UX-1.4 — Reescrever microcopy de Loading e CSP**
+
 ```
 Tarefa UX-1.4:
 
@@ -541,6 +568,7 @@ Este sprint é o mais cirúrgico: pequenas mudanças com grande impacto perceptu
 ### Tarefas
 
 **UX-2.1 — Reorganizar Cadastro para reduzir atrito percebido**
+
 ```
 Tarefa UX-2.1: o formulário de Cadastro tem 7+ campos visíveis de uma vez.
 Aplicar chunking visual sem alterar os campos ou validações:
@@ -562,6 +590,7 @@ Commit: "ux(2.1): reorganize Cadastro layout to reduce cognitive load"
 ```
 
 **UX-2.2 — Adicionar orientação temporal em todas as telas de transição**
+
 ```
 Tarefa UX-2.2: o usuário do estande não sabe quanto tempo vai demorar.
 Sem essa informação, o cérebro superestima a duração (pesquisa de Maister
@@ -581,6 +610,7 @@ Commit: "ux(2.2): add temporal anchoring across transition screens"
 ```
 
 **UX-2.3 — Eliminar ambiguidade na escala de respostas**
+
 ```
 Tarefa UX-2.3: cada questão tem uma escala de 4 pontos personalizada
 (ex: "Não fazemos" / "Fazemos pontualmente" / "Fazemos com regularidade" /
@@ -601,6 +631,7 @@ Commit: "ux(2.3): add scale guidance for first questionnaire block"
 ```
 
 **UX-2.4 — Revisar o alerta de modo kiosk**
+
 ```
 Tarefa UX-2.4: o reset por inatividade ocorre abruptamente (setScreen
 para splash sem aviso). Isso viola a heurística H4 de Nielsen
@@ -692,6 +723,7 @@ e aguarde confirmação antes de editar qualquer arquivo.
 ### Tarefas
 
 **UX-3.1 — Redesenhar a hierarquia de entrada da tela**
+
 ```
 Tarefa UX-3.1: o primeiro elemento visível ao entrar no Resultado
 deve ser o nome da escola, em destaque. Não o score. Não o badge.
@@ -711,6 +743,7 @@ avaliação (o que valho).
 ```
 
 **UX-3.2 — Adicionar "ponto de força" como elemento de entrada dos pilares**
+
 ```
 Tarefa UX-3.2: antes das 4 barras de pilar, adicionar um elemento
 visual que destaca o pilar mais alto da escola.
@@ -731,6 +764,7 @@ Commit: "ux(3.2): add strength highlight before pillar comparison"
 ```
 
 **UX-3.3 — Melhorar o momento da comparação âncora vs. real**
+
 ```
 Tarefa UX-3.3: quando a âncora (auto-percepção) difere do score real,
 este dado aparece apenas no texto do diagnóstico. É um dado importante
@@ -752,6 +786,7 @@ Commit: "ux(3.3): add anchor vs. real comparison with calibrated tone"
 ```
 
 **UX-3.4 — Revisar o ritmo de revelação do diagnóstico**
+
 ```
 Tarefa UX-3.4: o efeito typewriter já existe e é correto — cria
 antecipação e a sensação de que o texto está sendo gerado em tempo real.
@@ -832,6 +867,7 @@ Este sprint tem muito mais peso em texto do que em código.
 ### Tarefas
 
 **UX-4.1 — Personalizar a tela CSP por nível de diagnóstico**
+
 ```
 Tarefa UX-4.1: a tela CSP.tsx tem o componente CSP_COPY em constants.ts
 que já varia por nível (ESSENCIAL / EXPLORADOR / INTEGRADA). Mas o
@@ -852,6 +888,7 @@ Commit: "ux(4.1): contextualize CSP steps by diagnosis level"
 ```
 
 **UX-4.2 — Adicionar ritual de encerramento**
+
 ```
 Tarefa UX-4.2: criar um elemento de reconhecimento explícito no final
 da tela CSP, antes do botão de encerramento.
@@ -876,6 +913,7 @@ Commit: "ux(4.2): add closing statement with emotional closure"
 ```
 
 **UX-4.3 — Revisar o botão de encerramento final**
+
 ```
 Tarefa UX-4.3: o botão atual "Encerrar diagnóstico" chama resetToSplash
 e reinicia o app. É funcionalmente correto mas emocionalmente frio —
@@ -948,6 +986,7 @@ nos resultados da validação.
 ### Tarefas
 
 **UX-5.1 — Criar protocolo de teste de usabilidade**
+
 ```
 Tarefa UX-5.1: crie docs/usability-test-protocol.md.
 
@@ -987,6 +1026,7 @@ PERGUNTAS PÓS-TESTE (não diretivas)
 ```
 
 **UX-5.2 — Executar teste com 2-3 participantes e documentar**
+
 ```
 Tarefa UX-5.2: executar o protocolo de UX-5.1 com 2 ou 3 pessoas
 que se encaixam no perfil. Documentar em docs/usability-test-results.md:
@@ -1005,6 +1045,7 @@ Commit: "ux(5.2): document usability test results"
 ```
 
 **UX-5.3 — Implementar correções dos problemas críticos e graves**
+
 ```
 Tarefa UX-5.3: com base nos resultados documentados, implementar as
 correções necessárias em ordem de severidade.
@@ -1060,6 +1101,7 @@ VALIDAÇÃO COMPORTAMENTAL
 > **Sprint UX-5 concluído. Ciclo de UX encerrado.**
 >
 > O Mapa de Inovação agora tem:
+>
 > - Uma persona definida com contexto emocional específico
 > - Um mapa de jornada emocional com pico e final gerenciados
 > - Microcopy calibrado por tom de voz por tela
@@ -1072,16 +1114,16 @@ VALIDAÇÃO COMPORTAMENTAL
 
 ## Referência: Distinção UI vs. UX por Dimensão
 
-| Dimensão | UI cuida de | UX cuida de |
-|----------|-------------|-------------|
-| Cores | Contraste, identidade de marca | Carga emocional da paleta por tela |
-| Tipografia | Legibilidade, escala, peso | Hierarquia de informação, ritmo de leitura |
-| Animação | Duração, easing, performance | Quando animar — e quando não animar |
-| Botões | Tamanho, shape, estado hover | Label que nomeia o resultado do clique |
-| Formulários | Estilo de input, validação visual | Ordem dos campos, chunking, mensagem de por quê |
-| Loading | Spinner vs. skeleton, animação | O que comunicar durante a espera para sustentar antecipação |
-| Tela de resultado | Layout, gráficos, componentes | Hierarquia de revelação, gestão do pico emocional |
-| Tela final | Botão de encerramento, visual | Closure: o usuário sai com sensação de completude |
+| Dimensão          | UI cuida de                       | UX cuida de                                                 |
+| ----------------- | --------------------------------- | ----------------------------------------------------------- |
+| Cores             | Contraste, identidade de marca    | Carga emocional da paleta por tela                          |
+| Tipografia        | Legibilidade, escala, peso        | Hierarquia de informação, ritmo de leitura                  |
+| Animação          | Duração, easing, performance      | Quando animar — e quando não animar                         |
+| Botões            | Tamanho, shape, estado hover      | Label que nomeia o resultado do clique                      |
+| Formulários       | Estilo de input, validação visual | Ordem dos campos, chunking, mensagem de por quê             |
+| Loading           | Spinner vs. skeleton, animação    | O que comunicar durante a espera para sustentar antecipação |
+| Tela de resultado | Layout, gráficos, componentes     | Hierarquia de revelação, gestão do pico emocional           |
+| Tela final        | Botão de encerramento, visual     | Closure: o usuário sai com sensação de completude           |
 
 ---
 
@@ -1090,17 +1132,17 @@ VALIDAÇÃO COMPORTAMENTAL
 As seguintes obras fundamentam este documento — não como autoridade retórica, mas
 como base empírica para as decisões:
 
-- Daniel Kahneman, *Thinking, Fast and Slow* (2011) — regra pico-final, sistemas 1 e 2
-- BJ Fogg, *Tiny Habits* (2019) — modelo MAP, baby steps, prompts
-- Don Norman, *The Design of Everyday Things* (1988, rev. 2013) — affordances, feedback, três níveis emocionais
-- Aaron Walter, *Designing for Emotion* (2011) — pirâmide de necessidades em UX
-- J.L. Austin, *How to Do Things with Words* (1962) — speech acts, linguagem performativa
+- Daniel Kahneman, _Thinking, Fast and Slow_ (2011) — regra pico-final, sistemas 1 e 2
+- BJ Fogg, _Tiny Habits_ (2019) — modelo MAP, baby steps, prompts
+- Don Norman, _The Design of Everyday Things_ (1988, rev. 2013) — affordances, feedback, três níveis emocionais
+- Aaron Walter, _Designing for Emotion_ (2011) — pirâmide de necessidades em UX
+- J.L. Austin, _How to Do Things with Words_ (1962) — speech acts, linguagem performativa
 - Nielsen Norman Group, artigos sobre cognitive load, error messages, microcopy (2020-2026)
-- Mihaly Csikszentmihalyi, *Flow* (1990) — condições para estado de fluxo
+- Mihaly Csikszentmihalyi, _Flow_ (1990) — condições para estado de fluxo
 
 ---
 
-*Última atualização: Março 2026*
-*Fundamentado em: pesquisa de tendências UX 2025-2026 (UX Collective, Medium/Design Bootcamp,
+_Última atualização: Março 2026_
+_Fundamentado em: pesquisa de tendências UX 2025-2026 (UX Collective, Medium/Design Bootcamp,
 Laws of UX), estudos comportamentais aplicados ao design (inBeat, NN/Group, UXPin),
-e literatura de psicologia cognitiva e comportamental.*
+e literatura de psicologia cognitiva e comportamental._

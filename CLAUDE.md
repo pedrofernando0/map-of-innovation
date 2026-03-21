@@ -9,26 +9,30 @@
 
 Toda a documentação de planejamento está em `planejamento/`:
 
-| Arquivo                       | Conteúdo                                                                    |
-| ----------------------------- | --------------------------------------------------------------------------- |
-| `planejamento/arquitetura.md` | Arquitetura atual: hexagonal, Zustand, React Router v7, testes, CI          |
-| `planejamento/roadmap.md`     | Roadmap consolidado com status e prioridades (fonte de verdade)             |
-| `planejamento/pendencias.md`  | Lista executável de itens pendentes, organizados por sprint e tema          |
-| `planejamento/como_rodar.md`  | Setup, scripts, variáveis de ambiente, troubleshooting                      |
-| `planejamento/CLAUDE-UI.md`   | Playbook de execução para sprints de UI (tokens, a11y, motion, componentes) |
-| `planejamento/CLAUDE-UX.md`   | Playbook de execução para sprints de UX (jornada, microcopy, pico, final)   |
+| Arquivo                               | Conteúdo                                                           |
+| ------------------------------------- | ------------------------------------------------------------------ |
+| `planejamento/CLAUDE-SPRINTS.md`      | **Prompts prontos para executar cada sprint** — começar por aqui   |
+| `planejamento/arquitetura.md`         | Arquitetura atual: hexagonal, Zustand, React Router v7, testes, CI |
+| `planejamento/roadmap.md`             | Roadmap consolidado com status e prioridades (fonte de verdade)    |
+| `planejamento/pendencias.md`          | Lista executável de itens pendentes, organizados por sprint e tema |
+| `planejamento/como_rodar.md`          | Setup, scripts, variáveis de ambiente, troubleshooting             |
+| `planejamento/CLAUDE-UI.md`           | Playbook detalhado: tokens, a11y, motion, componentes (referência) |
+| `planejamento/CLAUDE-UX.md`           | Playbook detalhado: jornada, microcopy, pico, final (referência)   |
+| `planejamento/decisoes-tecnologia.md` | Análise de IA e Supabase — benefícios e impactos (para decisão)    |
+
+**Para iniciar um sprint — fluxo correto:**
+
+```
+1. Abra planejamento/CLAUDE-SPRINTS.md
+2. Localize o sprint desejado na tabela de índice
+3. Copie o bloco "Prompt de execução" completo
+4. Cole na IA — o prompt é autocontido e não precisa de instruções adicionais
+```
 
 **Para saber o que está pendente:**
 
 ```
-Leia planejamento/pendencias.md e me diga qual tema tem maior prioridade.
-```
-
-**Para iniciar um sprint:**
-
-```
-Leia planejamento/roadmap.md e planejamento/CLAUDE-UX.md (ou CLAUDE-UI.md),
-seção "[nome do sprint]", e execute as tarefas em ordem.
+Leia planejamento/pendencias.md e me diga qual sprint tem maior prioridade.
 ```
 
 ---

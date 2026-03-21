@@ -1,13 +1,33 @@
 # CLAUDE.md — UI/UX Quality Sprints
+
 ## Mapa de Inovação Educacional
 
 > Este arquivo orienta a execução dos sprints de qualidade visual, experiência de uso,
-> acessibilidade e sistema de design. Leia junto com `CLAUDE.md` (arquitetura) e
-> `roadmap-arquitetura-mapa-inovacao.md`.
+> acessibilidade e sistema de design. Leia junto com `arquitetura.md` e `roadmap.md`.
+>
+> **Para executar qualquer sprint deste arquivo:** use o prompt pronto em
+> `CLAUDE-SPRINTS.md`. Cada sprint tem um bloco de prompt autocontido que
+> lê os arquivos certos, cria a branch certa e roda o gate de qualidade.
 >
 > Fundamentação: pesquisa de mercado conduzida em março de 2026 sobre WCAG 2.2,
 > Motion v12, Radix UI / shadcn, design tokens, sistemas de ícones, princípios de
 > carga cognitiva (Nielsen/Norman Group) e benchmarks de performance (Lighthouse).
+
+---
+
+## Pontos de Arquitetura Relevantes para os Sprints de UI
+
+Antes de executar qualquer sprint, a IA deve saber onde cada coisa vive:
+
+| O que alterar         | Onde fica                                                         | Regra                                                                 |
+| --------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Tokens CSS            | `src/index.css` bloco `@theme`                                    | Sempre adicionar — nunca remover primitivos existentes                |
+| Componentes de UI     | `src/components/ui.tsx`                                           | Encapsular — a saída visual não muda sem aprovação                    |
+| Animações             | `motion/react` + `src/hooks/useMotionVariants.ts` (criar no UI-2) | Sempre com `prefers-reduced-motion`                                   |
+| Ícones novos          | `@phosphor-icons/react` (instalar no UI-3)                        | Peso semântico: bold=ação, regular=info, fill=ativo                   |
+| Toasts                | `sonner` (instalar no UI-4)                                       | Via `src/hooks/useToast.ts` — não chamar `toast.*` direto nas screens |
+| Primitivos acessíveis | `shadcn/ui` sobre Radix (instalar no UI-3)                        | Componentes copiados para o repo — não são dependência runtime        |
+| Testes de a11y        | `jest-axe` (instalar no UI-1)                                     | Zero violations críticas ou graves antes do commit                    |
 
 ---
 
@@ -32,13 +52,13 @@ landing page de Bett com scroll-driven storytelling).
 
 **Regras de animação baseadas em evidência (NN/Group + Material Motion):**
 
-| Contexto | Curva | Duração |
-|----------|-------|---------|
-| Elemento entrando na viewport | `easeOut` (desacelera ao chegar) | 280–400ms |
-| Elemento saindo | `easeIn` (acelera ao sair) | 180–220ms |
-| Transição de tela | `[0.22, 1, 0.36, 1]` (custom ease) | 260–300ms |
-| Microinteração de botão | `spring { stiffness: 400, damping: 30 }` | physics |
-| Lista com stagger | `easeOut` + `delay: index * 60ms` | 300ms por item |
+| Contexto                      | Curva                                    | Duração        |
+| ----------------------------- | ---------------------------------------- | -------------- |
+| Elemento entrando na viewport | `easeOut` (desacelera ao chegar)         | 280–400ms      |
+| Elemento saindo               | `easeIn` (acelera ao sair)               | 180–220ms      |
+| Transição de tela             | `[0.22, 1, 0.36, 1]` (custom ease)       | 260–300ms      |
+| Microinteração de botão       | `spring { stiffness: 400, damping: 30 }` | physics        |
+| Lista com stagger             | `easeOut` + `delay: index * 60ms`        | 300ms por item |
 
 **`prefers-reduced-motion` é obrigatório.** Animações que não respeitam esta
 preferência violam WCAG 2.2 critério 2.3.3 (AAA) e causam desconforto físico em
@@ -83,6 +103,7 @@ O `index.css` atual tem tokens primitivos corretos (`--color-geekie-cereja: #ff1
 Falta a camada semântica: tokens que expressam intenção, não valor.
 
 **Estrutura de dois níveis:**
+
 ```
 Primitivo:   --color-red-500: #ff1547
 Semântico:   --color-brand-primary: var(--color-red-500)
@@ -148,14 +169,14 @@ corretos para operações de duração indefinida (geração do diagnóstico). A
 
 ## Estado dos Sprints de UI/UX
 
-| Sprint | Status | Branch final | Data |
-|--------|--------|-------------|------|
-| UI-0 — Auditoria e Design Tokens | ⬜ Pendente | — | — |
-| UI-1 — Acessibilidade (WCAG 2.2) | ⬜ Pendente | — | — |
-| UI-2 — Motion e Microinterações | ⬜ Pendente | — | — |
-| UI-3 — Primitivos e Componentes | ⬜ Pendente | — | — |
-| UI-4 — Feedback e Estado do Sistema | ⬜ Pendente | — | — |
-| UI-5 — Performance e Polish Final | ⬜ Pendente | — | — |
+| Sprint                              | Status      | Branch final | Data |
+| ----------------------------------- | ----------- | ------------ | ---- |
+| UI-0 — Auditoria e Design Tokens    | ⬜ Pendente | —            | —    |
+| UI-1 — Acessibilidade (WCAG 2.2)    | ⬜ Pendente | —            | —    |
+| UI-2 — Motion e Microinterações     | ⬜ Pendente | —            | —    |
+| UI-3 — Primitivos e Componentes     | ⬜ Pendente | —            | —    |
+| UI-4 — Feedback e Estado do Sistema | ⬜ Pendente | —            | —    |
+| UI-5 — Performance e Polish Final   | ⬜ Pendente | —            | —    |
 
 ---
 
@@ -195,6 +216,7 @@ Aguarde confirmação para prosseguir com UI-0.3.
 ### Tarefas
 
 **UI-0.1 — Auditoria de contraste (sem código)**
+
 ```
 Tarefa UI-0.1: execute auditoria de contraste usando axe DevTools
 (extensão de browser) ou lighthouse CI em cada tela do app.
@@ -206,6 +228,7 @@ NÃO altere nenhum arquivo de código nesta tarefa.
 ```
 
 **UI-0.2 — Auditoria de foco e target size (sem código)**
+
 ```
 Tarefa UI-0.2: navegue pelo app usando APENAS teclado (Tab, Shift+Tab,
 Enter, Space, Escape). Documente em docs/ui-audit.md:
@@ -216,6 +239,7 @@ NÃO altere nenhum arquivo de código.
 ```
 
 **UI-0.3 — Camada semântica de tokens**
+
 ```
 Tarefa UI-0.3: em src/index.css, dentro do bloco @theme, adicione
 tokens semânticos referenciando os primitivos existentes:
@@ -273,6 +297,7 @@ Commit: "feat(ui0): add semantic token layer to design system"
 ```
 
 **UI-0.4 — Focus ring global**
+
 ```
 Tarefa UI-0.4: adicione ao src/index.css (fora do @theme) a regra global
 de focus:
@@ -332,6 +357,7 @@ teste axe que passa antes do commit.
 ### Tarefas
 
 **UI-1.1 — Instalar jest-axe e escrever testes de baseline**
+
 ```
 Tarefa UI-1.1: crie src/__tests__/a11y.test.tsx. Importe axe de jest-axe.
 Escreva testes para: Splash, Cadastro (estado inicial), Instrucao, Ancora,
@@ -342,6 +368,7 @@ Commit: "test(ui1): add axe accessibility baseline tests"
 ```
 
 **UI-1.2 — Semântica HTML**
+
 ```
 Tarefa UI-1.2: audite e corrija a estrutura HTML semântica:
 - index.html: adicionar lang="pt-BR" na tag <html>
@@ -357,6 +384,7 @@ Commit: "fix(ui1): semantic HTML structure across all screens"
 ```
 
 **UI-1.3 — ARIA nos componentes interativos**
+
 ```
 Tarefa UI-1.3: aplique ARIA correto:
 - BettAtivacoes.tsx: o botão de accordion precisa de
@@ -371,6 +399,7 @@ Commit: "fix(ui1): add ARIA attributes to interactive components"
 ```
 
 **UI-1.4 — Contraste mínimo**
+
 ```
 Tarefa UI-1.4: com base no docs/ui-audit.md, corrija os valores de cor
 que estão abaixo de 4.5:1. Use APENAS os tokens semânticos definidos
@@ -382,6 +411,7 @@ Commit: "fix(ui1): fix color contrast to meet WCAG AA 4.5:1"
 ```
 
 **UI-1.5 — Touch targets**
+
 ```
 Tarefa UI-1.5: garanta que todos os alvos interativos tenham
 mínimo 44x44px de área de toque em mobile (WCAG 2.2 recomenda 24px,
@@ -441,6 +471,7 @@ REGRA: toda animação nova deve ter versão reduzida dentro de um bloco
 ### Tarefas
 
 **UI-2.1 — Hook useReducedMotion e variantes globais**
+
 ```
 Tarefa UI-2.1: crie src/hooks/useMotionVariants.ts.
 Este hook exporta variantes pré-definidas que respeitam
@@ -477,6 +508,7 @@ Commit: "feat(ui2): add useMotionVariants hook with reduced-motion support"
 ```
 
 **UI-2.2 — Microinteração nos botões**
+
 ```
 Tarefa UI-2.2: em src/components/ui.tsx, envolva o <button> do componente
 Button com motion.button (ou adicione whileHover e whileTap diretamente).
@@ -492,6 +524,7 @@ Commit: "feat(ui2): button microinteraction via Motion"
 ```
 
 **UI-2.3 — Animação de entrada nas questões**
+
 ```
 Tarefa UI-2.3: em Questoes.tsx, use as variantes `stagger` + `fadeUp`
 para animar a entrada dos cards de questão quando o bloco muda.
@@ -503,6 +536,7 @@ Commit: "feat(ui2): stagger animation on questionnaire block change"
 ```
 
 **UI-2.4 — Barras de progresso dos pilares animadas**
+
 ```
 Tarefa UI-2.4: em ResultadoPilares.tsx (criado no Sprint 3 de arquitetura,
 ou em Resultado.tsx se ainda não foi refatorado), anime as barras de
@@ -514,6 +548,7 @@ Commit: "feat(ui2): animated progress bars on Resultado screen"
 ```
 
 **UI-2.5 — Feedback visual nas respostas selecionadas**
+
 ```
 Tarefa UI-2.5: em Questoes.tsx, ao selecionar uma resposta, adicione
 uma microanimação de confirmação no card selecionado:
@@ -573,6 +608,7 @@ adicionadas e aguarde confirmação.
 ### Tarefas
 
 **UI-3.1 — Instalar shadcn e Phosphor**
+
 ```
 Tarefa UI-3.1:
 1. Inicializar shadcn: npx shadcn@latest init
@@ -593,6 +629,7 @@ Commit: "feat(ui3): initialize shadcn + install Phosphor icons"
 ```
 
 **UI-3.2 — Substituir tooltip do EixoEspectro**
+
 ```
 Tarefa UI-3.2: o tooltip de EixoEspectro.tsx usa useState local e
 posicionamento manual. Substitua pelo componente Tooltip do shadcn
@@ -610,6 +647,7 @@ Commit: "refactor(ui3): replace manual tooltip with Radix/shadcn Tooltip"
 ```
 
 **UI-3.3 — Substituir modal "Ver JSON" no Admin**
+
 ```
 Tarefa UI-3.3: o Admin.tsx usa alert(JSON.stringify(...)) para mostrar
 dados. Substitua por um Dialog do shadcn com JSON formatado e botão
@@ -626,6 +664,7 @@ Commit: "feat(ui3): replace alert() with accessible Dialog in Admin"
 ```
 
 **UI-3.4 — Ícones com hierarquia visual**
+
 ```
 Tarefa UI-3.4: substitua os SVGs inline das telas por ícones Phosphor
 com peso semântico. Regra de uso:
@@ -690,6 +729,7 @@ Crie a branch feature/ui4-feedback.
 ### Tarefas
 
 **UI-4.1 — Sistema de Toast (Sonner)**
+
 ```
 Tarefa UI-4.1: instale sonner (toast library, 1.8KB, acessível):
 npm install sonner
@@ -712,6 +752,7 @@ Commit: "feat(ui4): add Sonner toast system for feedback"
 ```
 
 **UI-4.2 — Progress indicator dentro do bloco de questões**
+
 ```
 Tarefa UI-4.2: em Questoes.tsx, abaixo do título do bloco, adicione
 um indicador de progresso interno do bloco:
@@ -727,6 +768,7 @@ Commit: "feat(ui4): intra-block progress indicator in questionnaire"
 ```
 
 **UI-4.3 — Skeleton state no painel Admin**
+
 ```
 Tarefa UI-4.3: o Admin.tsx carrega dados do localStorage de forma
 síncrona (não precisa de skeleton), mas quando for migrado para API
@@ -753,6 +795,7 @@ Commit: "feat(ui4): skeleton state infrastructure for Admin table"
 ```
 
 **UI-4.4 — Mensagens de erro aprimoradas em Cadastro**
+
 ```
 Tarefa UI-4.4: as mensagens de erro atuais são funcionais mas frias
 ("Obrigatório"). Aplique as diretrizes de heurística H9:
@@ -814,6 +857,7 @@ Apresente cada resultado antes de avançar para a próxima tarefa.
 ### Tarefas
 
 **UI-5.1 — Tipografia fluida com clamp()**
+
 ```
 Tarefa UI-5.1: substitua os tamanhos de fonte hard-coded nos títulos
 principais por valores fluidos usando clamp(). Isso elimina o salto
@@ -833,6 +877,7 @@ Commit: "feat(ui5): fluid typography with clamp() for headings"
 ```
 
 **UI-5.2 — Otimização de fontes**
+
 ```
 Tarefa UI-5.2: o app carrega Baloo 2 e Mulish do Google Fonts via @import
 no CSS. Isso bloqueia renderização. Substitua por:
@@ -852,6 +897,7 @@ Commit: "perf(ui5): optimize font loading with preconnect + preload"
 ```
 
 **UI-5.3 — Dark mode (sistema)**
+
 ```
 Tarefa UI-5.3: adicione suporte a dark mode via prefers-color-scheme,
 usando os tokens semânticos. O dark mode não precisa ser completo —
@@ -876,6 +922,7 @@ Commit: "feat(ui5): basic dark mode via prefers-color-scheme"
 ```
 
 **UI-5.4 — Responsividade em 375px (evento presencial)**
+
 ```
 Tarefa UI-5.4: este app será usado em tablets e celulares no estande.
 Realize uma sessão de teste em 375px (viewport DevTools → iPhone SE).
@@ -935,6 +982,7 @@ RESPONSIVIDADE
 > **Sprint UI-5 concluído. Ciclo de UI/UX encerrado.**
 >
 > O app agora tem:
+>
 > - WCAG 2.2 AA em todas as telas
 > - Sistema de design com tokens semânticos de dois níveis
 > - Animações funcionais com respeito a `prefers-reduced-motion`
@@ -947,24 +995,24 @@ RESPONSIVIDADE
 
 ## Referência Rápida: Bibliotecas e Versões
 
-| Biblioteca | Propósito | Versão alvo | Import |
-|-----------|-----------|-------------|--------|
-| `motion/react` | Animações React | ^12.x | `from 'motion/react'` |
-| `@radix-ui/react-*` | Primitivos acessíveis | latest | via shadcn |
-| `@phosphor-icons/react` | Sistema de ícones | ^2.x | named imports |
-| `lucide-react` | Ícones existentes (manter) | ^0.5x | named imports |
-| `sonner` | Toast notifications | ^1.x | `<Toaster />` + `toast.*` |
-| `jest-axe` | Testes de acessibilidade | ^8.x | `axe` + `toHaveNoViolations` |
+| Biblioteca              | Propósito                  | Versão alvo | Import                       |
+| ----------------------- | -------------------------- | ----------- | ---------------------------- |
+| `motion/react`          | Animações React            | ^12.x       | `from 'motion/react'`        |
+| `@radix-ui/react-*`     | Primitivos acessíveis      | latest      | via shadcn                   |
+| `@phosphor-icons/react` | Sistema de ícones          | ^2.x        | named imports                |
+| `lucide-react`          | Ícones existentes (manter) | ^0.5x       | named imports                |
+| `sonner`                | Toast notifications        | ^1.x        | `<Toaster />` + `toast.*`    |
+| `jest-axe`              | Testes de acessibilidade   | ^8.x        | `axe` + `toHaveNoViolations` |
 
 ## Referência Rápida: Valores de Contraste Seguros
 
-| Token | Hex | Sobre branco | WCAG |
-|-------|-----|-------------|------|
-| `--color-text-primary` | `#1c1c1c` | 17.3:1 | AAA |
-| `--color-text-secondary` | `#4b5563` | 7.0:1 | AAA |
-| `--color-text-tertiary` | `#6b7280` | 4.6:1 | AA |
-| `--color-text-disabled` | `#9ca3af` | 2.9:1 | Só para disabled |
-| `--color-brand-primary` | `#ff1547` | 4.6:1 | AA (texto grande) |
+| Token                    | Hex       | Sobre branco | WCAG              |
+| ------------------------ | --------- | ------------ | ----------------- |
+| `--color-text-primary`   | `#1c1c1c` | 17.3:1       | AAA               |
+| `--color-text-secondary` | `#4b5563` | 7.0:1        | AAA               |
+| `--color-text-tertiary`  | `#6b7280` | 4.6:1        | AA                |
+| `--color-text-disabled`  | `#9ca3af` | 2.9:1        | Só para disabled  |
+| `--color-brand-primary`  | `#ff1547` | 4.6:1        | AA (texto grande) |
 
 > Atenção: `#ff1547` sobre branco tem 4.6:1. Passa para texto grande (18px+)
 > mas fica no limite para texto pequeno. Use peso bold >= 700 se o tamanho
@@ -972,7 +1020,7 @@ RESPONSIVIDADE
 
 ---
 
-*Última atualização: Março 2026*
-*Fundamentado em: WCAG 2.2 (W3C), Motion v12 docs, NN/Group UX Heuristics,
+_Última atualização: Março 2026_
+_Fundamentado em: WCAG 2.2 (W3C), Motion v12 docs, NN/Group UX Heuristics,
 State of JS 2024, Radix UI docs, Phosphor Icons docs, Carbon Design System
-spacing guidelines, research comparativo de bibliotecas UI/React 2025-2026.*
+spacing guidelines, research comparativo de bibliotecas UI/React 2025-2026._
