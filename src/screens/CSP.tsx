@@ -27,19 +27,19 @@ export function CSP() {
 
   const nextSteps = [
     {
-      title: 'Leitura do contexto escolar',
+      title: 'Leitura do diagnóstico',
       description:
-        'A equipe Geekie parte deste diagnóstico para compreender a etapa de ensino, a organização curricular e os desafios mais presentes na rotina da sua escola.',
+        'Um pedagogo da Geekie analisa as respostas para entender a etapa de ensino, a organização curricular e os desafios específicos da sua escola antes de qualquer retorno.',
     },
     {
-      title: 'Devolutiva pedagógica',
+      title: 'Devolutiva contextualizada',
       description:
-        'O contato tem como foco aprofundar o significado dos resultados, destacando forças, pontos de atenção e prioridades possíveis para o próximo ciclo.',
+        'A devolutiva aprofunda o significado dos resultados — destacando o que já está consolidado, onde há espaço para desenvolvimento e quais prioridades fazem sentido para o próximo ciclo.',
     },
     {
-      title: 'Aplicação à realidade da escola',
+      title: 'Encaminhamentos pedagógicos',
       description:
-        'A conversa busca traduzir o diagnóstico em encaminhamentos aderentes ao contexto institucional, sem receitas prontas ou propostas desconectadas da prática.',
+        'Os encaminhamentos partem do diagnóstico e do contexto da escola, sem propostas genéricas ou desconectadas da prática já existente.',
     },
   ];
 
@@ -101,13 +101,13 @@ export function CSP() {
 
           <div className="mt-8 rounded-2xl border border-[#f3e7ea] bg-white/75 p-6 text-left">
             <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--color-text-tertiary)] mb-3">
-              Como a continuidade acontece
+              Como o retorno acontece
             </h3>
             <p className="text-sm text-gray-700 leading-relaxed">
-              O retorno considera os dados preenchidos por{' '}
-              <strong>{escola.contato_nome || 'sua escola'}</strong> e o e-mail{' '}
-              <strong>{escola.contato_email || 'informado no cadastro'}</strong>, para que a
-              conversa parta do diagnóstico já realizado e avance com foco pedagógico.
+              O diagnóstico preenchido por <strong>{escola.contato_nome || 'sua escola'}</strong>{' '}
+              será analisado pela equipe pedagógica da Geekie. O retorno chegará pelo e-mail{' '}
+              <strong>{escola.contato_email || 'informado no cadastro'}</strong> e parte do que foi
+              respondido aqui — não de um modelo padrão.
             </p>
           </div>
 

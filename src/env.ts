@@ -1,8 +1,12 @@
 import { z } from 'zod';
 
+// Credenciais padrão de fallback — sobrescritas por VITE_ADMIN_USER / VITE_ADMIN_PASS no .env.local
+const ADMIN_USER_DEFAULT = 'geekie';
+const ADMIN_PASS_DEFAULT = 'bett2026';
+
 const envSchema = z.object({
-  ADMIN_USER: z.string().optional(),
-  ADMIN_PASS: z.string().optional(),
+  ADMIN_USER: z.string().default(ADMIN_USER_DEFAULT),
+  ADMIN_PASS: z.string().default(ADMIN_PASS_DEFAULT),
   WHATSAPP_NUMBER: z.string().default('5511000000000'),
   DIAGNOSTIC_TIMEOUT_MS: z.coerce.number().default(30_000),
 });
@@ -22,8 +26,8 @@ if (!parsed.success) {
 export const env = parsed.success
   ? parsed.data
   : {
-      ADMIN_USER: undefined,
-      ADMIN_PASS: undefined,
+      ADMIN_USER: ADMIN_USER_DEFAULT,
+      ADMIN_PASS: ADMIN_PASS_DEFAULT,
       WHATSAPP_NUMBER: '5511000000000',
       DIAGNOSTIC_TIMEOUT_MS: 30_000,
     };

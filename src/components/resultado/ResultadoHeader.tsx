@@ -15,6 +15,17 @@ function getAncoraLabel(val: number): string {
   return 'Integrada';
 }
 
+// Mapeia os valores internos do campo "rede" para exibição legível
+const REDE_LABEL: Record<string, string> = {
+  privada: 'Rede Privada',
+  publica: 'Rede Pública',
+  comunitaria: 'Rede Comunitária / Filantrópica',
+};
+
+function formatRede(rede: string): string {
+  return REDE_LABEL[rede] ?? rede.charAt(0).toUpperCase() + rede.slice(1);
+}
+
 export function ResultadoHeader({ escola, scores, ancora }: Props) {
   return (
     <div className="bg-[var(--color-geekie-cereja)] rounded-3xl p-8 text-white shadow-lg">
@@ -33,7 +44,7 @@ export function ResultadoHeader({ escola, scores, ancora }: Props) {
           </h1>
           <p className="text-base opacity-80">
             {escola.cidade}
-            {escola.estado ? ` / ${escola.estado}` : ''} · {escola.rede}
+            {escola.estado ? ` / ${escola.estado}` : ''} · {formatRede(escola.rede)}
           </p>
           {ancora && (
             <p className="text-sm opacity-70 mt-2">

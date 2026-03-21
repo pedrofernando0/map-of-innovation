@@ -26,10 +26,11 @@ export function ClosingStatement({ nivel }: Props) {
   return (
     <div className="rounded-2xl border border-[#f0e1e5] bg-[#fff9f7] p-6 space-y-4">
       <div className="space-y-2 text-sm text-gray-600 leading-relaxed">
-        <p>Você dedicou tempo para olhar com honestidade para a sua escola.</p>
+        <p>Você dedicou tempo para olhar com atenção para a sua escola.</p>
         <p>
-          Nos próximos dias, um pedagogo da Geekie vai ler este diagnóstico antes de entrar em
-          contato — a conversa parte daqui, não de um roteiro genérico.
+          Este diagnóstico fica registrado. Nos próximos dias, um pedagogo da Geekie vai analisá-lo
+          antes de qualquer retorno — para que a devolutiva parta do que foi respondido aqui, não de
+          um roteiro genérico.
         </p>
       </div>
       <p className="text-base font-semibold text-[var(--color-geekie-cereja)] leading-snug">

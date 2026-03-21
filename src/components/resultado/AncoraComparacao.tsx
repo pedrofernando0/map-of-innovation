@@ -27,14 +27,14 @@ function getMensagem(ancoraNum: number, nivelReal: Scores['nivel']): string {
   const ordemReal = NIVEL_ORDEM[nivelReal] ?? 0;
 
   if (ordemAncora === ordemReal) {
-    return 'Sua leitura institucional está alinhada ao diagnóstico.';
+    return 'A percepção institucional está alinhada ao que o diagnóstico mediu.';
   }
   if (ordemAncora > ordemReal) {
-    // Ancora mais alta que real: o diagnóstico identificou mais oportunidades
-    return 'O diagnóstico identificou mais oportunidades do que a estimativa inicial — um ponto de partida valioso para a conversa.';
+    // Ancora mais alta que real: o instrumento identificou oportunidades de desenvolvimento
+    return 'O instrumento identificou oportunidades de desenvolvimento que a percepção inicial não capturou — um dado relevante para a reflexão pedagógica.';
   }
-  // Ancora mais baixa que real: a escola está mais avançada do que o esperado
-  return 'Sua escola está mais avançada do que a estimativa inicial. Há práticas consolidadas que merecem ser reconhecidas.';
+  // Ancora mais baixa que real: a escola está mais avançada do que percebia
+  return 'Sua escola demonstra mais avanço do que a percepção inicial indicava. Há práticas já consolidadas que merecem ser reconhecidas e ampliadas.';
 }
 
 function getAncoraLabel(val: number): string {
@@ -64,7 +64,7 @@ export function AncoraComparacao({ ancora, nivelReal }: Props) {
     >
       <div className="flex items-center gap-4 flex-1 flex-wrap text-sm text-gray-600">
         <span>
-          <span className="text-[var(--color-text-tertiary)] font-medium">Você estimou:</span>{' '}
+          <span className="text-[var(--color-text-tertiary)] font-medium">Estimativa inicial:</span>{' '}
           <strong className="text-[var(--color-geekie-preto)]">{nivelAncoraLabel}</strong>
         </span>
         <span className="hidden sm:inline text-gray-300" aria-hidden="true">

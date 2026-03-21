@@ -72,12 +72,12 @@ exports[`Snapshots — telas estáticas > CSP 1`] = `
           <h2
             class="text-base font-bold text-[var(--color-geekie-preto)] mb-2"
           >
-            Leitura do contexto escolar
+            Leitura do diagnóstico
           </h2>
           <p
             class="text-sm leading-relaxed text-gray-600"
           >
-            A equipe Geekie parte deste diagnóstico para compreender a etapa de ensino, a organização curricular e os desafios mais presentes na rotina da sua escola.
+            Um pedagogo da Geekie analisa as respostas para entender a etapa de ensino, a organização curricular e os desafios específicos da sua escola antes de qualquer retorno.
           </p>
         </div>
         <div
@@ -91,12 +91,12 @@ exports[`Snapshots — telas estáticas > CSP 1`] = `
           <h2
             class="text-base font-bold text-[var(--color-geekie-preto)] mb-2"
           >
-            Devolutiva pedagógica
+            Devolutiva contextualizada
           </h2>
           <p
             class="text-sm leading-relaxed text-gray-600"
           >
-            O contato tem como foco aprofundar o significado dos resultados, destacando forças, pontos de atenção e prioridades possíveis para o próximo ciclo.
+            A devolutiva aprofunda o significado dos resultados — destacando o que já está consolidado, onde há espaço para desenvolvimento e quais prioridades fazem sentido para o próximo ciclo.
           </p>
         </div>
         <div
@@ -110,12 +110,12 @@ exports[`Snapshots — telas estáticas > CSP 1`] = `
           <h2
             class="text-base font-bold text-[var(--color-geekie-preto)] mb-2"
           >
-            Aplicação à realidade da escola
+            Encaminhamentos pedagógicos
           </h2>
           <p
             class="text-sm leading-relaxed text-gray-600"
           >
-            A conversa busca traduzir o diagnóstico em encaminhamentos aderentes ao contexto institucional, sem receitas prontas ou propostas desconectadas da prática.
+            Os encaminhamentos partem do diagnóstico e do contexto da escola, sem propostas genéricas ou desconectadas da prática já existente.
           </p>
         </div>
       </div>
@@ -125,22 +125,22 @@ exports[`Snapshots — telas estáticas > CSP 1`] = `
         <h3
           class="text-sm font-bold uppercase tracking-[0.16em] text-[var(--color-text-tertiary)] mb-3"
         >
-          Como a continuidade acontece
+          Como o retorno acontece
         </h3>
         <p
           class="text-sm text-gray-700 leading-relaxed"
         >
-          O retorno considera os dados preenchidos por
-           
+          O diagnóstico preenchido por 
           <strong>
             sua escola
           </strong>
-           e o e-mail
+           
+          será analisado pela equipe pedagógica da Geekie. O retorno chegará pelo e-mail
            
           <strong>
             informado no cadastro
           </strong>
-          , para que a conversa parta do diagnóstico já realizado e avance com foco pedagógico.
+           e parte do que foi respondido aqui — não de um modelo padrão.
         </p>
       </div>
       <div
@@ -150,10 +150,10 @@ exports[`Snapshots — telas estáticas > CSP 1`] = `
           class="space-y-2 text-sm text-gray-600 leading-relaxed"
         >
           <p>
-            Você dedicou tempo para olhar com honestidade para a sua escola.
+            Você dedicou tempo para olhar com atenção para a sua escola.
           </p>
           <p>
-            Nos próximos dias, um pedagogo da Geekie vai ler este diagnóstico antes de entrar em contato — a conversa parte daqui, não de um roteiro genérico.
+            Este diagnóstico fica registrado. Nos próximos dias, um pedagogo da Geekie vai analisá-lo antes de qualquer retorno — para que a devolutiva parta do que foi respondido aqui, não de um roteiro genérico.
           </p>
         </div>
         <p

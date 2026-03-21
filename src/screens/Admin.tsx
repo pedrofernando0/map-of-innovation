@@ -16,6 +16,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { ArrowLeft, DownloadSimple, X, CopySimple, Check } from '@phosphor-icons/react';
 
 import { SkeletonRow } from '../components/SkeletonRow';
+import { useToast } from '../hooks/useToast';
 import { useServices } from '../contexts/AppServicesContext';
 import { env } from '../env';
 import { StoredRecord } from '../types';
@@ -32,6 +33,7 @@ export function Admin() {
   const [copied, setCopied] = useState(false);
   // UI-4.3: isLoading preparado para quando Admin migrar de localStorage para API assíncrona
   const [isLoading, setIsLoading] = useState(false);
+  const { error: toastError } = useToast();
 
   useEffect(() => {
     if (auth) {
@@ -49,7 +51,7 @@ export function Admin() {
     if (usuario === env.ADMIN_USER && senha === env.ADMIN_PASS) {
       setAuth(true);
     } else {
-      alert('Usuário ou senha incorretos');
+      toastError('Usuário ou senha incorretos');
     }
   };
 
