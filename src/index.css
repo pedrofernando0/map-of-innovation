@@ -13,6 +13,54 @@
   --color-geekie-verde: #32cd91;
   --color-geekie-azul: #0fc3e6;
   --color-geekie-roxo: #6146f1;
+
+  /* ── Semânticos — Marca ──────────────────── */
+  --color-brand-primary: var(--color-geekie-cereja);
+  --color-brand-secondary: var(--color-geekie-azul);
+  --color-brand-accent: var(--color-geekie-laranja);
+
+  /* ── Semânticos — Feedback ───────────────── */
+  --color-feedback-error: var(--color-geekie-cereja);
+  --color-feedback-success: var(--color-geekie-verde);
+  --color-feedback-warning: var(--color-geekie-amarelo);
+  --color-feedback-info: var(--color-geekie-azul);
+
+  /* ── Semânticos — Superfície ─────────────── */
+  --color-surface-default: var(--color-geekie-branco);
+  --color-surface-subtle: #f8f8f8;
+  --color-surface-brand: var(--color-geekie-cereja);
+
+  /* ── Semânticos — Texto ──────────────────── */
+  --color-text-primary: var(--color-geekie-preto);
+  --color-text-secondary: #4b5563;
+  --color-text-tertiary: #6b7280;
+  --color-text-on-brand: var(--color-geekie-branco);
+  --color-text-disabled: #9ca3af;
+
+  /* ── Semânticos — Foco ───────────────────── */
+  --color-focus-ring: var(--color-geekie-cereja);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* ── Spacing — grade de 8pt ──────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ── Motion tokens ───────────────────────── */
+  --duration-fast: 180ms;
+  --duration-base: 280ms;
+  --duration-slow: 400ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 body {
