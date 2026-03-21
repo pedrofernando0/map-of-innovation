@@ -29,7 +29,7 @@ export function Resultado() {
       <div className="mt-4 text-center no-print opacity-20 hover:opacity-100 transition-opacity">
         <button
           onClick={() => window.location.reload()}
-          className="text-xs text-gray-400 hover:text-gray-600"
+          className="text-xs text-[var(--color-text-tertiary)] hover:text-gray-600"
         >
           Novo preenchimento (Reset)
         </button>

@@ -44,12 +44,14 @@ export function ResultadoDiagnostico({ diagnostico, onPrint, onContinue }: Props
         </span>
       </div>
 
-      <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mt-6 mb-1">
+      <div className="text-xs font-bold text-[var(--color-text-tertiary)] uppercase tracking-wider mt-6 mb-1">
         Categoria avaliada (versão pocket — Bett Brasil 2026)
       </div>
       <p className="text-sm text-gray-600 mb-6">
         Currículo e organização da aprendizagem{' '}
-        <span className="text-gray-400">(1 de 5 categorias do instrumento completo)</span>
+        <span className="text-[var(--color-text-tertiary)]">
+          (1 de 5 categorias do instrumento completo)
+        </span>
       </p>
 
       <div className="prose prose-lg prose-red max-w-none text-gray-700 leading-relaxed text-justify min-h-[200px]">

@@ -102,7 +102,7 @@ export function Questoes() {
             {blocoAtual === 0 && (
               <button
                 onClick={handleRandomAnswers}
-                className="flex-shrink-0 mt-1 text-xs text-gray-400 underline underline-offset-2 hover:text-gray-600 transition-colors duration-150"
+                className="flex-shrink-0 mt-1 text-xs text-[var(--color-text-tertiary)] underline underline-offset-2 hover:text-gray-600 transition-colors duration-150"
               >
                 Ir para o relatório
               </button>

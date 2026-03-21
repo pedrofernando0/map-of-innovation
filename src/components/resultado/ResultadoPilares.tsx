@@ -15,7 +15,7 @@ function InfoTooltip({ text }: { text: string }) {
         onMouseLeave={() => setShow(false)}
         onFocus={() => setShow(true)}
         onBlur={() => setShow(false)}
-        className="text-gray-400 text-sm cursor-help select-none p-2 -m-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-full"
+        className="text-[var(--color-text-tertiary)] text-sm cursor-help select-none p-2 -m-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-full"
       >
         <span aria-hidden="true">ⓘ</span>
       </button>
@@ -83,14 +83,18 @@ export function ResultadoPilares({ pilares }: Props) {
                   <span className="text-sm font-bold" style={{ color: c.cor }}>
                     {c.nome}
                   </span>
-                  <span className="text-xs text-gray-400 ml-2">{PILAR_DESC[c.id]}</span>
+                  <span className="text-xs text-[var(--color-text-tertiary)] ml-2">
+                    {PILAR_DESC[c.id]}
+                  </span>
                 </div>
                 <span
                   className="text-xl font-extrabold flex-shrink-0 ml-4"
                   style={{ color: c.cor }}
                 >
                   {score}
-                  <span className="text-xs text-gray-400 font-normal">/100</span>
+                  <span className="text-xs text-[var(--color-text-tertiary)] font-normal">
+                    /100
+                  </span>
                 </span>
               </div>
               <div className="w-full bg-gray-100 rounded-full h-4 overflow-hidden">

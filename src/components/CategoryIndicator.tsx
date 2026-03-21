@@ -84,7 +84,7 @@ export function CategoryIndicator({ nivel, score, className }: CategoryIndicator
         ))}
       </div>
       <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5 text-sm text-gray-600 leading-relaxed">
-        <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.16em] text-gray-400">
+        <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--color-text-tertiary)]">
           Leitura do perfil
         </div>
         <p>

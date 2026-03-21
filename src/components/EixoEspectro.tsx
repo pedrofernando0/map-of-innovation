@@ -49,7 +49,9 @@ export function EixoEspectro({
         {isMain && (
           <span className="ml-2 text-3xl font-extrabold" style={{ color: cor }}>
             {score}
-            <span className="text-base font-normal text-gray-400 ml-0.5">/100</span>
+            <span className="text-base font-normal text-[var(--color-text-tertiary)] ml-0.5">
+              /100
+            </span>
           </span>
         )}
         {tooltip && (
@@ -62,7 +64,7 @@ export function EixoEspectro({
               onMouseLeave={() => setShowTooltip(false)}
               onFocus={() => setShowTooltip(true)}
               onBlur={() => setShowTooltip(false)}
-              className="text-gray-400 text-sm cursor-help select-none p-2 -m-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-full"
+              className="text-[var(--color-text-tertiary)] text-sm cursor-help select-none p-2 -m-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] focus-visible:rounded-full"
             >
               <span aria-hidden="true">ⓘ</span>
             </button>
@@ -133,8 +135,12 @@ export function EixoEspectro({
 
         {/* Rótulos extremos */}
         <div className="flex justify-between mt-2 px-0.5">
-          <span className="text-gray-400 font-medium text-xs">{extremoEsquerdo}</span>
-          <span className="text-gray-400 font-medium text-xs">{extremoDireito}</span>
+          <span className="text-[var(--color-text-tertiary)] font-medium text-xs">
+            {extremoEsquerdo}
+          </span>
+          <span className="text-[var(--color-text-tertiary)] font-medium text-xs">
+            {extremoDireito}
+          </span>
         </div>
       </div>
     </div>

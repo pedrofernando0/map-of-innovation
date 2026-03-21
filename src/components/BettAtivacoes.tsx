@@ -97,7 +97,9 @@ function PilarCard({ data }: { data: AtivacoesPilar }) {
                           >
                             {category.label}
                           </span>
-                          <span className="text-[10px] text-gray-400">{category.helper}</span>
+                          <span className="text-[10px] text-[var(--color-text-tertiary)]">
+                            {category.helper}
+                          </span>
                         </div>
                         <h4 className="font-bold text-sm text-[var(--color-geekie-preto)] leading-snug">
                           {atv.titulo}

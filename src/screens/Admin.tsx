@@ -198,7 +198,7 @@ export function Admin() {
             <div className="flex items-center gap-4 mb-2">
               <button
                 onClick={() => navigate('/')}
-                className="text-gray-400 hover:text-[var(--color-geekie-cereja)] transition-colors"
+                className="text-[var(--color-text-tertiary)] hover:text-[var(--color-geekie-cereja)] transition-colors"
                 title="Voltar para o App"
               >
                 <svg

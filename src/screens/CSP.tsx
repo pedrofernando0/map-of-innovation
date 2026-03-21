@@ -92,7 +92,7 @@ export function CSP() {
           </div>
 
           <div className="mt-8 rounded-2xl border border-[#f3e7ea] bg-white/75 p-6 text-left">
-            <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-gray-400 mb-3">
+            <h3 className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--color-text-tertiary)] mb-3">
               Como a continuidade acontece
             </h3>
             <p className="text-sm text-gray-700 leading-relaxed">
